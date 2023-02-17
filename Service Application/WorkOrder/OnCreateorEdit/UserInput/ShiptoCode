@@ -1,0 +1,56 @@
+/******************
+Description: Populate the Shipping address by using the Ship to Code
+Created AT : 18/08/2022
+Created By : Hari Prema
+*****************/
+if(input.Ship_to_Code != null)
+{
+	ship = Ship_to_Address[ID == input.Ship_to_Code];
+	if(ship.count() > 0)
+	{
+		input.Ship_to_Name = ship.Name;
+		input.Ship_to_Address = ship.Address;
+		input.Ship_to_Phone = ship.Phone_Number;
+		input.Ship_to_Email = ship.Email;
+		input.Location = ship.Location_Code;
+	}
+	else
+	{
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = null;
+		input.Location = null;
+		input.Ship_to_Phone = "";
+		input.Ship_to_Email = "";
+	}
+}
+else
+{
+	if(input.Customer != null)
+	{
+		customer_info = Customer[ID == input.Customer];
+		if(customer_info.count() > 0)
+		{
+			input.Ship_to_Name = ifnull(customer_info.Name,"");
+			input.Ship_to_Address = ifnull(customer_info.Address,null);
+			input.Location = ifnull(customer_info.Location,null);
+			input.Ship_to_Phone = customer_info.Phone_No;
+			input.Ship_to_Email = customer_info.Email;
+		}
+		else
+		{
+			input.Ship_to_Name = "";
+			input.Ship_to_Address = null;
+			input.Location = null;
+			input.Ship_to_Phone = "";
+			input.Ship_to_Email = "";
+		}
+	}
+	else
+	{
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = null;
+		input.Location = null;
+		input.Ship_to_Phone = "";
+		input.Ship_to_Email = "";
+	}
+}

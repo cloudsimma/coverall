@@ -1,0 +1,27 @@
+/******************
+Description: Hide and show based on Shipping
+Created AT: 12/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Shipping1 == true)
+{
+	show Customer2;
+	show Ship_to_Code;
+	show Ship_to_Name;
+	show Ship_to_Email;
+	show Ship_to_Phone;
+	show Shipping_Advice;
+	show Location;
+	show Ship_to_Address;
+}
+else
+{
+	hide Customer2;
+	hide Ship_to_Code;
+	hide Ship_to_Name;
+	hide Ship_to_Email;
+	hide Ship_to_Phone;
+	hide Shipping_Advice;
+	hide Location;
+	hide Ship_to_Address;
+}

@@ -1,0 +1,47 @@
+/******************
+Description: Hide and show based on General
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.General == true)
+{
+	show No;
+	show Description;
+	show Customer;
+	show Name;
+	show City;
+	show State_Zip_code;
+	show Zip_code;
+	show Phone_No;
+	show Maintenance_Report;
+	show Notes;
+	show Email;
+	show Service_Order_Type;
+	show Response_Date;
+	show Response_Time;
+	show Priority;
+	show Status;
+	show Responsibility_Center;
+	show Release_Status;
+}
+else
+{
+	hide No;
+	hide Description;
+	hide Customer;
+	hide Name;
+	hide City;
+	hide State_Zip_code;
+	hide Zip_code;
+	hide Phone_No;
+	hide Maintenance_Report;
+	hide Notes;
+	hide Email;
+	hide Service_Order_Type;
+	hide Response_Date;
+	hide Response_Time;
+	hide Priority;
+	hide Status;
+	hide Responsibility_Center;
+	hide Release_Status;
+}

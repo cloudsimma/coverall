@@ -1,0 +1,36 @@
+/****************************************************************
+Description: Service Order Success
+Created AT : 05-08-2022
+Created By : Raja V
+*****************************************************************/
+try 
+{
+	get_mod = Module[Module == "Service Order"];
+	get_serv = Series_List[Module == get_mod.ID];
+	if(get_serv.count() > 0)
+	{
+		get_rf_no = 5;
+		get_ls_no = (get_serv.Last_No + 1).toString();
+		add_space = get_ls_no.leftpad(get_rf_no);
+		add_zero = add_space.replaceAll(" ","0");
+		input.No = "SE-" + add_zero;
+		get_serv.Last_No_Used=input.No;
+		get_serv.Last_No=add_zero.toLong();
+	}
+	else
+	{
+		input.No = "SE-00001";
+		get_no = 1;
+		serv_ins = insert into Series_List
+		[
+			Module=get_mod.ID
+			Added_User=zoho.loginuser
+			Last_No_Used=input.No
+			Last_No=get_no
+		];
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Work Order","Create - Work Order Auto No. generation",input.ID.toString(),e);
+}

@@ -1,0 +1,119 @@
+/****************************************************************
+Description: Service Order Deleted Record
+Created AT : 16-08-2022
+Created By : Punitha N
+*****************************************************************/
+//-------Service Order Against Line Items delete in Service Order Line Items-----------
+for each  rec in Service_Order_Line_Items[Service_Order == input.ID]
+{
+	delete from Service_Order_Line_Item_Comments[Service_Order_Line_Item = rec.ID];
+}
+for each  rec_wrk in Service_Item_Worksheet[Document_No == input.ID]
+{
+	delete from Item_Worksheet_Lines[Service_Item_Worksheet = rec_wrk.ID];
+	delete from WorkSheet_Cards[Service_Item_Worksheet = rec_wrk.ID];
+}
+delete from Service_Item_Worksheet[Document_No == input.ID];
+//-------Revert Planned Maintenance Schedule -----------
+if(input.Planned_Maintenance_Schedule != null)
+{
+	get_palnned_schedule = Planned_Maintenance_Schedule[ID == input.Planned_Maintenance_Schedule];
+	if(get_palnned_schedule.count() > 0)
+	{
+		get_palnned_schedule.Nearby_Schedule=false;
+		//----------Fetch the Previous Service Record ------------
+		lastRecord_service = Service[Planned_Maintenance_Schedule = input.Planned_Maintenance_Schedule && ID != input.ID] sort by Added_Time desc;
+		if(lastRecord_service.count() > 0)
+		{
+			//-------Updated Service Date Based on Previous Service -------
+			get_palnned_schedule.Last_Service_Date=ifnull(lastRecord_service.Posting_Date,null);
+			if(get_palnned_schedule.Maintenance_Code != null)
+			{
+				if(get_palnned_schedule.Maintenance_Code.Code_Key != null)
+				{
+					if(get_palnned_schedule.Maintenance_Code.Code_Key == 4255146000000197015 || get_palnned_schedule.Maintenance_Code.Code_Key == 4255146000000197019)
+					{
+						get_palnned_schedule.Last_Service_Reading=input.Reading;
+						get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,lastRecord_service.Posting_Date,get_palnned_schedule.Last_Service_Reading).toNumber();
+					}
+					else
+					{
+						// Updated Last Service Date, Next Service Date
+						get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,lastRecord_service.Posting_Date,0).toDate();
+					}
+					if(input.Lines != null)
+					{
+						get_serviceitem = Service_Item[ID == input.Lines.Service_Item];
+						if(get_serviceitem.count() > 0)
+						{
+							if(input.Current_Reading > 0)
+							{
+								// Delete Meter Resding Journal
+								for each  rec_mts in Meter_Reading_Journals[Service_Item = get_serviceitem.ID && Reading == input.Current_Reading && Via_Work_Order == true]
+								{
+									delete from Meter_Reading_Journals[Service_Item = get_serviceitem.ID && Reading == input.Current_Reading && Via_Work_Order == true];
+								}
+								// Updated Reading in Service Item
+								get_serviceitem.Reading=get_palnned_schedule.Last_Service_Reading;
+								get_serviceitem.Last_service_Date=get_palnned_schedule.Last_Service_Date;
+							}
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			//-------Updated Service Date Based on Meter Reading Journals -----------
+			get_journals = Meter_Reading_Journals[Planned_Maintenance_Schedule == input.Planned_Maintenance_Schedule] sort by Added_Time;
+			if(get_journals.count() > 0)
+			{
+				get_palnned_schedule.Last_Service_Date=ifnull(get_journals.Posting_Date,null);
+				if(get_palnned_schedule.Maintenance_Code != null)
+				{
+					if(get_palnned_schedule.Maintenance_Code.Code_Key != null)
+					{
+						if(get_palnned_schedule.Maintenance_Code.Code_Key == 4255146000000197015 || get_palnned_schedule.Maintenance_Code.Code_Key == 4255146000000197019)
+						{
+							get_palnned_schedule.Last_Service_Reading=get_journals.Reading;
+							get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,get_journals.Posting_Date,get_palnned_schedule.Last_Service_Reading).toNumber();
+						}
+						else
+						{
+							// Updated Last Service Date, Next Service Date
+							get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,get_journals.Posting_Date,0).toDate();
+						}
+						if(input.Lines != null)
+						{
+							get_serviceitem = Service_Item[ID == input.Lines.Service_Item];
+							if(get_serviceitem.count() > 0)
+							{
+								if(input.Current_Reading > 0)
+								{
+									// Delete Meter Resding Journal
+									for each  rec_mts in Meter_Reading_Journals[Service_Item = get_serviceitem.ID && Reading == input.Current_Reading && Via_Work_Order == true]
+									{
+										delete from Meter_Reading_Journals[Service_Item = get_serviceitem.ID && Reading == input.Current_Reading && Via_Work_Order == true];
+									}
+									// Updated Reading in Service Item
+									get_serviceitem.Reading=get_palnned_schedule.Last_Service_Reading;
+									get_serviceitem.Last_service_Date=get_palnned_schedule.Last_Service_Date;
+								}
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				get_palnned_schedule.Last_Service_Date=null;
+				get_palnned_schedule.Next_Service_Date=null;
+			}
+		}
+		thisapp.Schedule.schedule_based_on_planned_maintenance(get_palnned_schedule.ID);
+		get_palnned_schedule.Service_Order=null;
+	}
+	//-------Service Order Against Schedule delete in Carry Out Action-----------
+	delete from Carry_Out_Action[Planned_Maintenance_Schedule == input.Planned_Maintenance_Schedule];
+	delete from Service_Order_Line_Items[Service_Order == input.ID];
+}

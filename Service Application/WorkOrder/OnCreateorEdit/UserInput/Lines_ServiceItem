@@ -1,0 +1,29 @@
+/***********************************************
+Description: Auto Populate the fields based on Service Item
+Created AT : 03-08-2022
+Created By : RAJA V
+************************************************/
+if(row.Service_Item != null)
+{
+	row.Service_Item_Group_Code=ifnull(row.Service_Item.Service_Item_group_code,null);
+	row.Description=ifnull(row.Service_Item.Description,"");
+	get_repairstatus_code = Repair_Status_Code[Code == "INITIAL"];
+	if(get_repairstatus_code.count() > 0)
+	{
+		row.Repair_Status_Code=get_repairstatus_code.ID;
+	}
+	else
+	{
+		row.Repair_Status_Code=null;
+	}
+	row.Priority="Low";
+	row.Serial_No=ifnull(row.Service_Item.Serial_No,"");
+}
+else
+{
+	row.Service_Item_Group_Code=null;
+	row.Description="";
+	row.Repair_Status_Code=null;
+	row.Priority="";
+	row.Serial_No="";
+}

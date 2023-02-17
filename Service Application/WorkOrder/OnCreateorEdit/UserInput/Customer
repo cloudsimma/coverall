@@ -1,0 +1,81 @@
+/***********************************************************************
+Description: Change the Customer - Auto load Customer Related Details
+Created AT : 02-08-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Customer != null)
+{
+	get_customer = Customer[ID == input.Customer];
+	if(get_customer.count() > 0)
+	{
+		input.Name = ifnull(get_customer.Name,"");
+		input.State_Zip_code = ifnull(get_customer.Address.state_province,"");
+		input.City = ifnull(get_customer.Address.district_city,"");
+		input.Zip_code = ifnull(get_customer.Address.postal_Code,"");
+		input.Phone_No = ifnull(get_customer.Phone_No,"");
+		input.Email = ifnull(get_customer.Email,"");
+		input.Responsibility_Center = ifnull(get_customer.Responsibility_Center,null);
+		input.Customer1 = ifnull(get_customer.ID,null);
+		input.Bill_to_city = ifnull(get_customer.Address.district_city,"");
+		input.State_Zip_code1 = ifnull(get_customer.Address.state_province,"");
+		input.Bill_to_Zip_Code = ifnull(get_customer.Address.postal_Code,"");
+		input.Tax_Liable = ifnull(get_customer.Tax_Liable,"");
+		input.Tax_Area = ifnull(get_customer.Tax_Area,null);
+		input.Payment_Terms_Code = ifnull(get_customer.Payment_Terms_Code,null);
+		input.Customer2 = ifnull(get_customer.ID,null);
+		input.Ship_to_Name = ifnull(get_customer.Name,"");
+		input.Ship_to_Address = ifnull(get_customer.Address,null);
+		input.Ship_to_Email = ifnull(get_customer.Email,"");
+		input.Ship_to_Phone = ifnull(get_customer.Phone_No,"");
+		input.Shipping_Advice = ifnull(get_customer.Shipping_Advice,"");
+		input.Location = ifnull(get_customer.Location,null);
+	}
+	else
+	{
+		input.Name = "";
+		input.State_Zip_code = "";
+		input.City = "";
+		input.Zip_code = "";
+		input.Phone_No = "";
+		input.Email = "";
+		input.Responsibility_Center = null;
+		input.Customer1 = null;
+		input.Bill_to_city = "";
+		input.State_Zip_code1 = "";
+		input.Bill_to_Zip_Code = "";
+		input.Tax_Liable = "";
+		input.Tax_Area = null;
+		input.Payment_Terms_Code = null;
+		input.Customer2 = null;
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = null;
+		input.Ship_to_Email = "";
+		input.Ship_to_Phone = "";
+		input.Shipping_Advice = "";
+		input.Location = null;
+	}
+}
+else
+{
+	input.Name = "";
+	input.State_Zip_code = "";
+	input.City = "";
+	input.Zip_code = "";
+	input.Phone_No = "";
+	input.Email = "";
+	input.Responsibility_Center = null;
+	input.Customer1 = null;
+	input.Bill_to_city = "";
+	input.State_Zip_code1 = "";
+	input.Bill_to_Zip_Code = "";
+	input.Tax_Liable = "";
+	input.Tax_Area = null;
+	input.Payment_Terms_Code = null;
+	input.Customer2 = null;
+	input.Ship_to_Name = "";
+	input.Ship_to_Address = null;
+	input.Ship_to_Email = "";
+	input.Shipping_Advice = "";
+	input.Location = null;
+	input.Ship_to_Phone = "";
+}

@@ -1,0 +1,104 @@
+/****************************************************************
+Description: Disable No.
+Created AT : 02-08-2022
+Created By : Punitha N
+*****************************************************************/
+disable No;
+hide Planned_Maintenance_Schedule;
+-- disable Status;
+disable Lines.Maintenance_Code;
+disable Lines.Serial_No;
+disable Bill_to_city;
+disable Bill_to_Zip_Code;
+disable State_Zip_code1;
+disable Tax_Area;
+disable Tax_Liable;
+disable Payment_Terms_Code;
+disable Ship_to_Address;
+disable Ship_to_Name;
+disable Ship_to_Email;
+disable Ship_to_Phone;
+disable Shipping_Advice;
+disable Location;
+disable Name;
+disable City;
+disable State_Zip_code;
+disable Zip_code;
+disable Phone_No;
+disable Phone_No;
+hide Service_Item_Worksheet;
+disable Reading;
+/****************************************************************
+Description:hide Zoho Books ID 
+Created AT : 12-08-2022
+Created By : Hariharan 
+*****************************************************************/
+hide Zoho_Books_Invoice_ID;
+hide Comments;
+hide Invoice_URL;
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+hide No;
+hide Description;
+hide Customer;
+hide Name;
+hide City;
+hide State_Zip_code;
+hide Zip_code;
+hide Phone_No;
+hide Maintenance_Report;
+hide Notes;
+hide Email;
+hide Service_Order_Type;
+hide Response_Date;
+hide Response_Time;
+hide Priority;
+hide Status;
+hide Responsibility_Center;
+hide Release_Status;
+hide Customer1;
+hide Bill_to_city;
+hide State_Zip_code1;
+hide Bill_to_Zip_Code;
+hide Branch;
+hide Tax_Liable;
+hide Tax_Area;
+hide Posting_Date;
+hide Document_Date;
+hide Due_Date;
+hide Department;
+hide Payment_Terms_Code;
+hide Reading;
+hide Current_Reading;
+hide Customer2;
+hide Ship_to_Code;
+hide Ship_to_Name;
+hide Ship_to_Email;
+hide Ship_to_Phone;
+hide Shipping_Advice;
+hide Location;
+hide Ship_to_Address;
+hide Warning_Status;
+hide Order_date;
+hide Lines;
+hide Line_Item;
+hide Order_Time;
+hide Starting_date;
+hide Starting_time;
+hide finshing_date;
+hide finshing_time;
+hide Expected_finish_date;
+hide Actual_response_time_hrs;
+hide Service_time_hrs;
+hide Account_type;
+hide Expiration_Month;
+hide Hidden_Section;
+input.General = false;
+input.Lines1 = false;
+input.Invoicing1 = false;
+input.Shipping1 = false;
+input.Details1 = false;
+input.EFT1 = false;
