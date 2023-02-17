@@ -1,0 +1,24 @@
+/******************
+Description: Assign Default Deal Code as INWKWKR
+Created AT: 19/12/2022
+Created By: Hari Prema M
+*****************/
+rental_card_info = Rental_Deal_Card[ID == 4255146000000775135];
+if(rental_card_info.count() > 0)
+{
+	input.Default_Deal_Code = rental_card_info.ID;
+}
+/******************
+Description: Auto populate
+Created AT: 09/01/2023
+Created By: Hari Prema M
+*****************/
+input.Tax_Area_Code = 4255146000000204109;
+input.Tax_Identification_Type = "Legal Entity";
+input.Gen_Bus_Posting_Group1 = 4255146000000957019;
+input.Customer_Posting_Group = 4255146000000962009;
+input.Electronic_Invoice_Type = "None";
+input.Application_Method = "Manual";
+input.Payment_Terms_Code1 = 4255146000000961027;
+input.Finance_Charge_Terms = 4255146000000743007;
+input.Print_Statements = true;

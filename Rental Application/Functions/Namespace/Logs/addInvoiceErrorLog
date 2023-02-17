@@ -1,0 +1,14 @@
+void Logs.addInvoiceErrorLog(string module, string rental, String customer, String desc, string process, string inData, string outData)
+{
+	logResponse = insert into Invoice_Error
+	[
+		Added_User=zoho.loginuser
+		Description=desc
+		Customer=customer
+		Rental_Order=rental
+		Module=module
+		Process_Description=process
+		In_Data=inData
+		Out_Response=outData
+	];
+}

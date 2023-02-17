@@ -1,0 +1,127 @@
+void Customer.customerToCRMAccountSync(int id)
+{
+	/**********************
+Description: Creator Customer to CRM Accounts Sync
+Created AT : 12/08/2022
+Created By : Hari Prema
+***********************/
+	if(id != null)
+	{
+		datamap = Map();
+		customer = Customer[ID == input.id];
+		if(customer.count() > 0)
+		{
+			datamap.put("No",ifnull(customer.No,null));
+			datamap.put("Account_Name",ifnull(customer.Name,null));
+			datamap.put("Name_2",ifnull(customer.Name_2,null));
+			datamap.put("Contact_No",ifnull(customer.Contact_No,null));
+			datamap.put("Contact",ifnull(customer.Contact,null));
+			datamap.put("Location_of_Service_Item",ifnull(customer.Location_of_Service_item,null));
+			datamap.put("Portal_Applicable",customer.Portal_Applicable);
+			datamap.put("Balance",ifnull(customer.Balance1,null));
+			datamap.put("Creadit_Limit",ifnull(customer.Credit_Limit,null));
+			if(customer.Primary_Contact_No != null)
+			{
+				contact_info = Contact[ID == customer.Primary_Contact_No];
+				if(contact_info.count() > 0)
+				{
+					if(contact_info.CRM_Contact_ID != null && contact_info.CRM_Contact_ID != "")
+					{
+						datamap.put("PrimaryContactNo",ifnull(contact_info.CRM_Contact_ID.toLong(),null));
+					}
+				}
+			}
+			else
+			{
+				datamap.put("PrimaryContactNo",null);
+			}
+			datamap.put("Sales_Person_Code",if(customer.Sales_Person_Code != null,ifnull(customer.Sales_Person_Code.Code,null),null));
+			datamap.put("Default_Sales_Team",if(customer.Default_Sales_Team != null,ifnull(customer.Default_Sales_Team.Code,null),null));
+			datamap.put("Responsibility_Center",if(customer.Responsibility_Center != null,ifnull(customer.Responsibility_Center.Code,null),null));
+			datamap.put("Cust_Emp_Applicable",customer.Cust_Emp_Applicable);
+			datamap.put("Cust_Resource_Applicable",customer.Cust_Resource_Applicable);
+			datamap.put("Blocked",customer.Blocked);
+			datamap.put("Billing_Street",ifnull(customer.Billing_Address.address_line_1,null));
+			datamap.put("Billing_City",ifnull(customer.Billing_Address.district_city,null));
+			datamap.put("Billing_State",ifnull(customer.Billing_Address.state_province,null));
+			datamap.put("Billing_Code",ifnull(customer.Billing_Address.postal_Code,null));
+			datamap.put("Billing_Country",ifnull(customer.Billing_Address.country,null));
+			datamap.put("Shipping_Street",ifnull(customer.Shipping_Address.address_line_11,null));
+			datamap.put("Shipping_City",ifnull(customer.Shipping_Address.district_city1,null));
+			datamap.put("Shipping_State",ifnull(customer.Shipping_Address.state_province1,null));
+			datamap.put("Shipping_Code",ifnull(customer.Shipping_Address.postal_Code1,null));
+			datamap.put("Shipping_Country",ifnull(customer.Shipping_Address.country1,null));
+			datamap.put("Phone",ifnull(customer.Phone_No,null));
+			datamap.put("Fax",ifnull(customer.Fax_No,null));
+			datamap.put("Email",ifnull(customer.Email,null));
+			datamap.put("Home_Page",ifnull(customer.Home_Page,null));
+			datamap.put("Bill_to_Customer_No",if(customer.Bill_to_Customer_No != null,ifnull(customer.Bill_to_Customer_No.No,null),null));
+			datamap.put("Copy_Sell_to_Addr_to_Qte_form",ifnull(customer.Copy_Sell_to_Addr_to_Qte_form,null));
+			datamap.put("E_mail_Invoice_Effective",customer.E_mail_Invoice_Effective);
+			datamap.put("E_mail_Opt_In_Date",ifnull(customer.E_mail_Opt_In_Date,null));
+			datamap.put("Tax_Liable_Area_Code",customer.Tax_Liable_Area_Code);
+			datamap.put("Tax_Area_Code",if(customer.Tax_Area_Code != null,ifnull(customer.Tax_Area_Code.Code,null),null));
+			datamap.put("Tax_Identification_Type",ifnull(customer.Tax_Identification_Type,null));
+			datamap.put("Tax_Registration_No",ifnull(customer.Tax_Registration_No,null));
+			datamap.put("Tax_Exemption_No",ifnull(customer.Tax_Exemption_No,null));
+			datamap.put("Gen_Bus_Posting_Group",if(customer.Gen_Bus_Posting_Group1 != null,ifnull(customer.Gen_Bus_Posting_Group1.Code,null),null));
+			datamap.put("Tax_Bus_Posting_Groups",if(customer.Tax_Bus_Posting_Groups != null,ifnull(customer.Tax_Bus_Posting_Groups.Code,null),null));
+			datamap.put("Customer_Price_Group",if(customer.Price_List != null,ifnull(customer.Price_List.Name,null),null));
+			datamap.put("Customer_Disc_Group",if(customer.Customer_Disc_Group != null,ifnull(customer.Customer_Disc_Group.Code,null),null));
+			datamap.put("Electronic_Invoice_Type",ifnull(customer.Electronic_Invoice_Type,null));
+			datamap.put("Default_Deal_Code",if(customer.Default_Deal_Code != null,ifnull(customer.Default_Deal_Code.Code,null),null));
+			datamap.put("Environmental_Charges",customer.Environmental_Charges);
+			datamap.put("PO_Applicable",customer.PO_Applicable);
+			datamap.put("E_Mail_Statement",customer.E_Mail_Statement);
+			datamap.put("Application_Method",ifnull(customer.Application_Method,null));
+			datamap.put("Payment_Terms_Code",if(customer.Payment_Terms_Code1 != null,ifnull(customer.Payment_Terms_Code1.Code,null),null));
+			datamap.put("Payment_Method_Code",if(customer.Payment_Method_Code != null,ifnull(customer.Payment_Method_Code.Code,null),null));
+			datamap.put("Reminder_Terms_Code",if(customer.Reminder_Terms_Code != null,ifnull(customer.Reminder_Terms_Code.Code,null),null));
+			datamap.put("Finance_Charge_Terms",if(customer.Finance_Charge_Terms != null,ifnull(customer.Finance_Charge_Terms.Code,null),null));
+			datamap.put("Block_Payment_Tolerance",customer.Block_Payment_Tolerance);
+			datamap.put("Cash_Flow_Payment_Terms_Code",if(customer.Cash_Flow_Payment_Terms_Code != null,ifnull(customer.Cash_Flow_Payment_Terms_Code.Code,null),null));
+			datamap.put("Do_Not_Save_Credit_Card_Nos",customer.Do_Not_Save_Credit_Card_Nos);
+			datamap.put("Do_Not_Save_Checking_Acts_Nos",customer.Do_Not_Save_Checking_Acts_Nos);
+			datamap.put("Print_Statements",customer.Print_Statements);
+			datamap.put("Last_Statement_No",ifnull(customer.Last_Statement_No,null));
+			datamap.put("Customer_Bank_Account",if(customer.Customer_Bank_Account != null,ifnull(customer.Customer_Bank_Account.Code,null),null));
+			datamap.put("Location_Code",if(customer.Location_Code != null,ifnull(customer.Location_Code.Code,null),null));
+			datamap.put("Combine_Shipments",customer.Combine_Shipments);
+			datamap.put("Reserve",ifnull(customer.Reserve,null));
+			datamap.put("Shipping_Advice",ifnull(customer.Shipping_Advice,null));
+			datamap.put("Shipment_Method_Code",if(customer.Shipment_Method_Code != null,ifnull(customer.Shipment_Method_Code.Code,null),null));
+			datamap.put("Shipping_Agent_Code",if(customer.Shipping_Agent_Code != null,ifnull(customer.Shipping_Agent_Code.Code,null),null));
+			datamap.put("Shipping_Agent_Service_Code",if(customer.Shipping_Agent_Service_Code != null,ifnull(customer.Shipping_Agent_Service_Code.Code,null),null));
+			datamap.put("Shipping Time",ifnull(customer.Shipping_Time,null));
+			datamap.put("Base_Calendar_Card",if(customer.Base_Calendar_Card != null,ifnull(customer.Base_Calendar_Card.Code,null),null));
+			if(customer.CRM_Customer_ID != null && customer.CRM_Customer_ID != "")
+			{
+				// 			Update CRM Account
+				update_account = zoho.crm.updateRecord("Accounts",customer.CRM_Customer_ID.toLong(),datamap,Map(),"crm_connect");
+				if(update_account.get("id") != null)
+				{
+					// 					
+				}
+				else
+				{
+					thisapp.Logs.addActivityLog("Customer","Update record","Update record from Creator to CRM",id.toString(),update_account.toString());
+				}
+			}
+			else
+			{
+				// 			Create CRM Account
+				datamap.put("Zoho_Creator_ID",id.toString());
+				datamap.put("Created_from_Creator",True);
+				create_account = zoho.crm.createRecord("Accounts",datamap,Map(),"crm_connect");
+				if(create_account.get("id") != null)
+				{
+					customer.CRM_Customer_ID=create_account.get("id").toString();
+				}
+				else
+				{
+					thisapp.Logs.addActivityLog("Customer","Create record","Create record from Creator to CRM",id.toString(),create_account.toString());
+				}
+			}
+		}
+	}
+}

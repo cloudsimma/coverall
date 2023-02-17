@@ -1,8 +1,0 @@
-/******************
-Description: Update Page Option
-Created AT: 23/01/2023
-Created By: Hari Prema M
-*****************/
-input.Page_Option = "Create";
-openUrl("#Script:page.close","same window");
-openUrl("#Script:page.parent.refresh","same window");

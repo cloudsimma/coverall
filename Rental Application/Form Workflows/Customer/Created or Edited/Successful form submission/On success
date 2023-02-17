@@ -1,0 +1,36 @@
+/******************
+Description: Assign Contact's Primary Contact
+Created AT: 26/12/2022
+Created By: Hari Prema M
+*****************/
+try 
+{
+	if(input.Primary_Contact_No != null)
+	{
+		fet_contact = Contact[ID == input.Primary_Contact_No];
+		if(fet_contact.count() > 0)
+		{
+			fet_contact.Company_No=input.ID;
+			fet_contact.Company_Name=ifnull(input.Name,"");
+			fet_contact.Is_Primary_Contact=true;
+		}
+		for each  rec in Contact[Company_No == input.ID]
+		{
+			if(input.Primary_Contact_No == rec.ID)
+			{
+				rec.Is_Primary_Contact=true;
+			}
+			else
+			{
+				rec.Is_Primary_Contact=false;
+			}
+		}
+	}
+	input.Page_Option = "Create";
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh","same window");
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Customer","Create or Edit - Company details of Contact update",input.ID.toString(),e);
+}
