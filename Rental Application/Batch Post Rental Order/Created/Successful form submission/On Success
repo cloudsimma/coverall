@@ -1,0 +1,74 @@
+/******************
+Description: Split batches
+Created AT: 17/11/2023
+Created By: Hari Prema M
+*****************/
+try 
+{
+	thisapp.thru_date();
+	fetch_list = List();
+	rental_data = Rentals[Rental_Order.Select_Code == input.Rental_Order_Type && Invoiced == false].Rental_Order.getAll();
+	sales_data = Sales[Rental_Order.Select_Code == input.Rental_Order_Type && Invoiced == false].Rental_Order.getAll();
+	fetch_list.addAll(rental_data);
+	fetch_list.addAll(sales_data);
+	if(fetch_list.size() > 0)
+	{
+		fetch_id_list = fetch_list.distinct();
+		fetch_orders = fetch_list.distinct().size();
+		fetch_orders_remain = fetch_orders % 20;
+		if(fetch_orders > 0)
+		{
+			batch = (fetch_orders / 20.round(0)).toNumber();
+			if(batch == 0)
+			{
+				var = 1;
+			}
+			else
+			{
+				if(fetch_orders > batch * 20)
+				{
+					var = batch + 1;
+				}
+				else
+				{
+					var = batch;
+				}
+			}
+			start = 1;
+			final_list = leftpad("t",var).replaceall(" ","t,").toList();
+			count = 0;
+			current_time = zoho.currenttime.addMinutes(2);
+			for each  rec in final_list
+			{
+				count = count + 1;
+				start_count = start;
+				end = start + 19;
+				end_count = end;
+				new_list = List();
+				if(count == var)
+				{
+					new_list = fetch_id_list.subList(start_count - 1,fetch_id_list.size());
+				}
+				else
+				{
+					new_list = fetch_id_list.subList(start_count - 1,end_count);
+				}
+				add_record = insert into Batches_for_Batch_Posting
+				[
+					Rental_Order_Type=input.Rental_Order_Type
+					Start=start_count
+					Date_Time=current_time
+					End=end_count
+					Rental_Order_ID=new_list
+					Added_User=zoho.loginuser
+				];
+				start = end + 1;
+				current_time = current_time.addMinutes(5);
+			}
+		}
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Batch Post Rental Order","Create Batches for Batch Posting",input.ID.toString(),e);
+}

@@ -1,0 +1,19 @@
+/******************
+Description: Date and time should be greater than current Date and time
+Created AT: 14/02/2023
+Created By: Punitha N
+*****************/
+if(input.Date_Time != null)
+{
+	if(input.Date_Time >= zoho.currenttime)
+	{
+		// 	info zoho.currenttime.tostring("HHmmss") ; // show  065926
+		// 	info input.Date_Time.tostring("HHmmss") ;  //show    065926
+		// 	info  input.Date_Time.tostring("hh:mm a");  //show 06:59 AM
+		// 	info zoho.currenttime.tostring("hh:mm a");  //show 06:58 AM
+	}
+	else
+	{
+		alert "Date and time should n't be less than current Date and time";
+	}
+}
