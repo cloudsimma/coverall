@@ -1,0 +1,15 @@
+/******************
+Description: Hide and show based on EFT
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.EFT1 == true)
+{
+	show Account_type;
+	show Expiration_Month;
+}
+else
+{
+	hide Account_type;
+	hide Expiration_Month;
+}

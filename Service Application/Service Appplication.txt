@@ -1,2 +1,18 @@
-Test- 1
-Test -2
+-----------Work Order ----------------
+OnCreate - User input of General - General
+OnCreate - Successful form submission - Success
+OnEdit - Load of the form - Load
+OnEdit - User input of General - General
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Current Reading - Current Reading
+OnCreate or Edit - User input of Details - Details
+OnCreate or Edit - User input of EFT - EFT
+OnCreate or Edit - User input of Finishing Date - Finishing Date
+OnCreate or Edit - User input of Invoicing - Invoicing
+OnCreate or Edit - User input of Lines.Service_Item - Lines_Service Item
+OnCreate or Edit - User input of Response Date - Response Date
+OnCreate or Edit - User input of Ship to Code - User Input
+OnCreate or Edit - User input of Shipping - 
+OnCreate or Edit - Validations on form submission - Due Date
+OnCreate or Edit - Successful form submission - Submission
+OnDelete - Validations on record deletion - On Deletion

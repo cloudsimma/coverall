@@ -1,0 +1,12 @@
+/*******************************************************************************
+Description: open popup window Service Order Lines Item and Line Item Comments
+Created AT : 12-08-2022
+Created By : Punitha N
+********************************************************************************/
+hide Comments;
+str1 = "<a href='#Report:Service_Order_Lines_Item?Service_Order=" + input.No + "&zc_LoadIn=dialog'><input type='button' value='Comments'/></a>";
+str2 = "<a href='#Page:Line_Item_Comments?service=" + input.ID + "&zc_LoadIn=dialog'><input type='button' value='Comments'/></a>";
+input.Line_Item = str1;
+input.Comments = str2;
+hide Comments;
+hide Line_Item;

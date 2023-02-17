@@ -1,0 +1,39 @@
+/******************
+Description: Hide anf show based on Invoicing
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Invoicing1 == true)
+{
+	show Customer1;
+	show Bill_to_city;
+	show State_Zip_code1;
+	show Bill_to_Zip_Code;
+	show Branch;
+	show Tax_Liable;
+	show Tax_Area;
+	show Posting_Date;
+	show Document_Date;
+	show Due_Date;
+	show Department;
+	show Payment_Terms_Code;
+	show Reading;
+	show Current_Reading;
+}
+else
+{
+	hide Customer1;
+	hide Bill_to_city;
+	hide State_Zip_code1;
+	hide Bill_to_Zip_Code;
+	hide Branch;
+	hide Tax_Liable;
+	hide Tax_Area;
+	hide Posting_Date;
+	hide Document_Date;
+	hide Due_Date;
+	hide Department;
+	hide Payment_Terms_Code;
+	hide Reading;
+	hide Current_Reading;
+}

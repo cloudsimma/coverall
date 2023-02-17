@@ -1,0 +1,30 @@
+/**********************************************
+Description: Reading validation 
+Created AT : 04/08/2022
+Created By : Punitha
+***********************************************/
+if(input.Current_Reading != null || input.Current_Reading >= 0)
+{
+	if(input.Lines.Service_Item != null)
+	{
+		get_service_item = Service_Item[ID == input.Lines.Service_Item];
+		if(get_service_item.count() > 0)
+		{
+			if(input.Current_Reading < 0)
+			{
+				alert "Current Reading Shouldn't be less than Zero";
+			}
+			if(input.Current_Reading < get_service_item.Reading)
+			{
+				alert "Service Item Reading Shouldn't be less than the Current Reading";
+				input.Current_Reading = null;
+			}
+		}
+		else
+		{
+			input.Current_Reading = null;
+		}
+	}
+}
+
+

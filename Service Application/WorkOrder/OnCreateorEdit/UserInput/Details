@@ -1,0 +1,31 @@
+/******************
+Description: Hide and show based on Details
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Details1 == true)
+{
+	show Warning_Status;
+	show Order_date;
+	show Order_Time;
+	show Starting_date;
+	show Starting_time;
+	show finshing_date;
+	show finshing_time;
+	show Expected_finish_date;
+	show Actual_response_time_hrs;
+	show Service_time_hrs;
+}
+else
+{
+	hide Warning_Status;
+	hide Order_date;
+	hide Order_Time;
+	hide Starting_date;
+	hide Starting_time;
+	hide finshing_date;
+	hide finshing_time;
+	hide Expected_finish_date;
+	hide Actual_response_time_hrs;
+	hide Service_time_hrs;
+}

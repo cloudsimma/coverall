@@ -1,0 +1,68 @@
+/******************************************************************************
+Description: Updated Last Service Date, Next Service Date
+Created AT : 01-09-2022
+Created By : Punitha N
+*******************************************************************************/
+try 
+{
+	if(input.finshing_date != null && input.Status == "Finished")
+	{
+		get_palnned_maintenance = Planned_Maintenance_Schedule[ID == input.Planned_Maintenance_Schedule];
+		if(get_palnned_maintenance.count() > 0)
+		{
+			if(get_palnned_maintenance.Maintenance_Code != null)
+			{
+				get_palnned_maintenance.Last_Service_Date=input.Posting_Date;
+				if(get_palnned_maintenance.Maintenance_Code.Code_Key != null)
+				{
+					if(get_palnned_maintenance.Maintenance_Code.Code_Key == 4255146000000197015 || get_palnned_maintenance.Maintenance_Code.Code_Key == 4255146000000197019)
+					{
+						// Updated Last Service Reading, Next Service Reading
+						get_palnned_maintenance.Last_Service_Reading=input.Current_Reading;
+						get_palnned_maintenance.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_maintenance.Maintenance_Code,input.Posting_Date,input.Current_Reading).toNumber();
+					}
+					else
+					{
+						// Updated Last Service Date, Next Service Date
+						get_palnned_maintenance.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_maintenance.Maintenance_Code,input.Posting_Date,0).toDate();
+					}
+				}
+			}
+			thisapp.Schedule.schedule_service_order(input.Planned_Maintenance_Schedule.Service_Item);
+		}
+		// Updated Current Reading in Service Item
+		if(input.Lines.Service_Item != null)
+		{
+			get_serviceitem = Service_Item[ID == input.Lines.Service_Item];
+			if(get_serviceitem.count() > 0)
+			{
+				if(input.Current_Reading > 0)
+				{
+					// Insert new record in Meter Reading Journal
+					new_Meter = insert into Meter_Reading_Journals
+					[
+						Added_User=zoho.loginuser
+						Posting_Date=zoho.currentdate
+						Service_Item=ifnull(get_serviceitem.ID,"")
+						FA_Description=ifnull(get_serviceitem.Description,"")
+						Reading=input.Current_Reading
+						Meter_Code=4255146000000204189
+						Last_Reading=get_serviceitem.Reading
+						Usage=input.Current_Reading - get_serviceitem.Reading
+						Via_Work_Order=true
+					];
+					get_serviceitem.Reading=input.Current_Reading;
+				}
+			}
+			thisapp.Schedule.schedule_service_order(input.Lines.Service_Item);
+		}
+	}
+	else
+	{
+		info "Please check whether the Finishing Date and Current Reading Fileds were selected and Status Should be Finished";
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Work Order","Create or Edit - Updated Last Service Reading, Next Service Reading, Last Service Date, Next Service Date and Insert new record to Meter Reading Journal",input.ID.toString(),e);
+}

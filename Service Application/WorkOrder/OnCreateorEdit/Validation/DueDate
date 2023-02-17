@@ -1,0 +1,14 @@
+/*****************************************************
+Description: Due Date Validation
+Created AT : 18/08/2022
+Created By : Punitha N
+*****************************************************/
+if(input.Due_Date != null && input.Document_Date != null)
+{
+	if(input.Due_Date < input.Document_Date)
+	{
+		alert "Due Date shouldn't be less than Document Date";
+		input.Due_Date = input.Document_Date;
+		cancel submit;
+	}
+}
