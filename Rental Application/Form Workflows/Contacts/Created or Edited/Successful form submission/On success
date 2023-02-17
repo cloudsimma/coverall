@@ -25,12 +25,13 @@ try
 			customer_info.Contact="";
 		}
 	}
+	// 	Create and edit CRM contact
+	thisapp.Contact.creatorToCRMContactSync(input.ID);
 	input.Page_Option = "Create";
 	openUrl("#Script:page.close","same window");
 	openUrl("#Script:page.parent.refresh","same window");
 }
 catch (e)
 {
-	thisapp.DeveloperLog.addDeveloperLog("Creator : Contact","Create or Edit - Primary Contact of Customer",input.ID.toString(),e);
+	thisapp.Logs.addDeveloperLog("Creator : Contact","Create or Edit - Primary Contact of Customer",input.ID.toString(),e);
 }
-
