@@ -1,0 +1,25 @@
+/**********************
+Description: Populate FA Description
+Created AT : 16-08-2022
+Created By :Hari Prema M 
+***********************/
+service = Service_Item[ID == input.Service_Item];
+if(service.count() > 0)
+{
+	if(service.Description != "")
+	{
+		input.FA_Description = service.Description;
+		input.Last_Reading = ifnull(service.Reading,0);
+	}
+	else
+	{
+		input.FA_Description = "";
+		input.Last_Reading = 0;
+	}
+	//input.Last_Reading = ifnull(service.Reading,null);
+}
+else
+{
+	input.FA_Description = "";
+	input.Last_Reading = 0;
+}

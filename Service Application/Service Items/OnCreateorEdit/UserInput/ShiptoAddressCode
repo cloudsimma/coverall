@@ -1,0 +1,66 @@
+/******************
+Description: Populate the Shipping section by using the Ship to Address Code 
+Created AT : 04/08/2022
+Created By : Hari Prema
+*****************/
+if(input.Ship_to_Address_Code != null)
+{
+	ship = Ship_to_Address[ID == input.Ship_to_Address_Code];
+	if(ship.count() > 0)
+	{
+		input.Ship_to_Name = ship.Name;
+		input.Ship_to_Address = ship.Address.address_line_1;
+		input.Ship_to_City = ship.Address.district_city;
+		input.Ship_to_State = ship.Address.state_province;
+		input.Ship_to_ZIP_Code = ship.Address.postal_Code;
+		input.Ship_to_Phone_no1 = ship.Phone_Number;
+		input.Location_code = ship.Location_Code;
+	}
+	else
+	{
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = "";
+		input.Ship_to_City = "";
+		input.Ship_to_State = "";
+		input.Ship_to_ZIP_Code = "";
+		input.Ship_to_Phone_no1 = "";
+		input.Location_code = null;
+	}
+}
+else
+{
+	if(input.Customer_No != null)
+	{
+		customer_info = Customer[ID == input.Customer_No];
+		if(customer_info.count() > 0)
+		{
+			input.Ship_to_Name = ifnull(customer_info.Name,"");
+			input.Ship_to_Address = ifnull(customer_info.Address.address_line_1,"");
+			input.Ship_to_City = ifnull(customer_info.Address.district_city,"");
+			input.Ship_to_State = ifnull(customer_info.Address.state_province,"");
+			input.Ship_to_ZIP_Code = ifnull(customer_info.Address.postal_Code,"");
+			input.Ship_to_Phone_no1 = ifnull(customer_info.Phone_No,"");
+			input.Location_code = ifnull(customer_info.Location,null);
+		}
+		else
+		{
+			input.Ship_to_Name = "";
+			input.Ship_to_Address = "";
+			input.Ship_to_City = "";
+			input.Ship_to_State = "";
+			input.Ship_to_ZIP_Code = "";
+			Ship_to_Phone_no = "";
+			input.Location_code = null;
+		}
+	}
+	else
+	{
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = "";
+		input.Ship_to_City = "";
+		input.Ship_to_State = "";
+		input.Ship_to_ZIP_Code = "";
+		Ship_to_Phone_no = "";
+		input.Location_code = null;
+	}
+}

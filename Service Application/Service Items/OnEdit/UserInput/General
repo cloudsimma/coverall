@@ -1,0 +1,33 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.General == true)
+{
+	show No;
+	show Description;
+	show Service_Item_group_code;
+	show Serial_No;
+	show Status;
+	show Model_Code;
+	show Plate_Number;
+	show Priority;
+	show Last_service_Date;
+	show Reading;
+	show Preferred_Resources;
+}
+else
+{
+	hide No;
+	hide Description;
+	hide Service_Item_group_code;
+	hide Serial_No;
+	hide Status;
+	hide Model_Code;
+	hide Plate_Number;
+	hide Priority;
+	hide Last_service_Date;
+	hide Reading;
+	hide Preferred_Resources;
+}

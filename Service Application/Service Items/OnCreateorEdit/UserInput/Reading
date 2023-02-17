@@ -1,0 +1,13 @@
+/**********************************************
+Description: Reading validation 
+Created AT : 16-08-2022
+Created By : Punitha N
+***********************************************/
+if(input.Reading != null)
+{
+	if(input.Reading < 0)
+	{
+		alert "Reading Shouldn't be less than 0 ";
+		input.Reading = null;
+	}
+}

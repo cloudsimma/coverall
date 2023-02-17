@@ -1,0 +1,75 @@
+/******************
+Description: Deleting Meter Reading Journal reflects into Service Item and Planned Maintenance Schedule 
+Created AT : 10/10/2022
+Created By : Hari Prema M
+*****************/
+if(input.Service_Item != null)
+{
+	get_serviceitem = Service_Item[ID == input.Service_Item];
+	if(get_serviceitem.count() > 0)
+	{
+		meter_reading_journal = Meter_Reading_Journals[Service_Item == get_serviceitem.ID && ID != input.ID] sort by Added_Time desc;
+		if(input.Reading > 0)
+		{
+			get_serviceitem.Reading=meter_reading_journal.Last_Reading;
+			get_serviceitem.Last_service_Date=meter_reading_journal.Posting_Date;
+		}
+		thisapp.Schedule.schedule_service_order(input.Service_Item);
+	}
+}
+if(input.Planned_Maintenance_Schedule != null)
+{
+	get_palnned_schedule = Planned_Maintenance_Schedule[ID == input.Planned_Maintenance_Schedule];
+	if(get_palnned_schedule.count() > 0)
+	{
+		lastRecord_service = Meter_Reading_Journals[Planned_Maintenance_Schedule = input.Planned_Maintenance_Schedule && ID != input.ID] sort by Added_Time desc;
+		if(lastRecord_service.count() > 0)
+		{
+			get_palnned_schedule.Last_Service_Date=ifnull(lastRecord_service.Posting_Date,null);
+			if(get_palnned_schedule.Maintenance_Code != null)
+			{
+				if(get_palnned_schedule.Code_Key != null)
+				{
+					if(get_palnned_schedule.Code_Key == 4255146000000197015 || get_palnned_schedule.Code_Key == 4255146000000197019)
+					{
+						get_palnned_schedule.Last_Service_Reading=lastRecord_service.Reading;
+						get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,lastRecord_service.Posting_Date,get_palnned_schedule.Last_Service_Reading).toNumber();
+					}
+					else
+					{
+						get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,lastRecord_service.Posting_Date,0).toDate();
+					}
+				}
+			}
+		}
+		else
+		{
+			get_journals = Meter_Reading_Journals[Planned_Maintenance_Schedule == input.Planned_Maintenance_Schedule];
+			if(get_journals.count() > 0)
+			{
+				get_palnned_schedule.Last_Service_Date=ifnull(get_journals.Posting_Date,null);
+				if(get_palnned_schedule.Maintenance_Code != null)
+				{
+					if(get_palnned_schedule.Code_Key != null)
+					{
+						if(get_palnned_schedule.Code_Key == 4255146000000197015)
+						{
+							get_palnned_schedule.Last_Service_Reading=lastRecord_service.Reading;
+							get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,lastRecord_service.Posting_Date,get_palnned_schedule.Last_Service_Reading).toNumber();
+						}
+						else
+						{
+							get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,lastRecord_service.Posting_Date,0).toDate();
+						}
+					}
+				}
+			}
+			else
+			{
+				get_palnned_schedule.Last_Service_Date=null;
+				get_palnned_schedule.Next_Service_Date=null;
+			}
+		}
+		thisapp.Schedule.schedule_service_order(input.Planned_Maintenance_Schedule.Service_Item);
+	}
+}

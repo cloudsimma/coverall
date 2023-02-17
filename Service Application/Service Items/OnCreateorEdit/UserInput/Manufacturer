@@ -1,0 +1,24 @@
+/***********************************************************************
+Description: Change the Manufacturer - Auto load Vendor Details
+Created AT : 04-08-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Manufacturer != null)
+{
+	get_manufacturers = Manufacturers[ID == input.Manufacturer];
+	if(get_manufacturers.count() > 0)
+	{
+		input.Vendor1 = ifnull(get_manufacturers.Vendor,null);
+		input.Vendor_Name = ifnull(get_manufacturers.Vendor.Name,"");
+	}
+	else
+	{
+		input.Vendor1 = null;
+		input.Vendor_Name = "";
+	}
+}
+else
+{
+	input.Vendor1 = null;
+	input.Vendor_Name = "";
+}

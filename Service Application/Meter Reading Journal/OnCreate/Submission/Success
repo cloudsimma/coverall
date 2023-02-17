@@ -1,0 +1,43 @@
+/**********************************************
+Description: Service Item Reading Updation 
+Created AT : 04/08/2022
+Created By : Punitha
+***********************************************/
+-- // if(input.Service_Item != null)
+-- // {
+-- // 	get_serviceitem = Service_Item[ID == input.Service_Item];
+-- // 	if(get_serviceitem.count() > 0)
+-- // 	{
+-- // 		if(input.Reading > 0)
+-- // 		{
+-- // 			get_serviceitem.Reading=input.Reading;
+-- // 			get_serviceitem.Last_service_Date=input.Posting_Date;
+-- // 		}
+-- // 	}
+-- // }
+-- // if(input.Planned_Maintenance_Schedule != null)
+-- // {
+-- // 	get_palnned_schedule = Planned_Maintenance_Schedule[ID == input.Planned_Maintenance_Schedule];
+-- // 	if(get_palnned_schedule.count() > 0)
+-- // 	{
+-- // 		if(input.Reading == null)
+-- // 		{
+-- // 			get_palnned_schedule.Last_Service_Date=input.Posting_Date;
+-- // 			if(input.Maintenance_Code != null)
+-- // 			{
+-- // 				get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(input.Maintenance_Code,input.Posting_Date,ifnull(input.Reading,0));
+-- // 			}
+-- // 		}
+-- // 		else
+-- // 		{
+-- // 			get_palnned_schedule.Last_Service_Date=input.Posting_Date;
+-- // 			if(input.Maintenance_Code != null)
+-- // 			{
+-- // 				get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(input.Maintenance_Code,input.Posting_Date,ifnull(input.Reading,0));
+-- // 			}
+-- // 			get_palnned_schedule.Last_Service_Reading=input.Reading;
+-- // 		}
+-- // 	}
+-- // }
+openUrl("#Script:page.parent.refresh ","parent window");
+-- openUrl("#Script:page.close","same window");

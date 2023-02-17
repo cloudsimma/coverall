@@ -1,0 +1,29 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Shipping1 == true)
+{
+	show Ship_to_Address_Code;
+	show Ship_to_Name;
+	show Ship_to_Address;
+	show Ship_to_City;
+	show Ship_to_State;
+	show Ship_to_ZIP_Code;
+	show Ship_to_Phone_no1;
+	show Travel_Hours;
+	show Location_code;
+}
+else
+{
+	hide Ship_to_Address_Code;
+	hide Ship_to_Name;
+	hide Ship_to_Address;
+	hide Ship_to_City;
+	hide Ship_to_State;
+	hide Ship_to_ZIP_Code;
+	hide Ship_to_Phone_no1;
+	hide Travel_Hours;
+	hide Location_code;
+}

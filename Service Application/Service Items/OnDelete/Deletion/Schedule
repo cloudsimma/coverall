@@ -1,0 +1,13 @@
+/****************************************************************
+Description: Service Item Deleted Record in Schedule
+Created AT : 17-08-2022
+Created By : Punitha N
+*****************************************************************/
+try 
+{
+	delete from Planned_Maintenance_Schedule[Service_Item == input.ID];
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Service Item","Delete Service Item from Planned Maintenance Schedule",input.ID.toString(),e);
+}

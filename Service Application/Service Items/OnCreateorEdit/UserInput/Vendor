@@ -1,0 +1,17 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Vendor2 == true)
+{
+	show Manufacturer;
+	show Vendor1;
+	show Vendor_Name;
+}
+else
+{
+	hide Manufacturer;
+	hide Vendor1;
+	hide Vendor_Name;
+}
