@@ -1,0 +1,14 @@
+/****************************************************************
+Description: Updation - Creator Contact Sync into CRM Contact 
+Created AT : 26-08-2022
+Created By : Punitha N
+*****************************************************************/
+try 
+{
+	thisapp.Contact.contact_to_CRMcontact_sync(input.ID);
+	openUrl("#Report:Contacts","same window");
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Contact","Update Contacts to CRM",input.ID.toString(),e);
+}

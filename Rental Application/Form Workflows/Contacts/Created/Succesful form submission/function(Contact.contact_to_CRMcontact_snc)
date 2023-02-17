@@ -1,0 +1,55 @@
+void Contact.contact_to_CRMcontact_sync(int ID)
+{
+	/**********************
+Description: Creator Customer to CRM Accounts Sync
+Created AT : 26/08/2022
+Created By : Meena M
+***********************/
+	if(ID != null)
+	{
+		datamap = Map();
+		contact = Contact[ID == input.ID];
+		if(contact.count() > 0)
+		{
+			datamap.put("Type",ifnull(contact.Type,null));
+			customer_info = Customer[ID == contact.Company_No];
+			if(customer_info.count() > 0)
+			{
+				datamap.put("Account_Name",if(customer_info.CRM_Customer_ID != null && customer_info.CRM_Customer_ID != "",ifnull(customer_info.CRM_Customer_ID.toLong(),null),null));
+			}
+			datamap.put("Phone_No",ifnull(contact.Phone_No1,null));
+			datamap.put("Next_To_Do_Date",ifnull(contact.Next_To_dio_Date,null));
+			datamap.put("Phone",ifnull(contact.Phone_No1,null));
+			datamap.put("Mobile",ifnull(contact.Mobile_Phone_No,null));
+			datamap.put("Fax",ifnull(contact.Fax,null));
+			datamap.put("Email",ifnull(contact.Email,null));
+			datamap.put("Correnspondence_Type",ifnull(contact.Correspondence_Type,null));
+			datamap.put("Mailing_Street",ifnull(contact.Address.address_line_1,null));
+			datamap.put("Mailing_City",ifnull(contact.Address.district_city,null));
+			datamap.put("Mailing_State",ifnull(contact.Address.state_province,null));
+			datamap.put("Mailing_Zip",ifnull(contact.Address.postal_Code,null));
+			datamap.put("Mailing_Country",ifnull(contact.Address.country,null));
+			datamap.put("Last_Name",ifnull(contact.Name,"N/A"));
+			datamap.put("Sales_Person_Code",if(contact.Sale_Person_Code != null,ifnull(contact.Sale_Person_Code.Code,null),null));
+			datamap.put("Language_Code",if(contact.Language_Code != null,ifnull(contact.Language_Code.Code,null),null));
+			if(contact.CRM_Contact_ID != null && contact.CRM_Contact_ID != "")
+			{
+				update_account = zoho.crm.updateRecord("Contacts",contact.CRM_Contact_ID.toLong(),datamap,Map(),"crm_connect");
+			}
+			else
+			{
+				datamap.put("Zoho_Creator_ID",ID.toString());
+				datamap.put("Created_from_Creator",True);
+				create_account = zoho.crm.createRecord("Contacts",datamap,Map(),"crm_connect");
+				if(create_account.get("id") != null)
+				{
+					contact.CRM_Contact_ID=create_account.get("id").toString();
+				}
+				else
+				{
+					thisapp.DeveloperLog.addActivityLog("Contact","Create record","Create record from Creator to CRM",ID.toString(),create_account.toString());
+				}
+			}
+		}
+	}
+}

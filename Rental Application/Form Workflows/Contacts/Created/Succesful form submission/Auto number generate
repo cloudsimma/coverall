@@ -1,0 +1,36 @@
+/****************************************************************
+Description: Contact No. should generate automatically
+Created AT : 26-08-2022
+Created By : Punitha N
+*****************************************************************/
+try 
+{
+	get_mod = Modules[Module == "Contact"];
+	get_serv = Series_List[Module == get_mod.ID];
+	if(get_serv.count() > 0)
+	{
+		get_rf_no = 5;
+		get_ls_no = (get_serv.Last_No + 1).toString();
+		add_space = get_ls_no.leftpad(get_rf_no);
+		add_zero = add_space.replaceAll(" ","0");
+		input.No = "CT" + add_zero;
+		get_serv.Last_No_used=input.No;
+		get_serv.Last_No=add_zero.toLong();
+	}
+	else
+	{
+		input.No = "CT00001";
+		get_no = 1;
+		serv_ins = insert into Series_List
+		[
+			Module=get_mod.ID
+			Added_User=zoho.loginuser
+			Last_No_used=input.No
+			Last_No=get_no
+		];
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Contact","Create - Auto Generate Contact No",input.ID.toString(),e);
+}

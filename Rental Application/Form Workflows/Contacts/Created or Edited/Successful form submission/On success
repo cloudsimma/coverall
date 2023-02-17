@@ -1,0 +1,36 @@
+/******************
+Description: Update Customer's Primary Contact
+Created AT: 16/12/2022
+Created By: Hari Prema M
+*****************/
+try 
+{
+	if(input.Is_Primary_Contact == true)
+	{
+		customer_info = Customer[ID == input.Company_No];
+		if(customer_info.count() > 0)
+		{
+			customer_info.Primary_Contact_No=input.ID;
+			customer_info.Contact_No=input.Phone_No;
+			customer_info.Contact=input.Name;
+		}
+	}
+	else
+	{
+		customer_info = Customer[ID == input.Company_No];
+		if(customer_info.count() > 0)
+		{
+			customer_info.Primary_Contact_No=null;
+			customer_info.Contact_No=null;
+			customer_info.Contact="";
+		}
+	}
+	input.Page_Option = "Create";
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh","same window");
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Contact","Create or Edit - Primary Contact of Customer",input.ID.toString(),e);
+}
+

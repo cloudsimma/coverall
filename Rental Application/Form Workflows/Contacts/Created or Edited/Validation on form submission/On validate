@@ -1,0 +1,13 @@
+/******************
+Description: Update existing Contact if the contact is a primary contact
+Created AT: 16/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Is_Primary_Contact == true)
+{
+	contact_info = Contact[Company_No == input.Company_No && Is_Primary_Contact == true];
+	if(contact_info.count() > 0)
+	{
+		contact_info.Is_Primary_Contact=false;
+	}
+}
