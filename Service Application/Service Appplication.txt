@@ -1,9 +1,34 @@
+-----------Meter Reading Journal----------------
+OnCreate - Load of the form - On Load
+OnCreate - Successful form submission - Success
+OnEdit - Successful form submission - Success
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Reading - Reading
+OnCreate or Edit - User input of Service Item - Service Item
+OnCreate or Edit - User input of Show More - Show More
+OnDelete - Validations on record deletion - On Deletion
+
+-----------Service Items----------------
+OnCreate - User input of General - General
+OnCreate - Successful form submission - Success
+OnEdit - User input of General - General
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Customer - Customer
+OnCreate or Edit - User input of Customer No - Customer No
+OnCreate or Edit - User input of Manufacturer - Manufacturer
+OnCreate or Edit - User input of Reading - Reading
+OnCreate or Edit - User input of Ship to Address Code - Ship to Address Code
+OnCreate or Edit - User input of Shipping - Shipping
+OnCreate or Edit - User input of Vendor - Vendor 
+OnDelete - Successful record deletion - Schedule
+
 -----------Work Order ----------------
 OnCreate - User input of General - General
 OnCreate - Successful form submission - Success
 OnEdit - Load of the form - Load
 OnEdit - User input of General - General
 OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Customer - Customer
 OnCreate or Edit - User input of Current Reading - Current Reading
 OnCreate or Edit - User input of Details - Details
 OnCreate or Edit - User input of EFT - EFT
@@ -12,7 +37,7 @@ OnCreate or Edit - User input of Invoicing - Invoicing
 OnCreate or Edit - User input of Lines.Service_Item - Lines_Service Item
 OnCreate or Edit - User input of Response Date - Response Date
 OnCreate or Edit - User input of Ship to Code - User Input
-OnCreate or Edit - User input of Shipping - 
+OnCreate or Edit - User input of Shipping - Shipping
 OnCreate or Edit - Validations on form submission - Due Date
 OnCreate or Edit - Successful form submission - Submission
 OnDelete - Validations on record deletion - On Deletion

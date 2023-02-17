@@ -1,0 +1,35 @@
+/**********************************************
+Description: Auto Populdate the values 
+Created AT : 04-08-2022
+Created By : RAJA V
+***********************************************/
+if(input.Planned_Maintenance_Schedule != null)
+{
+	input.Allowance_Date = ifnull(input.Posting_Date,null);
+	input.Service_Item = ifnull(input.Planned_Maintenance_Schedule.Service_Item,null);
+	input.FA_Description = ifnull(input.Planned_Maintenance_Schedule.Service_Item.Description,"");
+	input.Meter_Code = ifnull(input.Planned_Maintenance_Schedule.Meter_Code,null);
+	input.Maintenance_Code = ifnull(input.Planned_Maintenance_Schedule.Maintenance_Code,null);
+	input.Description = ifnull(input.Planned_Maintenance_Schedule.Maintenance_Code.Description,"");
+	if(input.Maintenance_Code.Code_Key != null)
+	{
+		if(input.Maintenance_Code.Code_Key != 4255146000000197015)
+		{
+			hide Reading;
+			//input.Reading = 0
+		}
+		else
+		{
+			show Reading;
+		}
+	}
+}
+// else
+// {
+// 	input.Allowance_Date = null;
+// 	input.Service_Item = null;
+// 	input.FA_Description = "";
+// 	input.Meter_Code = null;
+// 	input.Maintenance_Code = null;
+// 	input.Description = "";
+// }

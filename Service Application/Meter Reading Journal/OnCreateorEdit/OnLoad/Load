@@ -1,0 +1,62 @@
+/**********************************************
+Description: Hide Fields 
+Created AT : 04-08-2022
+Created By : RAJA V
+***********************************************/
+hide Planned_Maintenance_Schedule;
+hide Bulk_Meter_Reading_Journal;
+hide Status;
+disable Last_Reading;
+if(Planned_Maintenance_Schedule != null)
+{
+	disable Service_Item;
+	disable FA_Description;
+	disable Meter_Code;
+	disable Maintenance_Code;
+	disable Description;
+	disable Allowance_Date;
+	disable Usage;
+}
+hide Via_Work_Order;
+/**********************************************
+Description: Hide Fields 
+Created AT : 22-08-2022
+Created By : vivek v
+***********************************************/
+if(input.Show_More = false)
+{
+	hide Allowance_Date;
+	hide Description;
+	hide Maintenance_Code;
+}
+service = Service_Item[ID == input.Service_Item];
+if(service.count() > 0)
+{
+	if(service.Description != "")
+	{
+		input.FA_Description = service.Description;
+	}
+	else
+	{
+		input.FA_Description = "";
+	}
+	input.Last_Reading = ifnull(service.Reading,0);
+}
+else
+{
+	input.FA_Description = "";
+	input.Last_Reading = 0;
+}
+/**********************************************
+Description: Hide Fields 
+Created AT : 10/10/2022
+Created By : Hari PRema M
+***********************************************/
+if(input.Maintenance_Code.Code_Key == 4255146000000425015 || input.Maintenance_Code.Code_Key == 4255146000000197019 || input.Maintenance_Code.Code_Key == 4255146000000197011 || input.Maintenance_Code.Code_Key == 4255146000000197007 || input.Maintenance_Code.Code_Key == 4255146000000197003)
+{
+	hide Reading;
+}
+else
+{
+	show Reading;
+}

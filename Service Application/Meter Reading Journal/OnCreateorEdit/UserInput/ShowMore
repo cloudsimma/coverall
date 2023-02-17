@@ -1,0 +1,17 @@
+/**********************
+Description: on click
+Created AT : 22-08-2022
+Created By :vivek v 
+***********************/
+if(input.Show_More = true)
+{
+	show Allowance_Date;
+	show Description;
+	show Maintenance_Code;
+}
+else
+{
+	hide Allowance_Date;
+	hide Description;
+	hide Maintenance_Code;
+}

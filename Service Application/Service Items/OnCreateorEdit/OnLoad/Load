@@ -1,0 +1,56 @@
+/****************************************************************
+Description: Disable Input Field
+Created AT : 04-08-2022
+Created By : Punitha N
+*****************************************************************/
+disable Name;
+disable contact1;
+disable Location_of_Service_item;
+disable Address;
+disable Ship_to_Name;
+disable Ship_to_Address;
+disable Ship_to_City;
+disable Ship_to_State;
+disable Ship_to_ZIP_Code;
+disable Ship_to_Phone_no1;
+disable Location_code;
+disable Vendor_Name;
+hide Reading;
+// hide No;
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+hide No;
+hide Description;
+hide Service_Item_group_code;
+hide Serial_No;
+hide Status;
+hide Model_Code;
+hide Plate_Number;
+hide Priority;
+hide Last_service_Date;
+hide Reading;
+hide Preferred_Resources;
+hide Customer_No;
+hide Address;
+hide Name;
+hide contact1;
+hide Location_of_Service_item;
+hide Ship_to_Address_Code;
+hide Ship_to_Name;
+hide Ship_to_Address;
+hide Ship_to_City;
+hide Ship_to_State;
+hide Ship_to_ZIP_Code;
+hide Ship_to_Phone_no1;
+hide Travel_Hours;
+hide Location_code;
+hide Manufacturer;
+hide Vendor1;
+hide Vendor_Name;
+input.General = false;
+input.Customer1 = false;
+input.Shipping1 = false;
+input.Vendor2 = false;

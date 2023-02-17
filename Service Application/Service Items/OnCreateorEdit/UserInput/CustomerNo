@@ -1,0 +1,52 @@
+/***********************************************************************
+Description: Change the Customer - Auto load Customer Related Details
+Created AT : 04-08-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Customer_No != null)
+{
+	get_customer = Customer[ID == input.Customer_No];
+	if(get_customer.count() > 0)
+	{
+		input.Name = ifnull(get_customer.Name,"");
+		input.contact1 = ifnull(get_customer.Phone_No,"");
+		input.Location_of_Service_item = ifnull(get_customer.Location_of_Service_item,"");
+		input.Address = ifnull(get_customer.Address,null);
+		input.Ship_to_Name = ifnull(get_customer.Name,"");
+		input.Ship_to_Address = ifnull(get_customer.Address.address_line_1,"");
+		input.Ship_to_City = ifnull(get_customer.Address.district_city,"");
+		input.Ship_to_State = ifnull(get_customer.Address.state_province,"");
+		input.Ship_to_ZIP_Code = ifnull(get_customer.Address.postal_Code,"");
+		input.Ship_to_Phone_no1 = ifnull(get_customer.Phone_No,"");
+		get_ship_to_addr = Ship_to_Address[Customer == input.Customer_No];
+		input.Ship_to_Address_Code = ifnull(get_ship_to_addr.ID,null);
+	}
+	else
+	{
+		input.Name = "";
+		input.contact1 = "";
+		input.Location_of_Service_item = "";
+		input.Address = null;
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = "";
+		input.Ship_to_City = "";
+		input.Ship_to_State = "";
+		input.Ship_to_ZIP_Code = "";
+		input.Ship_to_Phone_no1 = "";
+		input.Ship_to_Address_Code = null;
+	}
+}
+else
+{
+	input.Name = "";
+	input.contact1 = "";
+	input.Location_of_Service_item = "";
+	input.Address = null;
+	input.Ship_to_Name = "";
+	input.Ship_to_Address = "";
+	input.Ship_to_City = "";
+	input.Ship_to_State = "";
+	input.Ship_to_ZIP_Code = "";
+	input.Ship_to_Phone_no1 = "";
+	input.Ship_to_Address_Code = null;
+}
