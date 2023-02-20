@@ -1,0 +1,24 @@
+{
+  "product_url": "product_url",
+  "tabs": [{
+      "tab_name": "Tab 1",
+      "tab_id": "prod-details-tab-tab1",
+      "tab_content": "<ul><li>Protects skin from exposure to smog and urban pollution</li><li>Enhances the skin’s natural defences</li><li>Protects against dryness and&nbsp;premature aging</li><li>Protects against irritation and allergies</li></ul>"
+    },
+    {
+      "tab_name": "Tab 2",
+      "tab_id": "prod-details-tab-user-tab2",
+      "tab_content": "<p>Shake bottle before use. Apply around 5 drops of our anti polltion&nbsp;serum to a cleansed face and massage gently into your skin. Follow with your favourite <a href='https://www.fountaincosmetics.com/skin-care-products/face/moisturiser/' target='_blank' rel='noopener'>Fountain moisturiser</a>. <a href='https://www.fountaincosmetics.com/shop/timeless/' target='_blank' rel='noopener'>Our Timeless Collection of peptide-infused oils</a> can be applied up to 2-3 times per day.</p>"
+    },
+    {
+      "tab_name": "Tab 3",
+      "tab_id": "prod-details-tab-user-tab3",
+      "tab_content": "<p><strong>MariMoist</strong>: A rare and precious marine-based biopolymer complex providing the ultimate in water release and textural sensation. MariMoist imparts a light, silky film that instantly hydrates, cools and soothes the skin, leaving it feeling moist and refreshed.</p><p><strong>Pentavitin</strong>: a 100% plant-derived ingredient that&nbsp;ensures instant, deep hydration and generates a moisture reservoir that lasts for 72 hours</p><p><strong>Pollustop</strong>: is a polysaccharide which forms a non-occlusive film on the skin and hair to protect against pollution in&nbsp;our daily environment, such as&nbsp;atmospheric and domestic pollution.&nbsp;The protection offered by Pollustop is physical and immediate, and is designed to prevent the appearance or aggravation of premature aging and cutaneous disorders tied to pollution.</p><p><strong>Rigin</strong>: delays the effects of premature aging, improves elasticity and firmness, and hydrates, protects&nbsp;and smooths the skin.</p><p><strong>Vilastene</strong>:&nbsp;is a combination of active ingredients developed to slow down skin aging due to glycation of proteins. The&nbsp;delivery system helps&nbsp;release the active peptide to provide&nbsp;elasticity and suppleness to the skin.</p><p><strong>Natural Vitamin E:</strong>&nbsp;a powerful antioxidant that helps fight free radicals and reverse the signs of aging. Its restorative and anti-inflammatory properties help keep skin in good condition and looking younger for longer.</p>"
+    },
+    {
+      "tab_name": "Tab 4",
+      "tab_id": "prod-details-tab-user-tab4",
+      "tab_content": "<p>Aqua,Helianthus Annuus (Sunflower) Seed Oil,Olea Europaea (Olive) Fruit Oil,Dimethyl Isosorbide,Orbignya Oleifera Seed Oil, Pentylene Glycol,Saccharide Isomerate, Glycerin,Phospholipids,Tocopheryl Acetate (Natural),Tocopherol,Glycine Soja (Soybean) Oil,Lecithin,Chondrus Crispus Extract,Caprylic/Capric Triglyceride,Lysine HCl,Caprylyl/Capryl Glucosides,Polyglyceryl-5 Oleate,Sodium Cocoyl Glutamate, Glycolipids,Asteri-scus Graveolens Flower/Fruit/Leaf/Stem Extract, Dimethylmethoxy Chromanol,Glyceryl Caprylate,Steareth-20,Sodium Hyaluronate,Caprylyl Glycol,Acetyl Dipeptide-3 Aminohexanoate,Tripeptide-10 Citrulline,Sodium Citrate,Glycine Soja (Soybean) Sterols,Palmitoyl Tetrapeptide-7,Sodium Acrylates Copolymer,Acrylic Acid/Acrylami-domethyl Propane Sulfonic Acid Copolymer, Pelargonium Graveolens (Geranium) Oil, Citrus Grandis (Grapefruit) Peel Oil, Juniperus Communis (Juniper) Fruit Oil, Cananga Odorata (Ylang Ylang) Flower Oil, Citrus Aurantifolia (Lime) Oil, Citrus Aurantium Amara (Bitter Orange/Neroli) Peel Oil,Citrus Aurantium Bergamia (Bergamot) Fruit Oil,Citrus Aurantium Dulcis (Orange) Peel Oil,Citrus Medica Limonum (Lemon) Peel Oil, Citrus Tangerina (Tangerine) Peel Oil,Jasminum Officinale (Jasmine) Absolute,Pelargonium Graveolens Geranium) Oil,Vanilla Planifolia Fruit Extract,Carbomer,Ethylhexylglycer-in,Disodium EDTA,Citric Acid, Phenoxyethanol,Citronellol,Geraniol, Limonene, Linalool, Yellow 11 (CI 47000), Blue 1 (CI 42090).</p>"
+    }
+  ]
+}
