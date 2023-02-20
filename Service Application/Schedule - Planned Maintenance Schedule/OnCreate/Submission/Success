@@ -1,0 +1,13 @@
+/****************************************************************
+Description: Planned maintenance Schedule Success
+Created AT : 05-08-2022
+Created By : Punitha N
+*****************************************************************/
+try 
+{
+	thisapp.Schedule.Planned_maintenance_Schedule(input.Start.toLong(),input.End.toLong());
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Schedule - Planned Maintenance Schedule","Create - Nearby Schedule of Planned Maintenance Schedule Update",input.ID.toString(),e);
+}

@@ -1,0 +1,16 @@
+/**************************************************
+Description: hide and disable the fields
+Created AT : 02-08-2022
+Created By : Punitha N
+***************************************************/
+//Disable the fields
+disable Service_Item_Description;
+disable Last_Service_Date;
+disable Next_Service_Date;
+disable Last_Service_Reading;
+disable Next_service_reading;
+disable Ship_to_Address;
+disable Service_Item;
+//Hide the fields
+hide Service_Order;
+hide Nearby_Schedule;

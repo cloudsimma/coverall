@@ -1,0 +1,257 @@
+<%{
+	%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="card">
+    <div class="content">
+      <h2 style="color:#2803f4f0;">Service </h2>
+	  			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Item_Worksheets"
+			style="text-decoration: none;color:black" >Service Item Worksheets</a> </div>
+			
+				  			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Order_Lines_Item"
+			style="text-decoration: none;color:black" >Service Order Lines Item</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Item_Group"  style="text-decoration: none;color:black" >Service Item Groups</a> </div>
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i> <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Price_Group"
+			style="text-decoration: none;color:black" >Service Price Groups</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Model_Code"
+			style="text-decoration: none;color:black" >Model Codes</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Order_Types"
+			style="text-decoration: none;color:black" >Service Order Types</a> </div>
+			
+						  <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Item_Worksheet_Line"  style="text-decoration: none;color:black" > Line Item </a> </div>
+			 
+			  <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Order_Line_Item_Comment"  style="text-decoration: none;color:black" > Line Item-Comments</a> </div>
+			 
+			 
+			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Work_Types"
+			style="text-decoration: none;color:black" >Work Types</a> </div>
+			
+			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Order_Prints"
+			style="text-decoration: none;color:black" >Service Order Print</a> </div>
+			
+            <div class="" style=""><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Service_Shelve"
+			style="text-decoration: none;color:black" >Service Shelves</a> </div>
+			
+    </div>
+  </div>
+  <div class="card">
+       <div class="content">
+       <h2 style="color:#ff0000;margin-left: 5px;">Customer </h2>
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Customers"  style="text-decoration: none;color:black" >
+			 Customer</a></div>
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i> <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Branches"
+			style="text-decoration: none;color:black" >Branches</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Locations"
+			style="text-decoration: none;color:black" >Locations</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Responsibility_Centers"
+			style="text-decoration: none;color:black" >Responsibility Centers</a> </div>
+			
+			  <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Ship_to_Address_Report"  style="text-decoration: none;color:black" >Ship to Address</a> </div>
+			 
+			 			  <div class=""style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Payment_Terms_Codes"
+			style="text-decoration: none;color:black" >Payment Terms</a> </div>
+			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Departments"
+			style="text-decoration: none;color:black" >Departments</a> </div>
+			
+			    <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Sales_Person_Report"
+			style="text-decoration: none;color:black" >Sales Person</a> </div>
+
+			  <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Sales_Team_Report"
+			style="text-decoration: none;color:black" >Sales Team</a> </div>
+			
+            <div class="" style=""><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Tax_Areas"
+			style="text-decoration: none;color:black" >Tax Areas</a> </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <h2 style="color:#3CB371;margin-left: 1px;"> Maintenance </h2>
+	  		 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Maintenance_Schedule"  style="text-decoration: none;color:black" > Maintenance Schedule</a> </div>
+			 						             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Carry_Out_Action2"
+			style="text-decoration: none;color:black" >Carry Out Action</a> </div>
+			 
+			 			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Maintenance_Codes"
+			style="text-decoration: none;color:black" >Maintenance Code</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i> <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Rental_Meter_Cards"
+			style="text-decoration: none;color:black" >Rental Meter Cards</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Repair_Status_Codes"
+			style="text-decoration: none;color:black" >Repair Status</a> </div>
+			
+            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Technicians_Code"
+			style="text-decoration: none;color:black" >Technicians</a> </div>
+			 
+			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Unit_of_Measures"
+			style="text-decoration: none;color:black" >Unit of Measure</a> </div>
+			
+			            <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>
+			 <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Code_Key_Masters"  style="text-decoration: none;color:black" >Code Key Master</a> </div>
+			 						             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Manufacturer"
+			style="text-decoration: none;color:black" >Manufacturers</a> </div>
+			
+            <div class="" style=""><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/service#Report:Productivity_Codes"
+			style="text-decoration: none;color:black" >Productivity</a> </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+.zc-pb-embed-placeholder-content{
+	    background: #FFFFFF;
+}
+ a { text-decoration: none; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 80vh;
+    background:#FFFFFF;
+}
+
+.card {
+    background: #287bff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    width: 280px;
+    height: 430px;
+    margin: 30px;
+    border-radius: 20px;
+    border-bottom-left-radius: 160px;
+    border-bottom-right-radius: 160px;
+    /* box-shadow: 0 15px 0 #fff,inset 0 -15px 0 rgba(255, 255, 255, 0.24),0 45px 0 rgba(0, 0, 0, 0.15); */
+    overflow: hidden;
+     
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: -40%;
+    padding: 0;
+    width: 100%;
+    height: 120%;
+    /* background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2)); */
+    transform: rotate(35deg);
+    pointer-events: none;
+    filter: blur(5px);
+}
+
+.card:nth-child(1) {
+    /* background: linear-gradient(to bottom, #ff2ae0, #645bf6); */
+    background: #645bf624;
+    border-style: solid;
+    border-color: #645bf6;
+}
+
+.card:nth-child(2) {
+    /* background: linear-gradient(to bottom, #ffec61, #f321d7); */
+	background: #ff000014;
+    border-style: solid;
+    border-color: #ff0000;
+	padding-left: 50px;
+}
+
+.card:nth-child(3) {
+    /* background: linear-gradient(to bottom, #24ff72, #9a4eff); */
+	background: #3cb37117;
+    border-style: solid;
+    border-color: #3CB371;
+	padding-left: 40px;
+}
+
+.card .icon {
+    position: relative;
+    width: 140px;
+    height: 120px;
+    background: #3c2846;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    /* box-shadow: 0 15px 0 rgba(0, 0, 0, 0.1),inset 0 -8px 0 #fff; */
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card .icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-top-right-radius: 50px;
+    box-shadow: 15px -15px 0 15px #3c2846;
+}
+
+.card .icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-top-left-radius: 50px;
+    box-shadow: -15px -15px 0 15px #3c2846;
+}
+
+.card .icon ion-icon {
+    color: #fff;
+    position: relative;
+    font-size: 6em;
+    z-index: 1000;
+    --ionicon-stroke-width: 24px;
+}
+
+
+.card .content {
+    position: absolute;
+    width: 100%;
+    padding-top: 30px;
+    /* text-align: center; */
+	padding-left: 50px;
+}
+
+.card .content h2 {
+    font-size: 1.8em;
+    color: #fff;
+    margin-bottom: 15px;
+    margin-left: 25px;
+}
+
+.card .content p {
+    color: #fff;
+    line-height: 1.5em;
+}
+
+
+</style>
+<%
+
+}%>

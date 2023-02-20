@@ -1,0 +1,10 @@
+/******************
+Description: Validation for Quantity
+Created AT : 14/10/222
+Created By : Hari Prema M
+*****************/
+if(row.Quantity <= 0)
+{
+	alert "Quantity should be greater than 0";
+	row.Quantity=null;
+}

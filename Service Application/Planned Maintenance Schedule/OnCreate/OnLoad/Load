@@ -1,0 +1,28 @@
+/**********************************************
+Description: Hide Fields and Populate fields
+Created AT : 16/08/2022
+Created By : Hari Prema M
+***********************************************/
+hide Last_Service_Date;
+hide Last_Service_Reading;
+hide Next_Service_Date;
+hide Next_service_reading;
+if(input.Service_Item != null)
+{
+	get_serviceitem = Service_Item[ID == input.Service_Item];
+	if(get_serviceitem.count() > 0)
+	{
+		input.Service_Item_Description = ifnull(get_serviceitem.Description,"");
+		input.Ship_to_Address = ifnull(get_serviceitem.Ship_to_Address_Code,null);
+	}
+	else
+	{
+		input.Service_Item_Description = "";
+		input.Ship_to_Address = null;
+	}
+}
+else
+{
+	input.Service_Item_Description = "";
+	input.Ship_to_Address = null;
+}

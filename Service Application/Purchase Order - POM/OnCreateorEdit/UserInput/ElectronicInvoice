@@ -1,0 +1,13 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Electronic_Invoice1 == true)
+{
+	show Fiscal_Invoice_Number_PAC;
+}
+else
+{
+	hide Fiscal_Invoice_Number_PAC;
+}

@@ -1,0 +1,41 @@
+/******************
+Description: Auto populate Contact
+Created AT : 14/10/2022
+Created By : Hari Prema M
+*****************/
+fet = rental_advantage.Vendor.vendor_input(input.Buy_from_Vendor_No);
+input.Buy_from_Vendor_Name = fet.get("Buy-from Vendor Name");
+input.Buy_from_Address.address_line_1 = fet.get("Buy-from Address1");
+input.Buy_from_Address.address_line_2 = fet.get("Buy-from Address2");
+input.Buy_from_Address.district_city = fet.get("Buy-from City");
+input.Buy_from_Address.state_province = fet.get("Buy-from State");
+input.Buy_from_Address.country = fet.get("Buy-from Country");
+input.Buy_from_Address.postal_Code = fet.get("Buy-from PostalCode");
+input.Buy_from_Contact_No = fet.get("Buy-from Contact No");
+input.Buy_from_Contact = fet.get("Buy-from Contact");
+input.Responsibility_Center = fet.get("Responsibility Centre");
+input.Vendor_No = fet.get("Vendor No");
+input.Name = fet.get("Name");
+input.Address.address_line_11 = fet.get("Address1");
+input.Address.address_line_21 = fet.get("Address2");
+input.Address.district_city1 = fet.get("City");
+input.Address.state_province1 = fet.get("State");
+input.Address.country1 = fet.get("Country");
+input.Address.postal_Code1 = fet.get("PostalCode");
+input.Pay_to_Contact_No = fet.get("Pay-to Contact No");
+input.Contact = fet.get("Pay-to Contact Name");
+input.Responsibility_Center = fet.get("Branch Code");
+input.Department_Code = fet.get("Department Code");
+input.Payment_Terms_Code = fet.get("Payment Terms Code");
+input.Tax_Area_Code = fet.get("Tax Area Code");
+input.Tax_Liable = fet.get("Tax Liable");
+input.Ship_to_Name = fet.get("Ship-to Name");
+input.Ship_to_Address.address_line_12 = fet.get("Ship-to Address1");
+input.Ship_to_Address.address_line_22 = fet.get("Ship-to Address2");
+input.Ship_to_Address.district_city2 = fet.get("Ship-to City");
+input.Ship_to_Address.state_province2 = fet.get("Ship-to State");
+input.Ship_to_Address.country2 = fet.get("Ship-to Country");
+input.Ship_to_Address.postal_Code2 = fet.get("Ship-to PostalCode");
+input.Location_Code = fet.get("Location Code");
+input.Shipment_Method_Code = fet.get("Shipment Method Code");
+input.Payment_Terms_Code = fet.get("Payment Terms Code");

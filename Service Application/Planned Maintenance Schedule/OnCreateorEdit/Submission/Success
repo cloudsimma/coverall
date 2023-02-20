@@ -1,0 +1,7 @@
+/******************************************************************************
+Description: Reloads/refreshes the parent window
+Created AT : 16-08-2022
+Created By : Punitha N
+*******************************************************************************/
+openUrl("#Script:page.parent.refresh ","parent window");
+openUrl("#Script:page.close","same window");

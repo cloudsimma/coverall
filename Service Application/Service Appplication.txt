@@ -1,3 +1,46 @@
+
+----------------Schedule - Planned Maintenance Schedule----------------
+OnCreate - Successful form submission - Success
+
+----------------Purchase Order - POM----------------
+OnCreate - Load of the form - On Load
+OnCreate - User input of General - General
+OnCreate - Successful form submission - Success
+OnEdit - User input of General - General
+OnCreate - Load of the form - On Load
+OnCreate or Edit - User input of Buy-from Contact No - Buy-from Contact No
+OnCreate or Edit - User input of Buy-from Vendor No - Buy-from Vendor No
+OnCreate or Edit - User input of Electronic Invoice - Electronic Invoice
+OnCreate or Edit - User input of Invoicing - Invoicing
+OnCreate or Edit - User input of Pay-to Contact No - Pay-to Contact No
+OnCreate or Edit - User input of Prepayment - Prepayment
+OnCreate or Edit - User input of Purchase Order POM - Purchase Order POM
+OnCreate or Edit - User input of Lines.Quantity - Lines.Quantity
+OnCreate or Edit - User input of Shipping - Shipping
+OnCreate or Edit - User input of Vendor No - Vendor No
+OnCreate or Edit - Successful form submission - Submission
+
+-----------Service Order Print----------------
+OnCreate - Successful form submission - Success
+
+-----------Master Page-----------
+HTMLSnippet - NewMasterPage
+
+-----------Planned Maintenance Schedule-----------
+OnCreate - Load of the form - On Load
+OnCreate - User input of Service Interval Period - Service Interval Period
+OnCreate - User input of Service Interval Unit - Service Interval Unit
+OnEdit - User input of Service Interval Period - Service Interval Period
+OnEdit - User input of Service Interval Unit - Service Interval Unit
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Last Service Reading - Last Service Reading
+OnCreate or Edit - User input of Maintenance Code - Maintenance Code
+OnCreate or Edit - User input of Next Service Reading - Next Service Reading
+OnCreate or Edit - User input of Service Interval Units - Service Interval Units
+OnCreate or Edit - User input of Service Item - Service Item
+OnCreate or Edit - Validations on form submission - Maintenance Code
+OnCreate or Edit - Successful form submission - Submission
+
 -----------Meter Reading Journal----------------
 OnCreate - Load of the form - On Load
 OnCreate - Successful form submission - Success
