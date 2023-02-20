@@ -1,0 +1,13 @@
+/***********************************************************************
+Description: Department Name - Auto populated
+Created AT : 05-12-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Department_Code != null)
+{
+	input.Department_Name = ifnull(input.Department_Code.Name,"");
+}
+else
+{
+	input.Department_Name = "";
+}

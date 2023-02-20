@@ -1,0 +1,169 @@
+/******************
+Description: Open Batch Posting Invoice page
+Created AT: 20/01/2023
+Created By: Punitha N
+*****************/
+//----Field Url----------
+field_url = "Item1=" + input.Item_Description + "&Qty1=" + input.Quantity + "&Freq=" + input.Frequency_Code + "&Delivery_Date=" + input.Delivery_Date + "&Unit1=" + input.Unit_Price + "&Total_Price=" + input.Total_Price + "&Item2=" + input.Item_Description1 + "&Qty2=" + input.Quantity1 + "&Unit2=" + input.Unit_Price1 + "&Notes=" + input.Notes + "&Notes1=" + input.Notes1 + "&Total_Price1=" + input.Total_Price1 + "&Delivery_Date1=" + input.Delivery_Date1;
+//----Email TO----
+FromEmail = "";
+ToEmail = "";
+CcEmail = "";
+BccEmail = "";
+if(input.From_mail == true && From_Email != null)
+{
+	FromEmail = input.From_Email;
+	//FromEmail =zoho.loginuserid;		
+}
+if(input.To_Mail == true && To_Email != null)
+{
+	ToEmail = input.To_Email;
+}
+if(input.Cc_Mail == true && Cc_Email != null)
+{
+	CcEmail = input.Cc_Email;
+}
+if(input.Bcc_Mail == true && Bcc_Email != null)
+{
+	BccEmail = input.Bcc_Email;
+}
+if(input.Books_Invoice != null)
+{
+	_invoice = Books_Invoice[ID == input.Books_Invoice.toLong()];
+	if(_invoice.count() > 0)
+	{
+		if(input.File_Type == "Invoice")
+		{
+			openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/print/Batch_Posting_Invoice?ID=" + input.Books_Invoice + "&" + field_url,"new window");
+		}
+		if(input.File_Type == "SendMail")
+		{
+			Custom_name = "";
+			Custom_email = "";
+			File_name = "Rental Invoice(RI)--";
+			if(_invoice.Rental_Order != null)
+			{
+				get_rental = Rental_Order[ID == _invoice.Rental_Order];
+				File_name = File_name + get_rental.Select_Code.Short_Code;
+				if(get_rental.count() > 0)
+				{
+					customer = Customer[ID == get_rental.Bill_to_Customer_No];
+					if(customer.count() > 0)
+					{
+						Custom_name = ifnull(customer.Name,"");
+						Custom_email = ifnull(customer.Email,"");
+					}
+				}
+			}
+			itm = Settings[ID == 4255146000000722007];
+			var_img = "";
+			if(itm.Image != null)
+			{
+				var_img = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			}
+			img_url = "https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img;
+			content = "<div style='background: #fbfbfb;'> <div> <div style='padding: 2% 3%;max-width: 150px;max-height:50px;'><img style='max-width: 100%; height: auto; max-		height: 50px;' alt='Coverall' name='Logo' src='" + img_url + "'></img></div></div><div style='padding:3%;text-align:center;background: #4190f2;'> <div style='color:#fff;font-size:20px;font-weight:500;'>Invoice " + _invoice.No + "</div></div>";
+			content = content + "<div style='max-width:560px;margin:auto;padding: 0 3%;'> <div style='padding: 30px 0; color: #555;line-height: 1.7;'>Dear " + Custom_name + ", <br><br>Thank you for your business. Your invoice can be viewed, printed and downloaded as PDF from the link below. You can also choose to pay it online. <br></div><div style='padding: 3%; background: #fefff1; border: 1px solid #e8deb5; color: #333;'>";
+			content = content + "<div style='padding: 0 3% 3%; border-bottom: 1px solid #e8deb5; text-align: center;'> <h4 style='margin-bottom: 0;'>INVOICE AMOUNT</h4> <h2 style='color: #D61916; margin-top: 10px;'>$" + _invoice.Total + "</h2> </div>";
+			content = content + "<div style='margin:auto; max-width:350px; padding: 3%;'> <p><span style='width: 40%; padding-left: 10%; float:left; '>Invoice No</span><span style='width: 40%; padding-left: 10%; display: inline-block;'><b>" + _invoice.No + "</b></span></p>";
+			content = content + "<p><span style='width: 40%; padding-left: 10%; float:left; '>Invoice Date</span><span style='width: 40%; padding-left: 10%;'><b>" + _invoice.Invoice_Date + "</b></span></p>";
+			content = content + "<p><span style='width: 40%; padding-left: 10%; float:left; '>Due Date</span><span style='width: 40%; padding-left: 10%;'><b>" + _invoice.Due_Date + "</b></span></p></div>";
+			content = content + "<div style='text-align: center;margin: 25px 0;'><a href='" + _invoice.Invoice_Url + "' style='text-decoration: none;'> <span style='background-color:#4dcf59; border: 1px solid #49bd54; cursor: pointer; text-align: center; min-width: 140px; color: #fff; display: inline-block; text-decoration: none; padding: 10px 20px'>PAY NOW</span></a> </div></div>";
+			content = content + "<br><div style='padding: 3% 0;line-height: 1.6;'> Regards, <div style='color: #8c8c8c; font-weight: 400'>Farai Chingwena</div><div style='color: #b1b1b1'>Coverall</div></div></div></div>";
+			pageUrl = "https://creatorapp.zohopublic.com/getcoverall/rental-advantage/pdf/Batch_Posting_Invoice/XGkwrHBt7PzSnDmw1kRUSMJz44dvUSkEksnxEn5NrVa7EQYqVJt71wTRShT9JeOMffeuGHpbeA6mt0YHJCUgYFqnF8jCsTkSjQg1?ID=" + input.Books_Invoice.toLong() + "&" + field_url + "&isc5page=true&zc_FileName=" + File_name;
+			getPageUrl = invokeurl
+			[
+				url :pageUrl
+				type :GET
+			];
+			if(getPageUrl != null && content != null)
+			{
+				if(ToEmail == null || ToEmail == "")
+				{
+					//ToEmail = Custom_email;
+					ToEmail = "punitha@cloudlion.org,hariprema@cloudlion.org";
+				}
+				sendmail
+				[
+					from :FromEmail
+					to :ToEmail
+					cc:CcEmail
+					bcc :BccEmail
+					subject :"Invoice - " + _invoice.No + " from Coverall"
+					message :content
+					Attachments :file:getPageUrl
+				]
+			}
+		}
+	}
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh","same window");
+}
+if(input.Invoice != null)
+{
+	if(input.File_Type == "BulkSendMail")
+	{
+		for each  rls in input.Invoice
+		{
+			_invoice1 = Books_Invoice[ID == rls.toLong()];
+			Custom_name1 = "";
+			Custom_email1 = "";
+			File_name1 = "Rental Invoice(RI)--";
+			if(_invoice1.Rental_Order != null)
+			{
+				get_rental1 = Rental_Order[ID == _invoice1.Rental_Order];
+				File_name1 = File_name1 + get_rental1.Select_Code.Short_Code;
+				if(get_rental1.count() > 0)
+				{
+					customer1 = Customer[ID == get_rental1.Bill_to_Customer_No];
+					if(customer1.count() > 0)
+					{
+						Custom_name1 = ifnull(customer1.Name,"");
+						Custom_email1 = ifnull(customer1.Email,"");
+					}
+				}
+			}
+			itm1 = Settings[ID == 4255146000000722007];
+			var_img1 = "";
+			if(itm1.Image != null)
+			{
+				var_img1 = itm1.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			}
+			img_url1 = "https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm1.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img1;
+			content1 = "<div style='background: #fbfbfb;'> <div> <div style='padding: 2% 3%;max-width: 150px;max-height:50px;'><img style='max-width: 100%; height: auto; max-		height: 50px;' alt='Coverall' name='Logo' src='" + img_url1 + "'></img></div></div><div style='padding:3%;text-align:center;background: #4190f2;'> <div style='color:#fff;font-size:20px;font-weight:500;'>Invoice " + _invoice1.No + "</div></div>";
+			content1 = content1 + "<div style='max-width:560px;margin:auto;padding: 0 3%;'> <div style='padding: 30px 0; color: #555;line-height: 1.7;'>Dear " + Custom_name1 + ", <br><br>Thank you for your business. Your invoice can be viewed, printed and downloaded as PDF from the link below. You can also choose to pay it online. <br></div><div style='padding: 3%; background: #fefff1; border: 1px solid #e8deb5; color: #333;'>";
+			content1 = content1 + "<div style='padding: 0 3% 3%; border-bottom: 1px solid #e8deb5; text-align: center;'> <h4 style='margin-bottom: 0;'>INVOICE AMOUNT</h4> <h2 style='color: #D61916; margin-top: 10px;'>$" + _invoice1.Total + "</h2> </div>";
+			content1 = content1 + "<div style='margin:auto; max-width:350px; padding: 3%;'> <p><span style='width: 40%; padding-left: 10%; float:left; '>Invoice No</span><span style='width: 40%; padding-left: 10%; display: inline-block;'><b>" + _invoice1.No + "</b></span></p>";
+			content1 = content1 + "<p><span style='width: 40%; padding-left: 10%; float:left; '>Invoice Date</span><span style='width: 40%; padding-left: 10%;'><b>" + _invoice1.Invoice_Date + "</b></span></p>";
+			content1 = content1 + "<p><span style='width: 40%; padding-left: 10%; float:left; '>Due Date</span><span style='width: 40%; padding-left: 10%;'><b>" + _invoice1.Due_Date + "</b></span></p></div>";
+			content1 = content1 + "<div style='text-align: center;margin: 25px 0;'><a href='" + _invoice1.Invoice_Url + "' style='text-decoration: none;'> <span style='background-color:#4dcf59; border: 1px solid #49bd54; cursor: pointer; text-align: center; min-width: 140px; color: #fff; display: inline-block; text-decoration: none; padding: 10px 20px'>PAY NOW</span></a> </div></div>";
+			content1 = content1 + "<br><div style='padding: 3% 0;line-height: 1.6;'> Regards, <div style='color: #8c8c8c; font-weight: 400'>Farai Chingwena</div><div style='color: #b1b1b1'>Coverall</div></div></div></div>";
+			pageUrl1 = "https://creatorapp.zohopublic.com/getcoverall/rental-advantage/pdf/Batch_Posting_Invoice/XGkwrHBt7PzSnDmw1kRUSMJz44dvUSkEksnxEn5NrVa7EQYqVJt71wTRShT9JeOMffeuGHpbeA6mt0YHJCUgYFqnF8jCsTkSjQg1?ID=" + rls.toLong() + "&" + field_url + "&isc5page=true&zc_FileName=" + File_name1;
+			getPageUrl1 = invokeurl
+			[
+				url :pageUrl1
+				type :GET
+			];
+			if(getPageUrl1 != null && content1 != null)
+			{
+				if(ToEmail == null || ToEmail == "")
+				{
+					//ToEmail = Custom_email1;
+					ToEmail = "punitha@cloudlion.org,hariprema@cloudlion.org";
+				}
+				sendmail
+				[
+					from :FromEmail
+					to :ToEmail
+					cc:CcEmail
+					bcc :BccEmail
+					subject :"Invoice - " + _invoice1.No + " from Coverall"
+					message :content1
+					Attachments :file:getPageUrl1
+				]
+			}
+		}
+	}
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh","same window");
+}

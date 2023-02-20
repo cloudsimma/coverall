@@ -1,0 +1,168 @@
+/****************************************************************
+Description: Hide and show Fields
+Created AT : 23-01-23
+Created By : Punitha N
+*****************************************************************/
+hide File_Type;
+hide Books_Invoice;
+hide Invoice;
+if(input.Books_Invoice != null)
+{
+	_invoice = Books_Invoice[ID == input.Books_Invoice.toLong()];
+	if(_invoice.Batch_Post_Rental_Order != null)
+	{
+		get_batch = Batch_Post_Rental_Order[ID == _invoice.Batch_Post_Rental_Order];
+		input.Item_Description = get_batch.Item_Description;
+		input.Quantity = get_batch.Quantity;
+		input.Frequency_Code = get_batch.Frequency_Code;
+		input.Delivery_Date = get_batch.Delivery_Date;
+		input.Unit_Price = get_batch.Unit_Price;
+		input.Total_Price = get_batch.Total_Price;
+		input.Notes = get_batch.Notes;
+		input.Item_Description1 = get_batch.Item_Description1;
+		input.Quantity1 = get_batch.Quantity1;
+		input.Unit_Price1 = get_batch.Unit_Price1;
+		input.Total_Price1 = get_batch.Total_Price1;
+		input.Notes1 = get_batch.Notes1;
+		input.Delivery_Date1 = get_batch.Delivery_Date1;
+	}
+	else
+	{
+		input.Item_Description = true;
+		input.Quantity = true;
+		input.Frequency_Code = true;
+		input.Delivery_Date = true;
+		input.Unit_Price = true;
+		input.Total_Price = true;
+		input.Notes = true;
+		input.Item_Description1 = true;
+		input.Quantity1 = true;
+		input.Unit_Price1 = true;
+		input.Total_Price1 = true;
+		input.Notes1 = true;
+		input.Delivery_Date1 = true;
+	}
+	_rent = 0;
+	_sls = 0;
+	if(_invoice.count() > 0)
+	{
+		for each  rls in _invoice.Rentals
+		{
+			if(rls.Resource_Item != null)
+			{
+				_rent = _rent + 1;
+			}
+		}
+		for each  sls_rec in _invoice.Sales
+		{
+			if(sls_rec.Type_field != null)
+			{
+				_sls = _sls + 1;
+			}
+		}
+		if(_rent > 0)
+		{
+			show Item_Description;
+			show Quantity;
+			show Frequency_Code;
+			show Delivery_Date;
+			show Unit_Price;
+			show Total_Price;
+			show Notes;
+			show Rentals;
+			hide Item_Description1;
+			hide Quantity1;
+			hide Unit_Price1;
+			hide Total_Price1;
+			hide Delivery_Date1;
+			hide Notes1;
+			hide Sales;
+		}
+		if(_sls > 0)
+		{
+			hide Item_Description;
+			hide Quantity;
+			hide Frequency_Code;
+			hide Delivery_Date;
+			hide Unit_Price;
+			hide Total_Price;
+			hide Notes;
+			hide Rentals;
+			show Item_Description1;
+			show Quantity1;
+			show Unit_Price1;
+			show Total_Price1;
+			show Delivery_Date1;
+			show Notes1;
+			show Sales;
+		}
+		if(_rent > 0 && _sls > 0)
+		{
+			show Item_Description;
+			show Quantity;
+			show Frequency_Code;
+			show Delivery_Date;
+			show Unit_Price;
+			show Total_Price;
+			show Notes;
+			show Rentals;
+			show Item_Description1;
+			show Quantity1;
+			show Unit_Price1;
+			show Total_Price1;
+			show Delivery_Date1;
+			show Notes1;
+			show Sales;
+		}
+	}
+}
+if(input.Invoice != null)
+{
+	input.Item_Description = true;
+	input.Quantity = true;
+	input.Frequency_Code = true;
+	input.Delivery_Date = true;
+	input.Unit_Price = true;
+	input.Total_Price = true;
+	input.Notes = true;
+	input.Item_Description1 = true;
+	input.Quantity1 = true;
+	input.Unit_Price1 = true;
+	input.Total_Price1 = true;
+	input.Notes1 = true;
+	input.Delivery_Date1 = true;
+}
+/****************************************************************
+Description: Hide and show Fields based on File type
+Created AT : 14-02-23
+Created By : Punitha N
+*****************************************************************/
+if(input.File_Type != null)
+{
+	if(input.File_Type == "Invoice")
+	{
+		hide Email_To;
+		hide From_mail;
+		hide From_Email;
+		hide To_Mail;
+		hide To_Email;
+		hide Cc_Mail;
+		hide Cc_Email;
+		hide Bcc_Mail;
+		hide Bcc_Email;
+		hide Alert_Notes;
+	}
+	else
+	{
+		show Email_To;
+		show From_mail;
+		hide From_Email;
+		show To_Mail;
+		hide To_Email;
+		show Cc_Mail;
+		hide Cc_Email;
+		show Bcc_Mail;
+		hide Bcc_Email;
+		show Alert_Notes;
+	}
+}

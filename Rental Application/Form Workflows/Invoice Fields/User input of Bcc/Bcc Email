@@ -1,0 +1,13 @@
+/******************
+Description: Hide ans Shoe Fields
+Created AT: 14/02/2023
+Created By: Punitha N
+*****************/
+if(input.Bcc_Mail == true)
+{
+	show Bcc_Email;
+}
+else
+{
+	hide Bcc_Email;
+}

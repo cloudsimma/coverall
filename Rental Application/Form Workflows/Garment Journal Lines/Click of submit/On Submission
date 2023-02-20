@@ -1,0 +1,22 @@
+/******************
+Description: Garment Order Status Changed
+Created AT: 31/01/2023
+Created By: Punitha N
+*****************/
+try 
+{
+	if(input.RFID != null && input.Journal_Date != null)
+	{
+		if(input.Status != null)
+		{
+			get_garment = Garment_Order[ID != null && RFID == input.RFID];
+			get_garment.Status=input.Status;
+		}
+	}
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh","same window");
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Garment Journal lines ","Create - Garment order status update ",input.RFID.toString(),e);
+}

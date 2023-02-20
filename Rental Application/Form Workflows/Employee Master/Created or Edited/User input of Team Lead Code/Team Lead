@@ -1,0 +1,17 @@
+/***********************************************************************
+Description: Team Lead Name,Email,Phone No - Auto populated
+Created AT : 05-12-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Team_Lead_Code != null)
+{
+	input.Team_Lead_Name = ifnull(input.Team_Lead_Code.Name,"");
+	input.Team_Lead_Email = ifnull(input.Team_Lead_Code.Email,"");
+	input.Team_Lead_Phone_No = ifnull(input.Team_Lead_Code.Phone_Number,"");
+}
+else
+{
+	input.Team_Lead_Name = "";
+	input.Team_Lead_Email = "";
+	input.Team_Lead_Phone_No = "";
+}
