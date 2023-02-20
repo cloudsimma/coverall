@@ -1,0 +1,37 @@
+/******************
+Description: hide and show Frequency code based on Line type
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Line_Type == "One Time")
+{
+	hide Frequency_Code;
+	input.Frequency_Code = null;
+}
+else if(input.Line_Type == "Recurring")
+{
+	show Frequency_Code;
+}
+hide Rental_Order;
+hide Page_Option;
+if(input.Page_Option == "View")
+{
+	disable Type;
+	disable Service_Codes;
+	disable Description;
+	disable Line_Type;
+	disable Frequency_Code;
+	disable Repair_Code;
+	disable Bin_Code;
+	disable Load_Code;
+	disable Due_Back_Code;
+	disable Route_No;
+	disable Service_Start_Date;
+	disable Next_Service_Date;
+	disable Service_End_Date;
+	disable Quantity;
+	disable Attached_to_Description;
+	disable Notes;
+	disable Components;
+	disable Dispatched;
+}

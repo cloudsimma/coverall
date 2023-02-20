@@ -1,0 +1,36 @@
+/******************
+Description: Auto populate fields.
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+input.Notes = "No";
+input.Components = "No";
+input.Quantity = 1;
+input.Service_Start_Date = zoho.currentdate;
+input.Next_Service_Date = zoho.currentdate;
+if(input.Rental_Order != null)
+{
+	input.Frequency_Code = ifnull(input.Rental_Order.Frequency_Code,null);
+	input.Repair_Code = ifnull(input.Rental_Order.Repair_Code,null);
+	input.Bin_Code = ifnull(input.Rental_Order.Bin_Code,null);
+	input.Load_Code = ifnull(input.Rental_Order.Load_Code,null);
+	input.Due_Back_Code = ifnull(input.Rental_Order.Due_Back_Code,null);
+}
+else
+{
+	input.Frequency_Code = null;
+	input.Repair_Code = null;
+	input.Bin_Code = null;
+	input.Load_Code = null;
+	input.Due_Back_Code = null;
+}
+if(input.Frequency_Code != null)
+{
+	input.Line_Type = "Recurring";
+}
+else
+{
+	input.Line_Type = "One Time";
+}
+hide Dispatched;
+hide Service_End_Date;

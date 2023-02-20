@@ -1,0 +1,13 @@
+/******************
+Description: Auto populate fields.
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Service_Codes != null)
+{
+	input.Description = ifnull(input.Service_Codes.Description,"");
+}
+else
+{
+	input.Description = "";
+}

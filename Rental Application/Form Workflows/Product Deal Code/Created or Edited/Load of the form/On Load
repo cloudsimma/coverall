@@ -1,0 +1,23 @@
+/******************
+Description: Update Page Option
+Created AT: 31/01/2023
+Created By: Punitha N
+*****************/
+hide Product_ID;
+hide Zoho_Books_ID;
+hide Page_Option;
+disable Resource_Item;
+disable Unit_of_Measure_Code;
+enable Description;
+disable No;
+disable Zoho_Books_ID;
+if(input.Product_ID != null)
+{
+	get_product = Resource_Item[ID == input.Product_ID.toLong()];
+	input.No = ifnull(get_product.No,"");
+	input.Description = ifnull(get_product.Description,"");
+	//input.Unit_Price = get_product.Unit_Price;
+	input.Unit_of_Measure_Code = ifnull(get_product.Base_Unit_of_Measure,null);
+	input.Zoho_Books_ID = ifnull(get_product.Zoho_Books_ID,"");
+	input.Resource_Item = ifnull(get_product.ID,null);
+}

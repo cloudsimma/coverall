@@ -1,0 +1,14 @@
+/******************
+Description: Resource Item and Deal Code Validation 
+Created AT: 01/02/2023
+Created By: Punitha N
+*****************/
+if(input.Resource_Item != null && input.Deal_Code != null)
+{
+	get_product = Product_Deal_Code[Resource_Item == input.Resource_Item && Deal_Code == input.Deal_Code];
+	if(get_product.count() > 0)
+	{
+		alert "Resource item and deal code already exists";
+		cancel submit;
+	}
+}

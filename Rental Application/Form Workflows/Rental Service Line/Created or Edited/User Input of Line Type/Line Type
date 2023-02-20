@@ -1,0 +1,22 @@
+/******************
+Description: hide and show Frequency code based on Line type
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Line_Type == "One Time")
+{
+	hide Frequency_Code;
+	input.Frequency_Code = null;
+}
+else if(input.Line_Type == "Recurring")
+{
+	show Frequency_Code;
+	if(input.Rental_Order != null)
+	{
+		input.Frequency_Code = ifnull(input.Rental_Order.Frequency_Code,null);
+	}
+	else
+	{
+		input.Frequency_Code = null;
+	}
+}

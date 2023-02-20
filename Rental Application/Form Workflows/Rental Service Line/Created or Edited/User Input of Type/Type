@@ -1,0 +1,36 @@
+/******************
+Description: Auto populate fields.
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Type != null)
+{
+	if(input.Type == "Service" || input.Type == "Exchange")
+	{
+		code_info = 4255146000000948007;
+	}
+	else if(input.Type == "Delivery")
+	{
+		code_info = 4255146000000948003;
+	}
+	else if(input.Type == "Pickup")
+	{
+		code_info = 4255146000000948019;
+	}
+	service_code_info = Service_Codes[ID == code_info];
+	if(service_code_info.count() > 0)
+	{
+		input.Service_Codes = service_code_info.ID;
+		input.Description = service_code_info.Description;
+	}
+	else
+	{
+		input.Service_Codes = null;
+		input.Description = "";
+	}
+}
+else
+{
+	input.Service_Codes = null;
+	input.Description = "";
+}
