@@ -1,0 +1,15 @@
+/**********************
+Description: set filter for Sales Resource Item based on Sales Type.
+Created AT : 06/02/2023
+Created By : Punitha N
+***********************/
+if(row.Types != null)
+{
+	sales = Resource_Item[ID != 0 && Goods_Type == row.Types].ID.getAll();
+	row.No:ui.add(sales);
+}
+else
+{
+	sales = Resource_Item[ID != 0].ID.getAll();
+	row.No:ui.add(sales);
+}

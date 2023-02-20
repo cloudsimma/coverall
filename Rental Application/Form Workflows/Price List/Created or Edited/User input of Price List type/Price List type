@@ -1,0 +1,59 @@
+/******************
+Description: Populate fields based on Price List type
+Created AT: 30/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Price_List_Type != null)
+{
+	if(input.Price_List_Type == "All Items")
+	{
+		show Type_field;
+		show Percentage;
+		show Round_Off_To;
+		hide Sales_Item;
+		clear Sales_Item;
+		hide Rental_Items;
+		clear Rental_Items;
+	}
+	else if(input.Price_List_Type == "Individual Item")
+	{
+		hide Type_field;
+		input.Type_field = null;
+		hide Percentage;
+		input.Percentage = null;
+		hide Round_Off_To;
+		input.Round_Off_To = null;
+		//--- Sales Collection ------
+		show Sales_Item;
+		disable Sales_Item.Sales_Rate;
+		//---Rental Collection------
+		show Rental_Items;
+		disable Rental_Items.Sales_Rate;
+	}
+	else
+	{
+		hide Type_field;
+		input.Type_field = null;
+		hide Percentage;
+		input.Percentage = null;
+		hide Round_Off_To;
+		input.Round_Off_To = null;
+		hide Sales_Item;
+		clear Sales_Item;
+		hide Rental_Items;
+		clear Rental_Items;
+	}
+}
+else
+{
+	hide Type_field;
+	input.Type_field = null;
+	hide Percentage;
+	input.Percentage = null;
+	hide Round_Off_To;
+	input.Round_Off_To = null;
+	hide Sales_Item;
+	clear Sales_Item;
+	hide Rental_Items;
+	clear Rental_Items;
+}

@@ -1,0 +1,58 @@
+/******************
+Description: Populate fields based on Price List type
+Created AT: 30/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Price_List_Type != null)
+{
+	if(input.Price_List_Type == "All Items")
+	{
+		show Type_field;
+		show Percentage;
+		show Round_Off_To;
+		hide Sales_Item;
+		hide Rental_Items;
+	}
+	else if(input.Price_List_Type == "Individual Item")
+	{
+		hide Type_field;
+		hide Percentage;
+		hide Round_Off_To;
+		show Sales_Item;
+		show Rental_Items;
+	}
+	else
+	{
+		hide Type_field;
+		hide Percentage;
+		hide Round_Off_To;
+		hide Sales_Item;
+		hide Rental_Items;
+	}
+}
+else
+{
+	hide Percentage;
+	hide Round_Off_To;
+	hide Sales_Item;
+	hide Rental_Items;
+}
+/**********************
+Description: set filter for Rentals and sales Type.
+Created AT : 07/02/2023
+Created By : Punitha N
+***********************/
+RI = input.Rental_Items.No;
+if(Rental_Items.Types != null)
+{
+	res_rent = Resource_Item[ID != 0 && Goods_Type == input.Rental_Items.Types].ID.getAll();
+	Rental_Items.No:ui.add(res_rent);
+	input.Rental_Items.No = RI;
+}
+SI = input.Sales_Item.No;
+if(Sales_Item.Types != null)
+{
+	sales = Resource_Item[ID != 0 && Goods_Type == input.Sales_Item.Types].ID.getAll();
+	Sales_Item.No:ui.add(sales);
+	input.Sales_Item.No = SI;
+}

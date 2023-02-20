@@ -6,10 +6,10 @@ Created By: Punitha N
 if(input.From_mail == true)
 {
 	show From_Email;
-	input.From_Email = zoho.loginuserid;
+	
 }
 else
 {
 	hide From_Email;
-	input.From_Email = zoho.loginuserid;
+	
 }

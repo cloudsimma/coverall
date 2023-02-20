@@ -1,0 +1,6 @@
+/****************************************************************
+Description: Open the Books Invoice Batch Posting Invoice Page
+Created AT : 27-12-22
+Created By : Punitha N
+*****************************************************************/
+openUrl("#Form:Invoice_Fields?Books_Invoice=" + input.ID + "&File_Type=SendMail","popup window");

@@ -5,47 +5,9 @@ Created By: Punitha N
 *****************/
 if(input.To_Mail == true)
 {
-	
 	show To_Email;
 	disable To_Email;
-	Custom_email = "";
-	if(input.Books_Invoice != null)
-	{
-		_invoice = Books_Invoice[ID == input.Books_Invoice.toLong()];
-		if(input.File_Type == "SendMail")
-		{
-			customer = Customer[ID == _invoice.Customer_ID];
-			if(customer.count() > 0)
-			{
-				Custom_email = ifnull(customer.Email,"");
-			}
-			
-		}
-	}
-	if(input.Invoice != null)
-	{
-		if(input.File_Type == "BulkSendMail")
-		{
-			for each  rls in input.Invoice
-			{
-				_invoice1 = Books_Invoice[ID == rls.toLong()];
-				customer1 = Customer[ID == _invoice1.Customer_ID];
-				if(customer1.count() > 0)
-				{
-					if(Custom_email == "")
-					{
-						Custom_email = ifnull(customer1.Email,"");
-					}
-					else
-					{
-						Custom_email = Custom_email + "," + ifnull(customer1.Email,"");
-					}
-				}
-				
-			}
-		}
-	}
-	input.To_Email = Custom_email;
+	
 }
 else
 {

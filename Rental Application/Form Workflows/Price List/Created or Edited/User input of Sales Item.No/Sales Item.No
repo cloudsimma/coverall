@@ -1,0 +1,22 @@
+/******************
+Description: Populate Sales rate by user input of Item
+Created AT: 11/01/2023
+Created By: Hari Prema M
+*****************/
+if(row.No != null)
+{
+	resource_item_info = Resource_Item[ID == row.No];
+	if(resource_item_info.count() > 0)
+	{
+		row.Sales_Rate=ifnull(resource_item_info.Unit_Price,0);
+	}
+	else
+	{
+		row.Sales_Rate=0;
+	}
+}
+else
+{
+	row.Sales_Rate=null;
+}
+input.Page_Option = "Create";

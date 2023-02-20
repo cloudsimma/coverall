@@ -1,0 +1,10 @@
+if(row.Types != null)
+{
+	res_rent = Resource_Item[ID != 0 && Goods_Type == row.Types].ID.getAll();
+	row.No:ui.add(res_rent);
+}
+else
+{
+	res_rent = Resource_Item[ID != 0].ID.getAll();
+	row.No:ui.add(res_rent);
+}

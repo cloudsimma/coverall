@@ -1,0 +1,14 @@
+void BooksInvoice.Open_Invoice_Fields(Books_Invoice ID)
+{
+	/****************************************************************
+Description: Open the Books Invoice Batch Posting Invoice Page
+Created AT : 14-02-23
+Created By : Punitha N
+*****************************************************************/
+	lst = List();
+	for each  Ids in ID
+	{
+		lst.add(Ids);
+	}
+	openUrl("#Form:Invoice_Fields?Invoice=" + lst + "&File_Type=BulkSendMail","popup window");
+}
