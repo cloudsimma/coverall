@@ -1,0 +1,14 @@
+/******************
+Description: Vendor No
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+fet = rental_advantage.Vendor.invoicing_vendor(input.Vendor_No);
+input.Name = fet.get("Name");
+input.Address.address_line_11 = fet.get("Address1");
+input.Address.address_line_21 = fet.get("Address2");
+input.Address.district_city1 = fet.get("City");
+input.Address.state_province1 = fet.get("State");
+input.Address.country1 = fet.get("Country");
+input.Address.postal_Code1 = fet.get("PostalCode");
+

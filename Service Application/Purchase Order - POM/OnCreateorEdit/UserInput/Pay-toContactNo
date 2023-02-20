@@ -1,0 +1,13 @@
+/******************
+Description: Auto populate Contact
+Created AT : 14/10/2022
+Created By : Hari Prema M
+*****************/
+if(input.Pay_to_Contact_No != null)
+{
+	input.Contact = ifnull(input.Pay_to_Contact_No.Name,"");
+}
+else
+{
+	input.Contact = "";
+}

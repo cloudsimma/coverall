@@ -1,0 +1,54 @@
+/******************
+Description: Update Next Service reading and next service date
+Created AT: 07/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Code_Key == 4255146000000197019)
+{
+	if(input.Next_service_reading != null && input.Code_Key_Value != null)
+	{
+		input.Next_service_reading = ifnull(input.Last_Service_Reading,0) + ifnull(input.Code_Key_Value,0);
+	}
+	input.Next_Service_Date = null;
+}
+else if(input.Code_Key == 4255146000000197015)
+{
+	if(input.Next_service_reading != null && input.Code_Key_Value != null)
+	{
+		input.Next_service_reading = ifnull(input.Last_Service_Reading,0) + ifnull(input.Code_Key_Value,0);
+	}
+	input.Next_Service_Date = null;
+}
+else if(input.Code_Key == 4255146000000197011)
+{
+	if(Next_Service_Date != null && input.Code_Key_Value != null)
+	{
+		input.Next_Service_Date = input.Last_Service_Date.addYear(input.Code_Key_Value);
+	}
+	input.Next_service_reading = null;
+}
+else if(input.Code_Key == 4255146000000197007)
+{
+	if(Next_Service_Date != null && input.Code_Key_Value != null)
+	{
+		input.Next_Service_Date = input.Last_Service_Date.addMonth(input.Code_Key_Value);
+	}
+	input.Next_service_reading = null;
+}
+else if(input.Code_Key == 4255146000000197003)
+{
+	if(input.Code_Key_Value != null && input.Next_Service_Date != null)
+	{
+		input.Next_Service_Date = input.Last_Service_Date.addDay(input.Code_Key_Value);
+	}
+	input.Next_service_reading = null;
+}
+else if(input.Code_Key == 4255146000000425015)
+{
+	if(input.Code_Key_Value != null && input.Next_Service_Date != null)
+	{
+		input.Next_Service_Date = input.Last_Service_Date.addWeek(input.Code_Key_Value);
+	}
+	input.Next_service_reading = null;
+}
+thisapp.Schedule.schedule_based_on_planned_maintenance(input.ID);

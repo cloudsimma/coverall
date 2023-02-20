@@ -1,0 +1,47 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Invoicing1 == true)
+{
+	show Vendor_No;
+	show Pay_to_Contact_No;
+	show Name;
+	show Address;
+	show Contact;
+	show On_Hold;
+	show Branch_Code;
+	show Department_Code;
+	show Payment_Terms_Code;
+	show Due_Date;
+	show Payment_Discount;
+	show Pmt_Discount_Date;
+	show Tax_Liable;
+	show Tax_Area_Code;
+	show Tax_Exemption_No;
+	show Provincial_Tax_Area_Code;
+	show Payment_Reference;
+	show Creditor_No;
+}
+else
+{
+	hide Vendor_No;
+	hide Pay_to_Contact_No;
+	hide Name;
+	hide Address;
+	hide Contact;
+	hide On_Hold;
+	hide Branch_Code;
+	hide Department_Code;
+	hide Payment_Terms_Code;
+	hide Due_Date;
+	hide Payment_Discount;
+	hide Pmt_Discount_Date;
+	hide Tax_Liable;
+	hide Tax_Area_Code;
+	hide Tax_Exemption_No;
+	hide Provincial_Tax_Area_Code;
+	hide Payment_Reference;
+	hide Creditor_No;
+}

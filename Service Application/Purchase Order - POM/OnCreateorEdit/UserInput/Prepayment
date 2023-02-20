@@ -1,0 +1,27 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Prepayment2 == true)
+{
+	show Prepayment1;
+	show Compress_Payment;
+	show Prepmt_Payment_Tax_Code;
+	show Prepayment_Due_Date;
+	show Prepmt_Payment_Discount;
+	show Prepmt_Payment_Discount_Date;
+	show Vendor_Cr_Memo_No;
+	show Prepmt_Include_Tax;
+}
+else
+{
+	hide Prepayment1;
+	hide Compress_Payment;
+	hide Prepmt_Payment_Tax_Code;
+	hide Prepayment_Due_Date;
+	hide Prepmt_Payment_Discount;
+	hide Prepmt_Payment_Discount_Date;
+	hide Vendor_Cr_Memo_No;
+	hide Prepmt_Include_Tax;
+}

@@ -1,0 +1,24 @@
+/***********************************************************************
+Description: Change the ServiceItem - Auto load ServiceItem Description
+Created AT : 02-08-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Service_Item != null)
+{
+	get_servciceitem = Service_Item[ID == input.Service_Item];
+	if(get_servciceitem.count() > 0)
+	{
+		input.Service_Item_Description = get_servciceitem.Description;
+		input.Ship_to_Address = get_servciceitem.Ship_to_Address_Code;
+	}
+	else
+	{
+		input.Service_Item_Description = "";
+		input.Ship_to_Address = null;
+	}
+}
+else
+{
+	input.Service_Item_Description = "";
+	input.Ship_to_Address = null;
+}

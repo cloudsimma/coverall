@@ -1,0 +1,13 @@
+/**********************************************
+Description: Next Service Reading validation 
+Created AT : 03/08/2022
+Created By : Arun Krishna
+***********************************************/
+if(input.Next_service_reading != null)
+{
+	if(Next_service_reading < 0)
+	{
+		alert "This value Shouldn't be less than 0 ";
+		input.Next_service_reading = null;
+	}
+}

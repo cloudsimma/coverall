@@ -1,0 +1,13 @@
+/**********************************************
+Description: Last Service Reading validation 
+Created AT : 03/08/2022
+Created By : Arun Krishna
+***********************************************/
+if(input.Last_Service_Reading != null)
+{
+	if(Last_Service_Reading < 0)
+	{
+		alert "This value Shouldn't be less than 0 ";
+		input.Last_Service_Reading = null;
+	}
+}

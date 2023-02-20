@@ -1,0 +1,9 @@
+/******************
+Description: Hide Fields
+Created AT : 11/10/2022
+Created By : Hari Prema M
+*****************/
+hide No;
+hide Posting_Descrption;
+input.Compress_Payment = true;
+input.Electronic_Submission = false;

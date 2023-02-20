@@ -1,0 +1,16 @@
+/******************
+Description: Update Next service reading and Next service date
+Created AT: 07/12/2022
+Created By: Punitha N
+*****************/
+if(input.Code_Key_Value != null)
+{
+	if(input.Maintenance_Code != null)
+	{
+		if(input.Code_Key_Value < 0)
+		{
+			alert "This value Shouldn't be less than 0 ";
+			input.Code_Key_Value = null;
+		}
+	}
+}

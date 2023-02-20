@@ -1,0 +1,21 @@
+/****************************************************************
+Description: Service Order Preview
+Created AT : 26-10-2022
+Created By : vivek v
+*****************************************************************/
+try 
+{
+	if(input.Maintenance_Report != null)
+	{
+		var = Maintenance_Report[ID == input.Maintenance_Report];
+		if(var.count() > 0)
+		{
+			sam = var.Report_Name;
+			openUrl("https://creatorapp.zoho.com/getcoverall/service/record-print/" + sam + "/" + input.ID + "/","same window");
+		}
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Service Order Print","Create - Service Order Preview",input.ID.toString(),e);
+}

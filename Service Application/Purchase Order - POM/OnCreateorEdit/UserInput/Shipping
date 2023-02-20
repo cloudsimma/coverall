@@ -1,0 +1,33 @@
+/******************
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Shipping1 == true)
+{
+	show Ship_to_Name;
+	show Ship_to_Address;
+	show Ship_to_Contact;
+	show Location_Code;
+	show Shipment_Method_Code;
+	show Alternate_Shipment_Menthod;
+	show Requested_Receipt_Date;
+	show Promised_Receipt_Date;
+	show Expected_Receipt_Date;
+	show Sell_to_Customer_No;
+	show Ship_to_Code;
+}
+else
+{
+	hide Ship_to_Name;
+	hide Ship_to_Address;
+	hide Ship_to_Contact;
+	hide Location_Code;
+	hide Shipment_Method_Code;
+	hide Alternate_Shipment_Menthod;
+	hide Requested_Receipt_Date;
+	hide Promised_Receipt_Date;
+	hide Expected_Receipt_Date;
+	hide Sell_to_Customer_No;
+	hide Ship_to_Code;
+}

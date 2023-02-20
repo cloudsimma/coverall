@@ -1,0 +1,27 @@
+/***********************************************************************
+Description: Change the Maintenance Code - Auto load Code key
+Created AT : 02-08-2022
+Created By : Punitha N
+************************************************************************/
+if(input.Maintenance_Code != null)
+{
+	get_maintenance = Maintenance_Code[ID == input.Maintenance_Code];
+	if(get_maintenance.count() > 0)
+	{
+		input.Code_Key_Value = get_maintenance.Code_Number;
+		input.Code_Key = get_maintenance.Code_Key;
+		input.Description = get_maintenance.Description;
+	}
+	else
+	{
+		input.Code_Key_Value = null;
+		input.Code_Key = null;
+		input.Description = "";
+	}
+}
+else
+{
+	input.Code_Key_Value = null;
+	input.Code_Key = null;
+	input.Description = "";
+}

@@ -1,0 +1,11 @@
+/*****************************************************
+Description: Maintenance Code Validation
+Created AT : 18/08/2022
+Created By : Punitha N
+*****************************************************/
+fet = Planned_Maintenance_Schedule[Service_Item == input.Service_Item && Maintenance_Code == input.Maintenance_Code];
+if(fet.count() >= 1)
+{
+	alert "Maintenance Code already exists";
+	cancel submit;
+}
