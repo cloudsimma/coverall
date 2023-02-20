@@ -1,0 +1,123 @@
+void zoho_Books.Create_invoice_in_Books(int rec_id)
+{
+	/****************************************************************
+Description: create invoice in zoho Books from service order
+Created AT : 12-08-2022
+Created By : Hariharan 
+*****************************************************************/
+	try 
+	{
+		if(rec_id != null)
+		{
+			fetch_service = Service[ID == rec_id];
+			if(fetch_service.count() > 0 && fetch_service.Status == "Finished" || fetch_service.Status == "Finished and Scheduled" && fetch_service.Zoho_Books_Invoice_ID == null || fetch_service.Zoho_Books_Invoice_ID == "")
+			{
+				org_id = thisapp.zoho_Books.get_org_id();
+				if(org_id != null && org_id != "")
+				{
+					fetch_customer = Customer[ID == fetch_service.Customer];
+					if(fetch_customer.ID != null)
+					{
+						data = Map();
+						data.put("customer_id",ifnull(fetch_customer.Zoho_Books_ID,""));
+						data.put("date",ifnull(fetch_service.Document_Date,null));
+						data.put("due_date",ifnull(fetch_service.Due_Date,null));
+						line_item = List();
+						for each  rec in Service_Order_Line_Items[Service_Order == fetch_service.ID]
+						{
+							line_map = Map();
+							line_map.put("name",ifnull(rec.Description,""));
+							line_map.put("quantity",1);
+							line_map.put("rate",0);
+							line_item.add(line_map);
+						}
+						//----------- Fetch the Service Worksheet Line Items-------
+						fetch_worksheet_line = Service_Item_Worksheet[Document_No == fetch_service.ID];
+						if(fetch_worksheet_line.ID != null)
+						{
+							for each  labour_rec_resource in Item_Worksheet_Lines[Service_Item_Worksheet == fetch_worksheet_line.ID]
+							{
+								labour_line_map = Map();
+								if(labour_rec_resource.Resource.Zoho_Books_ID != null && labour_rec_resource.Resource.Zoho_Books_ID != "")
+								{
+									labour_line_map.put("header_name","Labour");
+									labour_line_map.put("item_id",labour_rec_resource.Resource.Zoho_Books_ID.toNumber());
+									labour_line_map.put("quantity",ifnull(labour_rec_resource.Quantity,1));
+									labour_line_map.put("rate",ifnull(labour_rec_resource.Resource.Unit_Price,0));
+									line_item.add(labour_line_map);
+								}
+							}
+							for each  parts_rec in WorkSheet_Cards[Service_Item_Worksheet == fetch_worksheet_line.ID]
+							{
+								parts_line_map = Map();
+								if(parts_rec.Item.Zoho_Books_ID != null && parts_rec.Item.Zoho_Books_ID != "")
+								{
+									parts_line_map.put("header_name","Parts");
+									parts_line_map.put("item_id",parts_rec.Item.Zoho_Books_ID.toNumber());
+									parts_line_map.put("quantity",ifnull(parts_rec.Quantity,1));
+									parts_line_map.put("rate",ifnull(parts_rec.Item.Unit_Price,0));
+									line_item.add(parts_line_map);
+								}
+							}
+						}
+						data.put("line_items",line_item);
+						custom_map = Map();
+						custom_map.put("label","Work Order Number");
+						custom_map.put("value",fetch_service.No);
+						custom_list = List();
+						custom_list.add(custom_map);
+						data.put("custom_fields",custom_list);
+						//info data;
+						invoice_responce = zoho.books.createRecord("invoices",org_id,data,"books_connect");
+						//info invoice_responce;
+						if(invoice_responce.containKey("invoice") && invoice_responce.get("invoice") != null)
+						{
+							invoice_res_map = invoice_responce.get("invoice");
+							if(invoice_res_map.containKey("invoice_id"))
+							{
+								fetch_service.Zoho_Books_Invoice_ID=ifnull(invoice_res_map.get("invoice_id"),"");
+								fetch_service.Invoice_No=ifnull(invoice_res_map.get("invoice_number"),"");
+								fetch_service.Invoice_Created_Date=ifnull(invoice_res_map.get("created_date"),null);
+								fetch_service.PO_Number=ifnull(invoice_res_map.get("reference_number"),"");
+								fetch_service.P_O_Date=ifnull(invoice_res_map.get("date"),null);
+								// 							Invoice Status Mark as Sen"t
+								invoice_status = invokeurl
+								[
+									url :"https://books.zoho.com/api/v3/invoices/" + invoice_res_map.get("invoice_id") + "/status/sent?organization_id=" + org_id
+									type :POST
+									connection:"books_connect"
+								];
+								fetch_service.Status="Invoiced";
+								if(fetch_service.Maintenance_Report != null && fetch_service.Maintenance_Report != "")
+								{
+									file_url = "https://creator.zoho.com/file/getcoverall/service/Service_Order/" + rec_id + "/Maintenance_Report/download/gmzY3PeAHKxq7dP9N15NewYRr0rsRarHHfbNKbesFYNVeZPjR5rDrm3A9Z92hEAWjKM6rGXxvVOWVW0bjnkZnbWKPMnbtJmZNybV?filepath=/" + fetch_service.Maintenance_Report;
+									res = invokeurl
+									[
+										url :file_url
+										type :GET
+									];
+									res.setparamname("attachment");
+									response = invokeurl
+									[
+										url :"https://books.zoho.com/api/v3/invoices/" + invoice_res_map.get("invoice_id") + "/attachment?organization_id=" + org_id
+										type :POST
+										files:res
+										connection:"books_connect"
+									];
+								}
+							}
+							if(invoice_res_map.containKey("invoice_url") && invoice_res_map.get("invoice_url") != null && invoice_res_map.get("invoice_url") != "")
+							{
+								fetch_service.Invoice_URL=ifnull(invoice_res_map.get("invoice_url"),"");
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	catch (e)
+	{
+		thisapp.DeveloperLog.addDeveloperLog("Creator : Work Order","Report Workflow: zohobooks - Create or update Zoho Books Invoice ",input.rec_id.toString(),e);
+	}
+}

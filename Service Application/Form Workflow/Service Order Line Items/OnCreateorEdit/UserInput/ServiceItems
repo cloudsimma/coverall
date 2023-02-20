@@ -1,0 +1,21 @@
+/**********************
+Description: Populate fields
+Created AT : 18-08-2022
+Created By : Hari Prema M
+***********************/
+if(input.Service_Item != null)
+{
+	service_item = Service_Item[ID == input.Service_Item];
+	if(service_item.count() > 0)
+	{
+		input.Service_Item_Group_Code = ifnull(service_item.Service_Item_group_code,null);
+	}
+	else
+	{
+		input.Service_Item_Group_Code = null;
+	}
+}
+else
+{
+	input.Service_Item_Group_Code = null;
+}

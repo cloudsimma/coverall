@@ -1,0 +1,13 @@
+/**********************************************
+Description: Discount Date Calculation(in Days) validation 
+Created AT : 03/08/2022
+Created By : Arun Krishna
+***********************************************/
+if(input.Discount_Date_Calculation_in_Days != null)
+{
+	if(input.Discount_Date_Calculation_in_Days < 0)
+	{
+		alert "This value Shouldn't be less than 0 ";
+		input.Discount_Date_Calculation_in_Days = null;
+	}
+}

@@ -1,0 +1,9 @@
+void open_service_item_worksheet(int ID)
+{
+	/****************************************************************
+Description: Open :Service Item Worksheet Form
+Created AT : 08-08-2022
+Created By : Punitha 
+*****************************************************************/
+	openUrl("#Form:Service_Item_Worksheet?Service_Order_Line_Items=" + ID,"popup window");
+}

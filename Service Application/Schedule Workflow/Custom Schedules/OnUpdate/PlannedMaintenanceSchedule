@@ -1,0 +1,47 @@
+/******************
+Description: Update the Nearby Schedule on daily basis based on the Next Service
+Created AT : 28/09/2022
+Created By : Hari Prema M
+*****************/
+maintenance_schedule_count = Planned_Maintenance_Schedule[ID != 0].count();
+if(maintenance_schedule_count > 0)
+{
+	batch = (maintenance_schedule_count / 1000.round(0)).toNumber();
+	if(batch == 0)
+	{
+		var = 1;
+	}
+	else
+	{
+		if(maintenance_schedule_count > batch * 1000)
+		{
+			var = batch + 1;
+		}
+		else
+		{
+			var = batch;
+		}
+	}
+	info var;
+	start = 1;
+	lst = List();
+	listt = List();
+	final_list = leftpad("t",var).replaceall(" ","t,").toList();
+	info "final_list" + final_list;
+	for each  rec in final_list
+	{
+		start_count = start;
+		end = start + 999;
+		end_count = end;
+		start = end + 1;
+		info "***************";
+		info "start_count" + start_count;
+		info "end_count" + end_count;
+		add_record = insert into Schedule_Planned_Maintenance_Schedule
+		[
+			Start=start_count
+			End=end_count
+			Added_User=zoho.loginuser
+		];
+	}
+}

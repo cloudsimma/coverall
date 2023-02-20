@@ -1,0 +1,6 @@
+/****************************************************************
+Description: Open Line Item Comments Page
+Created AT : 08-08-2022
+Created By : Punitha 
+*****************************************************************/
+openUrl("#Page:Line_Item_Comments?service=" + input.ID + "&service_order=" + input.Service_Order,"New window");

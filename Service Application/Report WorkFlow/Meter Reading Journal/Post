@@ -1,0 +1,84 @@
+try 
+{
+	input.Status = "Posted";
+	input.Posting_Date = zoho.currentdate;
+	fet_meter = Meter_Reading_Journals[Service_Item == input.Service_Item].ID.getAll();
+	if(input.Service_Item != null)
+	{
+		get_serviceitem = Service_Item[ID == input.Service_Item];
+		if(get_serviceitem.count() > 0)
+		{
+			if(fet_meter.size() > 1)
+			{
+				get_serviceitem.Reading=input.Reading;
+			}
+			else
+			{
+				if(input.Reading > 0)
+				{
+					get_serviceitem.Reading=input.Reading;
+					get_serviceitem.Last_service_Date=input.Posting_Date;
+				}
+			}
+			thisapp.Schedule.schedule_service_order(input.Service_Item);
+		}
+	}
+	if(input.Planned_Maintenance_Schedule != null)
+	{
+		get_palnned_schedule = Planned_Maintenance_Schedule[ID == input.Planned_Maintenance_Schedule];
+		if(get_palnned_schedule.count() > 0)
+		{
+			if(fet_meter.size() > 1)
+			{
+				//
+			}
+			else
+			{
+				if(input.Reading == null)
+				{
+					get_palnned_schedule.Last_Service_Date=input.Posting_Date;
+					if(get_palnned_schedule.Code_Key != null)
+					{
+						if(get_palnned_schedule.Code_Key == 4255146000000197015 || get_palnned_schedule.Code_Key == 4255146000000197019)
+						{
+							get_palnned_schedule.Last_Service_Reading=input.Reading;
+							get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,input.Posting_Date,input.Reading).toNumber();
+						}
+						else
+						{
+							// Updated Last Service Date, Next Service Date
+							get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,input.Posting_Date,0).toDate();
+						}
+					}
+				}
+				else
+				{
+					get_palnned_schedule.Last_Service_Date=input.Posting_Date;
+					if(get_palnned_schedule.Code_Key != null)
+					{
+						if(get_palnned_schedule.Code_Key == 4255146000000197015 || get_palnned_schedule.Code_Key == 4255146000000197019)
+						{
+							//get_palnned_schedule.Last_Service_Reading=input.Reading;
+							get_palnned_schedule.Next_service_reading=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,input.Posting_Date,input.Reading).toNumber();
+						}
+						else
+						{
+							// Updated Last Service Date, Next Service Date
+							get_palnned_schedule.Next_Service_Date=thisapp.Maintenance_code.Maintenance_code_calculation(get_palnned_schedule.Maintenance_Code,input.Posting_Date,0).toDate();
+						}
+					}
+					get_palnned_schedule.Last_Service_Reading=input.Reading;
+				}
+			}
+			thisapp.Schedule.schedule_service_order(input.Planned_Maintenance_Schedule.Service_Item);
+		}
+	}
+	else
+	{
+		thisapp.Schedule.schedule_based_on_service(input.Service_Item);
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Meter Reading Journal","Report Workflow: Post Button -  Update Last Service Date, Next Service Date, Last Service Reading and Next Service Reading",input.ID.toString(),e);
+}

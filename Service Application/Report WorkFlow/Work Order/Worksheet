@@ -1,0 +1,16 @@
+/***********************************************************************
+Description: Change the Customer - Auto load Customer Related Details
+Created AT : 22-08-2022
+Created By : Meena M
+************************************************************************/
+/* openUrl("#Page:Worksheets?service_order_line_item=" + input.ID,"new window"); */
+ /* openUrl("#Page:ServiceOrder_Worksheets?ID=" + input.ID,"new window"); */
+fet_service = Service_Item_Worksheet[Document_No == input.ID];
+if(fet_service.count() > 0)
+{
+	openUrl("https://creatorapp.zoho.com/getcoverall/service/#Form:Service_Item_Worksheet?recLinkID=" + fet_service.ID + "&viewLinkName=Service_Item_Worksheets","popup window","height=1000px,width=1000px");
+}
+else
+{
+	openUrl("https://creatorapp.zoho.com/getcoverall/service/#Form:Service_Item_Worksheet?Document_No=" + input.ID,"popup window","height=1000px,width=1000px");
+}

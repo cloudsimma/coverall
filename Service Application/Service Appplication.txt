@@ -1,8 +1,111 @@
 
-----------------Schedule - Planned Maintenance Schedule----------------
-OnCreate - Successful form submission - Success
+----------------Report : Work Order ----------------
+In Work Order - On click of action item - zohobooks
+In Work Order - On click of action item - Invoice
+In Work Order - On click of action item - Line_Items
+In Work Order - On click of action item - on load
+In Work Order - On click of action item - Invoices
+In Work Order - On click of action item - Worksheet
+In Work Order - On click of action item - Print_workorder
 
-----------------Purchase Order - POM----------------
+----------------Report : Meter Reading Journal ----------------
+In Meter Reading Journal - On click of action item - Meter Reading Edit
+In Meter Reading Journal - On click of action item - Post
+
+----------------Report : Service Item Worksheets ----------------
+In Service Item Worksheets - On click of action item - Send Mail
+
+----------------Report : Service Item ----------------
+In Service Items - On click of action item - schedule
+In Service Items - On click of action item - Meter Reading Journal
+
+----------------Report : Planned Maintenance Schedule ----------------
+In Planned Maintenance Board - On click of action item - maintenance_schedule
+In Planned Maintenance Board - On click of action item - Reading Journal
+In Maintenance Schedule - On click of action item - maintance_schedule
+In Planned Maintenance Board - On click of action item - Meter Reading Edit
+In Maintenance Schedule - On click of action item - Meter Reading Edit
+
+----------------Report : Service Order Line Items ----------------
+In Service Order Lines Item - On click of action item - comments
+In Service Order Lines Item - On click of action item - Service Item Worksheets
+
+----------------Report : Purchase Order - POM----------------
+In Purchase Order - POM Report - On click of action item - Post
+
+
+
+----------------Schedule : Meter Reading Journal----------------
+Based on Added Time - Meter Reading Journal
+Based on Modified Time - Update Meter Reading Journal
+
+----------------Schedule : Custom Schedules----------------
+On 07-Sep-2022  - At 23:58:00 - Delete Service Order Prints
+On 28-Sep-2022  - At 00:14:24 - Planned_Maintenance_Schedule
+
+
+
+------------------- Page : Master Page ----------------------
+HTMLSnippet - NewMasterPage
+
+
+
+----------------Form : Bulk Meter Reading Journal ----------------
+OnCreate - Successful form submission - Success
+OnEdit - Successful form submission - Success
+OnCreate or Edit - User input of Meter Reading Journals.Reading - Meter Reading Journals.Reading
+OnCreate or Edit - User input of Meter Reading Journals.Service_Item - Meter Reading Journals.Service_Item
+
+----------------Form : Carry Out Action ----------------
+OnCreate - Successful form submission - Success
+OnCreate - Successful form submission - Submission
+OnCreate - Load of the form - On Load
+
+----------------Form : Customer ----------------
+OnCreate - Load of the form - On Load
+OnCreate - User input of General - General
+OnCreate - Successful form submission - Success
+OnEdit - Load of the form - On Load
+OnEdit - User input of General - General
+OnCreate or Edit - Load of the form - On Load
+OnCreate or Edit - User input of General - General
+OnCreate or Edit - User input of Payments - Payments
+OnCreate or Edit - User input of Shipping - Shipping
+
+----------------Form : Item Worksheet Lines ----------------
+OnCreate or Edit - User input of Quantity - Quantity
+
+-----------Form : Meter Reading Journal----------------
+OnCreate - Load of the form - On Load
+OnCreate - Successful form submission - Success
+OnEdit - Successful form submission - Success
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Reading - Reading
+OnCreate or Edit - User input of Service Item - Service Item
+OnCreate or Edit - User input of Show More - Show More
+OnDelete - Validations on record deletion - On Deletion
+
+----------------Form : Payment Terms Code ----------------
+OnCreate or Edit - User input of Discount - Discount
+OnCreate or Edit - User input of Discount Date Calculation(in Days) - Discount Date Calculation(in Days)
+OnCreate or Edit - User input of Due Date Calculation(in Days) - Due Date Calculation(in Days)
+
+-----------Form : Planned Maintenance Schedule-----------
+OnCreate - Load of the form - On Load
+OnCreate - User input of Service Interval Period - Service Interval Period
+OnCreate - User input of Service Interval Unit - Service Interval Unit
+OnEdit - User input of Service Interval Period - Service Interval Period
+OnEdit - User input of Service Interval Unit - Service Interval Unit
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - User input of Last Service Reading - Last Service Reading
+OnCreate or Edit - User input of Maintenance Code - Maintenance Code
+OnCreate or Edit - User input of Next Service Reading - Next Service Reading
+OnCreate or Edit - User input of Service Interval Units - Service Interval Units
+OnCreate or Edit - User input of Service Item - Service Item
+OnCreate or Edit - Validations on form submission - Maintenance Code
+OnCreate or Edit - Successful form submission - Submission
+
+----------------Form : Purchase Order - POM----------------
 OnCreate - Load of the form - On Load
 OnCreate - User input of General - General
 OnCreate - Successful form submission - Success
@@ -20,38 +123,10 @@ OnCreate or Edit - User input of Shipping - Shipping
 OnCreate or Edit - User input of Vendor No - Vendor No
 OnCreate or Edit - Successful form submission - Submission
 
------------Service Order Print----------------
+----------------Form : Schedule - Planned Maintenance Schedule----------------
 OnCreate - Successful form submission - Success
 
------------Master Page-----------
-HTMLSnippet - NewMasterPage
-
------------Planned Maintenance Schedule-----------
-OnCreate - Load of the form - On Load
-OnCreate - User input of Service Interval Period - Service Interval Period
-OnCreate - User input of Service Interval Unit - Service Interval Unit
-OnEdit - User input of Service Interval Period - Service Interval Period
-OnEdit - User input of Service Interval Unit - Service Interval Unit
-OnCreate or Edit - Load of the form - OnLoad
-OnCreate or Edit - User input of Last Service Reading - Last Service Reading
-OnCreate or Edit - User input of Maintenance Code - Maintenance Code
-OnCreate or Edit - User input of Next Service Reading - Next Service Reading
-OnCreate or Edit - User input of Service Interval Units - Service Interval Units
-OnCreate or Edit - User input of Service Item - Service Item
-OnCreate or Edit - Validations on form submission - Maintenance Code
-OnCreate or Edit - Successful form submission - Submission
-
------------Meter Reading Journal----------------
-OnCreate - Load of the form - On Load
-OnCreate - Successful form submission - Success
-OnEdit - Successful form submission - Success
-OnCreate or Edit - Load of the form - OnLoad
-OnCreate or Edit - User input of Reading - Reading
-OnCreate or Edit - User input of Service Item - Service Item
-OnCreate or Edit - User input of Show More - Show More
-OnDelete - Validations on record deletion - On Deletion
-
------------Service Items----------------
+-----------Form : Service Items----------------
 OnCreate - User input of General - General
 OnCreate - Successful form submission - Success
 OnEdit - User input of General - General
@@ -65,7 +140,22 @@ OnCreate or Edit - User input of Shipping - Shipping
 OnCreate or Edit - User input of Vendor - Vendor 
 OnDelete - Successful record deletion - Schedule
 
------------Work Order ----------------
+-----------Form : Service Item Worksheet ----------------
+OnCreate - Load of the form - Load
+OnCreate - Successful form submission - Success
+OnCreate or Edit - Load of the form - OnLoad
+
+-----------Form :Service Order Line Item - Comments ----------------
+OnCreate or Edit - Load of the form - OnLoad
+OnCreate or Edit - Successful form submission - Success
+
+-----------Form :Service Order Line Items ----------------
+OnCreate or Edit - User input of Service Items - Service Items 
+
+-----------Form : Service Order Print----------------
+OnCreate - Successful form submission - Success
+
+-----------Form : Work Order ----------------
 OnCreate - User input of General - General
 OnCreate - Successful form submission - Success
 OnEdit - Load of the form - Load

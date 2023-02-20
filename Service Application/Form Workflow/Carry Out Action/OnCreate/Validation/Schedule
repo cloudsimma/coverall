@@ -1,0 +1,12 @@
+/*****************************************************
+Description: schedule Validation
+Created AT : 18/08/2022
+Created By : Punitha N
+*****************************************************/
+get_service = Service[Planned_Maintenance_Schedule == input.Planned_Maintenance_Schedule && Status == "Pending"];
+if(get_service.count() > 0)
+{
+	alert "Already Service Order Was Created for this schedule";
+	cancel submit;
+}
+

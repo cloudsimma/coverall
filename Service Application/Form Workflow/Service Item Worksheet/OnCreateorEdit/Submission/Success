@@ -1,0 +1,6 @@
+/**********************
+Description: Populate fields 
+Created AT : 05/09/2022
+Created By : vivek v
+***********************/
+openUrl("#Script:page.close","same window");

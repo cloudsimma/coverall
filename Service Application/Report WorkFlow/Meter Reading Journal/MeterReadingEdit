@@ -1,0 +1,13 @@
+/******************
+Description: Open the corresponding record's form in Edit Mode
+Created AT : 28/09/2022
+Created By : Hari Prema M
+*****************/
+if(input.Status == "Ready to Post")
+{
+	openUrl("#Form:Meter_Reading_Journals?recLinkID=" + input.ID + "&viewLinkName=Meter_Reading_Journal","popup window");
+}
+else if(input.Status == "Posted")
+{
+	openUrl("#Form:Meter_Reading_Journals?recLinkID=" + input.ID + "&viewLinkName=Posted_Meter_Reading_Journals","popup window");
+}

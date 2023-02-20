@@ -1,0 +1,10 @@
+/******************
+Description: Open the Corresponding Meter Reading Journal Form in edit mode
+Created AT : 28/09/2022
+Created By : Hari Prema M
+*****************/
+fet_maintenance_schedule = Meter_Reading_Journals[Planned_Maintenance_Schedule == input.ID];
+if(fet_maintenance_schedule.count() > 0)
+{
+	openUrl("#Form:Meter_Reading_Journals?recLinkID=" + fet_maintenance_schedule.ID + "&viewLinkName=Meter_Reading_Journal","popup window");
+}

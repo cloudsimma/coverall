@@ -1,0 +1,13 @@
+/**********************************************
+Description: Quantity validation 
+Created AT : 05-08-2022
+Created By : Punitha N
+***********************************************/
+if(input.Quantity != null)
+{
+	if(input.Quantity < 0)
+	{
+		alert "Quantity Shouldn't be less than 0 ";
+		input.Quantity = null;
+	}
+}

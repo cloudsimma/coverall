@@ -1,0 +1,15 @@
+/****************************************************************
+Description: Hide and show based on Shipping
+Created AT : 14/12/2022
+Created By : Hari Prema M 
+*****************************************************************/
+if(input.Shipping1 == true)
+{
+	show Location;
+	show Shipping_Advice;
+}
+else
+{
+	hide Location;
+	hide Shipping_Advice;
+}

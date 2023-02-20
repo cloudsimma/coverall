@@ -1,0 +1,12 @@
+void DeveloperLog.addActivityLog(string module, string actionFlow, string description, string request, string response)
+{
+	logResponse = insert into Activity_Log
+	[
+		Added_User=zoho.loginuser
+		Module=module
+		Action_Flow=actionFlow
+		Description=description
+		Request=request
+		Response=response
+	];
+}

@@ -1,0 +1,23 @@
+
+/**********************
+Modified AT : 13/10/2022
+Modified By :Hari Prema M 
+***********************/
+service = Service_Item[ID == row.Service_Item];
+if(service.count() > 0)
+{
+	if(service.Description != "")
+	{
+		row.FA_Description=service.Description;
+	}
+	else
+	{
+		row.FA_Description="";
+	}
+	row.Last_Reading=ifnull(service.Reading,null);
+}
+else
+{
+	row.FA_Description="";
+	row.Last_Reading=null;
+}

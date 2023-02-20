@@ -1,0 +1,12 @@
+void open_service_order_worksheet(int ID)
+{
+	/****************************************************************
+Description: Open :Service Item Worksheet Form
+Created AT : 25-08-2022
+Created By : Punitha 
+*****************************************************************/
+	if(ID != null)
+	{
+		openUrl("#Form:Service_Item_Worksheet?Service_Work_Order_No=" + ID,"New window");
+	}
+}

@@ -1,0 +1,1 @@
+openUrl("#Form:Service_Order_Print?Service=" + input.ID,"same window");

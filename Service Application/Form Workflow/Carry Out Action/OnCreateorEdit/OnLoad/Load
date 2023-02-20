@@ -1,0 +1,33 @@
+/****************************************************************
+Description: hide Planned Maintenance Schedule
+Created AT : 03-08-2022
+Created By : Punitha N
+*****************************************************************/
+hide Planned_Maintenance_Schedule;
+if(input.Planned_Maintenance_Schedule != null)
+{
+	planned = Service_Item[ID == input.Planned_Maintenance_Schedule.Service_Item];
+	if(planned.count() > 0)
+	{
+		cust = Customer[ID == planned.Customer_No];
+		if(cust.count() > 0)
+		{
+			if(cust.Responsibility_Center != null)
+			{
+				input.Responsibility_Center = cust.Responsibility_Center;
+			}
+			else
+			{
+				input.Responsibility_Center = null;
+			}
+		}
+		else
+		{
+			input.Responsibility_Center = null;
+		}
+	}
+	else
+	{
+		input.Responsibility_Center = null;
+	}
+}

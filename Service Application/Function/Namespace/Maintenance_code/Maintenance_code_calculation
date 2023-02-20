@@ -1,0 +1,52 @@
+string Maintenance_code.Maintenance_code_calculation(int id, date date_field, int num)
+{
+	/******************
+Description: Maintenance code calculation by using code key
+Created At : 04/08/2022
+Created By : Hari Prema
+*****************/
+	if(input.id != null)
+	{
+		maintenance_code = Maintenance_Code[ID == id];
+		if(maintenance_code.count() > 0)
+		{
+			if(maintenance_code.Code_Key == 4255146000000197019)
+			{
+				code = ifnull(num,0) + ifnull(maintenance_code.Code_Number,0);
+			}
+			else if(maintenance_code.Code_Key == 4255146000000197011)
+			{
+				if(maintenance_code.Code_Number != null)
+				{
+					code = date_field.addYear(maintenance_code.Code_Number);
+				}
+			}
+			else if(maintenance_code.Code_Key == 4255146000000197007)
+			{
+				if(maintenance_code.Code_Number != null)
+				{
+					code = date_field.addMonth(maintenance_code.Code_Number);
+				}
+			}
+			else if(maintenance_code.Code_Key == 4255146000000197003)
+			{
+				if(maintenance_code.Code_Number != null)
+				{
+					code = date_field.addDay(maintenance_code.Code_Number);
+				}
+			}
+			else if(maintenance_code.Code_Key == 4255146000000425015)
+			{
+				if(maintenance_code.Code_Number != null)
+				{
+					code = date_field.addWeek(maintenance_code.Code_Number);
+				}
+			}
+			else if(maintenance_code.Code_Key == 4255146000000197015)
+			{
+				code = ifnull(num,0) + ifnull(maintenance_code.Code_Number,0);
+			}
+		}
+	}
+	return code;
+}

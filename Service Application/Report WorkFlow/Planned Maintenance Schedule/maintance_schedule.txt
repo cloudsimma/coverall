@@ -1,0 +1,6 @@
+/*********************************************************
+Description: Open the Carry Out Action popup window
+Created AT : 02-08-2022
+Created By : Punitha N
+***********************************************************/
+openUrl("#Form:Carry_Out_Action?Planned_Maintenance_Schedule=" + input.ID,"popup window");

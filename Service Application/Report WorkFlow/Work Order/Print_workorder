@@ -1,0 +1,13 @@
+/****************************************************************
+Description: Service Worksheets  Print Preview
+Created AT : 28-09-2022
+Created By : Punitha N
+*****************************************************************/
+if(input.Service_Item_Worksheet != null)
+{
+	openUrl("https://creatorapp.zoho.com/getcoverall/service/record-print/Service_Item_Worksheets/" + input.Service_Item_Worksheet,"new window");
+}
+else
+{
+	openUrl("https://creatorapp.zoho.com/getcoverall/service/record-print/Service_Order/" + input.ID + "/","new window");
+}

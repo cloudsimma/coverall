@@ -1,0 +1,6 @@
+/******************************************************************************
+Description: Open Meter Reading Journals Form
+Created AT : 03-08-2022
+Created By : Punitha N
+*******************************************************************************/
+openUrl("#Form:Meter_Reading_Journals?Planned_Maintenance_Schedule=" + input.ID,"popup window");

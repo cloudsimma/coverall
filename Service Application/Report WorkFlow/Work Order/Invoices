@@ -1,0 +1,9 @@
+/***********************************************************************
+Description: Change the Customer - Auto load Customer Related Details
+Created AT : 22.08.2022
+Created By : Meena M
+************************************************************************/
+if(Invoice_URL != null && Invoice_URL != "")
+{
+	openUrl(input.Invoice_URL,"New window");
+}

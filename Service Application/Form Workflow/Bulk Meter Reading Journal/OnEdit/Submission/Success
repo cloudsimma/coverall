@@ -1,0 +1,30 @@
+/***********************************************
+Description: Service Item Reading Updation -Edit
+Created AT : 22/08/2022
+Created By : Punitha
+************************************************/
+try 
+{
+	for each  rows in input.Meter_Reading_Journals
+	{
+		fet_meter = Meter_Reading_Journals[Bulk_Meter_Reading_Journal == input.ID];
+		if(fet_meter.count() > 0)
+		{
+			if(fet_meter.Service_Item == rows.Service_Item)
+			{
+				fet_meter.Posting_Date=input.Posting_Date;
+				fet_meter.FA_Description=rows.FA_Description;
+				fet_meter.Meter_Code=rows.Meter_Code;
+				fet_meter.Reading=rows.Reading;
+				fet_meter.Last_Reading=rows.Last_Reading;
+				fet_meter.Usage=rows.Usage;
+				fet_meter.Description=rows.Description;
+				fet_meter.Allowance_Date=rows.Allowance_Date;
+			}
+		}
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Bulk Meter Reading Journals","Update Meter Reading Journals",input.ID.toString(),e);
+}

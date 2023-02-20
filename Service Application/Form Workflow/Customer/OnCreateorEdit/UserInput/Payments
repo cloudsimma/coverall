@@ -1,0 +1,17 @@
+/****************************************************************
+Description: Hide and show based on Payments
+Created AT : 14/12/2022
+Created By : Hari Prema M 
+*****************************************************************/
+if(input.Payments1 == true)
+{
+	show Tax_Liable;
+	show Tax_Area;
+	show Payment_Terms_Code;
+}
+else
+{
+	hide Tax_Liable;
+	hide Tax_Area;
+	hide Payment_Terms_Code;
+}

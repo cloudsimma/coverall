@@ -1,0 +1,24 @@
+/****************************************************
+Description: Auto Populate the fields
+Created AT : 21-09-2022
+Created By : Punitha N
+*****************************************************/
+if(input.Document_No != null)
+{
+	get_Service = Service[ID == input.Document_No];
+	if(get_Service.count() > 0)
+	{
+		input.Service_Item_No = ifnull(get_Service.Lines.Service_Item,null);
+		input.Service_Item_Group_Code = ifnull(get_Service.Lines.Service_Item_Group_Code,null);
+	}
+	else
+	{
+		input.Service_Item_No = null;
+		input.Service_Item_Group_Code = null;
+	}
+}
+else
+{
+	input.Service_Item_No = null;
+	input.Service_Item_Group_Code = null;
+}

@@ -1,0 +1,7 @@
+/****************************************************************
+Description: Open Service Order Line Items Report
+Created AT : 18-08-2022
+Created By : RAJA V 
+*****************************************************************/
+//openUrl("#Report:Service_Order_Lines_Item?Service_Order=" + input.No,"same window");
+openUrl("#Report:service#Report:Service_Item_Worksheets","same window");
