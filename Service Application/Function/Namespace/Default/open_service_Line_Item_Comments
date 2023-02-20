@@ -1,0 +1,9 @@
+void open_service_Line_Item_Comments(int ID, int service_order_id)
+{
+	/****************************************************************
+Description: Open Service Order Line Item Comments Worksheet Form
+Created AT : 08-08-2022
+Created By : Punitha 
+*****************************************************************/
+	openUrl("#Form:Service_Order_Line_Item_Comments?Service_Order_Line_Item=" + ID + "&Service=" + service_order_id,"popup window");
+}

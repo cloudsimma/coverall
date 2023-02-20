@@ -1,0 +1,15 @@
+/******************
+Description: Open Corresponding Service Item's Meter Reading Journals
+Created AT : 10/10/2022
+Created By : Hari Prema M
+*****************/
+//openUrl("https://creatorapp.zoho.com/getcoverall/service/#Report:Meter_Reading_Journal?Service_Item=" + input.No,"new window");
+fet = Meter_Reading_Journals[Service_Item == input.ID && Status == "Posted"] sort by Posting_Date desc range from 1 to 1;
+if(fet.count() > 0)
+{
+	openUrl("#Page:Meter_Reading?ID=" + fet.ID + "&service_id=" + input.No + "&service_item_id=" + input.ID,"same window");
+}
+else
+{
+	openUrl("#Page:Reading_Journal?ID=" + fet.ID + "&service_id=" + input.No + "&service_item_id=" + input.ID,"same window");
+}

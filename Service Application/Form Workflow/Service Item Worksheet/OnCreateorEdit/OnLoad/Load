@@ -1,0 +1,104 @@
+/****************************************************************
+Description: hide Service Order Line Items
+Created AT : 05-08-2022
+Created By : Punitha N
+*****************************************************************/
+hide Service_Order_Line_Items;
+disable Document_No;
+disable Service_Item_No;
+disable Service_Item_Group_Code;
+disable Serial_No;
+//disable Repair_Status_Code;
+disable Customer1;
+disable Name;
+disable Address;
+disable Address_2;
+disable City;
+disable State_Zip_Code;
+disable Zip_Code;
+disable Phone_No;
+disable Location_Service_Item;
+disable Ship_to_Name;
+disable Ship_to_Address;
+disable Ship_to_Address_2;
+disable Ship_to_City;
+disable Ship_t_State_Zip_Code;
+disable Ship_to_Zip_Code;
+disable Ship_to_Phone_No;
+
+
+/**********************
+Description: Populate fields 
+Created AT : 05/09/2022
+Created By : vivek v
+***********************/
+if(input.Document_No != null)
+{
+	var1 = Service[ID == input.Document_No];
+	if(var1.count() > 0)
+	{
+		input.Service_Item_No = ifnull(var1.Lines.Service_Item,null);
+		if(input.Service_Item_No != null)
+		{
+			input.Serial_No = ifnull(input.Service_Item_No.Serial_No,"");
+		}
+		else
+		{
+			input.Serial_No = "";
+		}
+		input.Service_Item_Group_Code = ifnull(var1.Lines.Service_Item_Group_Code,null);
+		input.Customer1 = ifnull(var1.Customer,null);
+		input.Name = ifnull(var1.Name,"");
+		input.Address = ifnull(var1.Ship_to_Address,"");
+		input.City = ifnull(var1.City,"");
+		input.Zip_Code = ifnull(var1.Zip_code,"");
+		input.State_Zip_Code = ifnull(var1.State_Zip_code,"");
+		input.Phone_No = ifnull(var1.Phone_No,"");
+		input.Ship_to_Name = ifnull(var1.Ship_to_Name,"");
+		input.Ship_to_Address = ifnull(var1.Ship_to_Address,"");
+		input.Ship_to_City = ifnull(var1.City,"");
+		input.Ship_t_State_Zip_Code = ifnull(var1.State_Zip_code1,"");
+		input.Ship_to_Phone_No = ifnull(var1.Phone_No,"");
+		input.Ship_to_Zip_Code = ifnull(var1.Zip_code,"");
+	}
+	else
+	{
+		input.Serial_No = "";
+		input.Customer1 = null;
+		input.Name = "";
+		input.Address = "";
+		input.City = "";
+		input.Zip_Code = "";
+		input.State_Zip_Code = "";
+		input.Phone_No = "";
+		input.Location_Service_Item = "";
+		input.Ship_to_Name = "";
+		input.Ship_to_Address = "";
+		input.Ship_to_City = "";
+		input.Ship_t_State_Zip_Code = "";
+		input.State_Zip_Code = "";
+		input.Ship_to_Phone_No = "";
+		input.Service_Item_No = null;
+		input.Service_Item_Group_Code = null;
+	}
+}
+else
+{
+	input.Serial_No = "";
+	input.Customer1 = null;
+	input.Name = "";
+	input.Address = "";
+	input.City = "";
+	input.Zip_Code = "";
+	input.State_Zip_Code = "";
+	input.Phone_No = "";
+	input.Location_Service_Item = "";
+	input.Ship_to_Name = "";
+	input.Ship_to_Address = "";
+	input.Ship_to_City = "";
+	input.Ship_t_State_Zip_Code = "";
+	input.State_Zip_Code = "";
+	input.Ship_to_Phone_No = "";
+	input.Service_Item_No = null;
+	input.Service_Item_Group_Code = null;
+}

@@ -1,0 +1,1 @@
+delete from Service_Order_Print[ID != 0];

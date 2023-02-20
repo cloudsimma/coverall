@@ -1,0 +1,6 @@
+/*********************************************************
+Description: Open the Service Item Worksheet Page
+Created AT : 05-08-2022
+Created By : Punitha N
+***********************************************************/
+openUrl("#Page:Worksheets?service_order_line_item=" + input.ID,"same window");

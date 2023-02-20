@@ -1,0 +1,34 @@
+/**********************************************
+Description: Reading validation in Meter Reading Journal
+Created AT : 04/08/2022
+Created By : Punitha
+***********************************************/
+if(row.Service_Item != null)
+{
+	get_service_item = Service_Item[ID == row.Service_Item];
+	if(get_service_item.count() > 0)
+	{
+		if(row.Reading != null || row.Reading >= 0)
+		{
+			if(row.Reading < 0)
+			{
+				alert "Reading Shouldn't be less than Zero";
+				row.Usage=0;
+			}
+			else if(row.Reading < get_service_item.Reading)
+			{
+				alert "Service Item Reading Shouldn't be less than the Meter Reading";
+				row.Usage=0;
+				row.Reading=null;
+			}
+			else if(row.Reading > get_service_item.Reading)
+			{
+				row.Usage=row.Reading - get_service_item.Reading;
+			}
+		}
+		else
+		{
+			row.Usage=0;
+		}
+	}
+}

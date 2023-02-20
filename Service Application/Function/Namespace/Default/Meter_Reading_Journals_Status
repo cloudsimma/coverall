@@ -1,0 +1,31 @@
+void Meter_Reading_Journals_Status(int id)
+{
+	meter = Meter_Reading_Journals[ID == id];
+	if(meter.Status == "Posted")
+	{
+		fet_meter = Meter_Reading_Journals[Service_Item == meter.Service_Item].ID.getAll();
+		info "fet_meter" + fet_meter;
+		if(meter.Service_Item != null)
+		{
+			get_serviceitem = Service_Item[ID == meter.Service_Item];
+			if(get_serviceitem.count() > 0)
+			{
+				if(fet_meter.size() > 1)
+				{
+					info "if";
+					get_serviceitem.Reading=meter.Reading;
+				}
+				else
+				{
+					info "else";
+					if(meter.Reading > 0)
+					{
+						get_serviceitem.Reading=meter.Reading;
+						get_serviceitem.Last_service_Date=meter.Posting_Date;
+					}
+				}
+				thisapp.Schedule.schedule_service_order(meter.Service_Item);
+			}
+		}
+	}
+}

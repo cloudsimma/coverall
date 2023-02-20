@@ -1,0 +1,47 @@
+void Schedule.Planned_maintenance_Schedule(int start, int end)
+{
+	maintenance_schedule = Planned_Maintenance_Schedule[ID != 0] range from start to end;
+	for each  rec in maintenance_schedule
+	{
+		fet_service_item = Service_Item[ID == rec.Service_Item];
+		if(fet_service_item.count() > 0)
+		{
+			fet_service_order = Service[Planned_Maintenance_Schedule == rec.ID];
+			if(fet_service_order.Status != "Finished" || fet_service_order.Status != "Invoiced")
+			{
+				rec.Nearby_Schedule=false;
+			}
+			else
+			{
+				if(rec.Next_service_reading != null)
+				{
+					if(fet_service_item.Reading != null)
+					{
+						if(fet_service_item.Reading >= rec.Next_service_reading)
+						{
+							rec.Nearby_Schedule=true;
+						}
+						else
+						{
+							rec.Nearby_Schedule=false;
+						}
+					}
+				}
+				else
+				{
+					if(rec.Next_Service_Date != null)
+					{
+						if(rec.Next_Service_Date >= zoho.currentdate.addWeek(2))
+						{
+							rec.Nearby_Schedule=true;
+						}
+						else
+						{
+							rec.Nearby_Schedule=false;
+						}
+					}
+				}
+			}
+		}
+	}
+}

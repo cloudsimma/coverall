@@ -1,0 +1,8 @@
+void ValidationTest()
+{
+	response = Payment_Terms_Code[Due_Date_Calculation_in_Days != null];
+	if(response < 0)
+	{
+		info "alert";
+	}
+}

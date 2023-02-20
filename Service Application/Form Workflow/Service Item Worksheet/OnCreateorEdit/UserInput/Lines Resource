@@ -1,0 +1,27 @@
+/****************************************************
+Description: Auto Populate the fields based on Resource
+Created AT : 18-08-2022
+Created By : Punitha N
+*****************************************************/
+if(row.Resource != null)
+{
+	get_Resource = Item_Worksheet_Lines[Resource == row.Resource];
+	if(get_Resource.count() > 0)
+	{
+		row.Description=ifnull(get_Resource.Resource.Description,"");
+		row.Work_Type_Code=ifnull(get_Resource.Work_Type_Code,null);
+		row.Quantity=ifnull(get_Resource.Quantity,1);
+	}
+	else
+	{
+		row.Description="";
+		row.Work_Type_Code=null;
+		row.Quantity=1;
+	}
+}
+else
+{
+	row.Description="";
+	row.Work_Type_Code=null;
+	row.Quantity=1;
+}

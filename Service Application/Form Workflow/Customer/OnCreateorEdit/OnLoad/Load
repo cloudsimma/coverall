@@ -1,0 +1,29 @@
+/****************************************************************
+Description:hide Zoho Books ID 
+Created AT : 12-08-2022
+Created By : Hariharan 
+*****************************************************************/
+hide No;
+hide Name;
+hide Name_2;
+hide Email;
+hide Phone_No;
+hide Responsibility_Center;
+hide Location_of_Service_item;
+hide Address;
+hide Balance1;
+hide Credit_Limit;
+hide Sales_Person_Code;
+hide Default_Sales_Team;
+hide Commisionable;
+hide Cust_Emp_Applicable;
+hide Cust_Resource_Applicable;
+hide Tax_Liable;
+hide Tax_Area;
+hide Payment_Terms_Code;
+hide Location;
+hide Shipping_Advice;
+hide Zoho_Books_ID;
+input.General = false;
+input.Payments1 = false;
+input.Shipping1 = false;

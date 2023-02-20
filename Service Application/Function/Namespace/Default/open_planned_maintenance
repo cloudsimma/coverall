@@ -1,0 +1,9 @@
+void open_planned_maintenance(int id)
+{
+	/****************************************************************
+Description: Open Planned Maintenance Schedule Form
+Created AT : 08-08-2022
+Created By : Punitha 
+*****************************************************************/
+	openUrl("https://creatorapp.zoho.com/getcoverall/service/#Form:Planned_Maintenance_Schedule?Service_Item=" + id,"popup window");
+}

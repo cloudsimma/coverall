@@ -1,0 +1,18 @@
+/**********************************************
+Description: Discount validation 
+Created AT : 03/08/2022
+Created By : Arun Krishna
+***********************************************/
+if(input.Discount != null)
+{
+	if(input.Discount < 0)
+	{
+		alert "This value Shouldn't be less than 0 ";
+		input.Discount = null;
+	}
+	else if(input.Discount > 100)
+	{
+		alert "The value Shouldn't greater than 100";
+		input.Discount = null;
+	}
+}

@@ -1,0 +1,7 @@
+/***********************************************************************
+Description: Disable the fields
+Created AT : 02-08-2022
+Created By : Raja V
+************************************************************************/
+disable Service_Order_Line_Item;
+disable Service;

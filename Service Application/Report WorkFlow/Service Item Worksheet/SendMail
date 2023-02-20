@@ -1,0 +1,1 @@
+openUrl("https://creatorapp.zoho.com/getcoverall/service/record-print/Service_Item_Worksheets/" + input.ID + "/","new window");

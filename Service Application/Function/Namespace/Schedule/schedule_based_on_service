@@ -1,0 +1,32 @@
+void Schedule.schedule_based_on_service(int id)
+{
+	serice_item = Service_Item[ID == input.id];
+	for each  rec in Planned_Maintenance_Schedule[Service_Item == input.id]
+	{
+		if(rec.Next_service_reading != null)
+		{
+			if(serice_item.Reading != null)
+			{
+				if(serice_item.Reading >= rec.Next_service_reading)
+				{
+					rec.Nearby_Schedule=true;
+				}
+				else
+				{
+					rec.Nearby_Schedule=false;
+				}
+			}
+		}
+		else
+		{
+			if(rec.Next_Service_Date >= zoho.currentdate.addWeek(2))
+			{
+				rec.Nearby_Schedule=true;
+			}
+			else
+			{
+				rec.Nearby_Schedule=false;
+			}
+		}
+	}
+}

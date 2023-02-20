@@ -1,0 +1,104 @@
+void Get_productsdtls_zohocommerce()
+{
+		/****************************************************************
+Description: Get and Post Product details in zoho commerce
+Created AT : 16-11-2022
+Created By : Punitha 
+*****************************************************************/
+	// 	response = invokeUrl
+	// 	 [
+	// 	 url: "https://getcoverall.zohocommerce.com/api/products/ultrasoft%C2%AE-unlined-safety-vest-%E2%80%93-red/3014970000001031005"
+	// 	 type: GET
+	// 	 connection: "commerce_connect"
+	// 	 ];
+	// 	 info response;
+	custom = Map();
+	custom.put("customfield_id","3014970000001380019");
+	custom.put("value","Test");
+	//pass new custom field value
+	customlst = List();
+	customlst.add(custom);
+	variantMap = Map();
+	variantMap.put("custom_fields",customlst);
+	variantMap.put("variant_id","3014970000001031001");
+	//product variant id
+	variantslist = List();
+	variantslist.add(variantMap);
+	productMap = Map();
+	productMap.put("variants",variantslist);
+	headerMap = Map();
+	headerMap.put("X-com-zoho-store-organizationid","768861030");
+	//org id to be pass
+	// 	url = "https://commerce.zoho.com/store/api/v1/products/3014970000001031005";
+	// 	response = invokeurl
+	// 	[
+	// 		url :url
+	// 		type :PUT
+	// 		parameters:productMap.toString()
+	// 		headers:headerMap
+	// 		connection:"commerce_connect"
+	// 	];
+	// 	info response;
+	// 	custom = Map();
+	// 	custom.put("customfield_id",3014970000001380019);
+	// 	custom.put("label","_productIds");
+	// 	custom.put("value","Test");
+	// 	customlst = List();
+	// 	customlst.add(custom);
+	// 	custom_fields = Map();
+	// 	custom_fields.put("custom_fields",customlst);
+	// 	variantslist = List();
+	// 	variantslist.add(custom_fields);
+	// 	variants = Map();
+	// 	variants.put("variants",variantslist);
+	// 	product = Map();
+	// 	product.put("product",variants);
+	// 	data = Map();
+	// 	data.put("payload",product);
+	// 	response = invokeurl
+	// 	[
+	// 		url :"https://commerce.zoho.com/store/api/v1/products/3014970000001031005"
+	// 		type :PUT
+	// 		parameters:data
+	// 		connection:"commerce_connect"
+	// 	];
+	// 	info response;
+	//-------------Shipment Order Creation----------
+	data_map = Map();
+	data_map1 = Map();
+	//data_map.put("line_items",item_list);
+	data_map.put("package_number","PKG-00013");
+	data_map.put("status","shipped");
+	data_map.put("shipment_number","SHP-00011");
+	data_map.put("date","2022-12-01");
+	data_map.put("reference_number","TKG424242");
+	data_map.put("contact_persons",3014970000000074001);
+	data_map.put("delivery_method","TNT");
+	data_map.put("tracking_number","TRK214124124");
+	data_map.put("shipping_charge",1);
+	data_map.put("exchange_rate",1);
+	data_map.put("template_id",3014970000000115004);
+	data_map.put("notes","notes");
+	data_map.put("carrier","TNT");
+	data_map.put("package_ids",3014970000003247004);
+	data_map.put("salesorder_id",3014970000003000013);
+	packages = list();
+	data_map1.put("package_id",3014970000003247004);
+	data_map1.put("package_number","PKG-00012");
+	data_map1.put("package_quantity",1);
+	data_map1.put("package_date","2022-12-01");
+	data_map1.put("notes","notes");
+	packages.add(data_map1);
+	data_map.put("packages",packages);
+	// 	create_shipmentorders = zoho.inventory.createRecord("shipmentorders",768861030,data_map,"inventory_connect");
+	// 	info create_shipmentorders;
+	// 		url = "https://inventory.zoho.com/api/v1/shipmentorders";
+	// 		response = invokeurl
+	// 		[
+	// 			url :url
+	// 			type :POST
+	// 			parameters:data_map.toString()
+	// 			connection:"inventory_connect"
+	// 		];
+	// 		info response;
+}

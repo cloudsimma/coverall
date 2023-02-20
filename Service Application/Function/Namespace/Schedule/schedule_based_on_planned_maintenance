@@ -1,0 +1,39 @@
+void Schedule.schedule_based_on_planned_maintenance(int id)
+{
+	if(input.id != null)
+	{
+		fet_planned_maintenance = Planned_Maintenance_Schedule[ID == input.id];
+		if(fet_planned_maintenance.count() > 0)
+		{
+			fet_service_item = Service_Item[ID == fet_planned_maintenance.Service_Item];
+			if(fet_service_item.count() > 0)
+			{
+				if(fet_planned_maintenance.Next_service_reading != null)
+				{
+					if(fet_service_item.Reading != null)
+					{
+						if(fet_service_item.Reading >= fet_planned_maintenance.Next_service_reading)
+						{
+							fet_planned_maintenance.Nearby_Schedule=true;
+						}
+						else
+						{
+							fet_planned_maintenance.Nearby_Schedule=false;
+						}
+					}
+				}
+				else
+				{
+					if(fet_planned_maintenance.Next_Service_Date >= zoho.currentdate.addWeek(2))
+					{
+						fet_planned_maintenance.Nearby_Schedule=true;
+					}
+					else
+					{
+						fet_planned_maintenance.Nearby_Schedule=false;
+					}
+				}
+			}
+		}
+	}
+}

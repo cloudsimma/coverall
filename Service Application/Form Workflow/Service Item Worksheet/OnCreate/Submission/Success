@@ -1,0 +1,48 @@
+/****************************************************************
+Description: Service Worksheet Success
+Created AT : 05-08-2022
+Created By : Raja
+*****************************************************************/
+try 
+{
+	get_mod = Module[Module == "Service Worksheet"];
+	get_serv = Series_List[Module == get_mod.ID];
+	if(get_serv.count() > 0)
+	{
+		get_rf_no = 5;
+		get_ls_no = (get_serv.Last_No + 1).toString();
+		add_space = get_ls_no.leftpad(get_rf_no);
+		add_zero = add_space.replaceAll(" ","0");
+		input.Serial_No = "SW-" + add_zero;
+		//
+		get_serv.Last_No_Used=input.Serial_No;
+		get_serv.Last_No=add_zero.toLong();
+	}
+	else
+	{
+		input.Serial_No = "SW-00001";
+		//
+		get_no = 1;
+		//
+		serv_ins = insert into Series_List
+		[
+			Module=get_mod.ID
+			Added_User=zoho.loginuser
+			Last_No_Used=input.Serial_No
+			Last_No=get_no
+		];
+	}
+	if(input.Document_No != null)
+	{
+		get_service = Service[ID == input.Document_No];
+		if(get_service.count() > 0)
+		{
+			get_service.Service_Item_Worksheet=input.ID;
+		}
+	}
+	openUrl("#Script:page.parent.refresh ","parent window");
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Service Item Worksheet","Create - Service Item Worksheet Auto No. generation",input.ID.toString(),e);
+}

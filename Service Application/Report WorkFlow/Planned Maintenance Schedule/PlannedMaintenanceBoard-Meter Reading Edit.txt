@@ -1,0 +1,6 @@
+/******************
+Description: Open the Corresponding Meter Reading Journal Form in edit mode
+Created AT : 28/09/2022
+Created By : Hari Prema M
+*****************/
+openUrl("#Form:Meter_Reading_Journals?Planned_Maintenance_Schedule=" + input.ID,"popup window");

@@ -1,0 +1,9 @@
+/******************************************************************************
+Description: invoice print
+Created AT : 18-08-2022
+Created By : Vivek V
+*******************************************************************************/
+if(input.Invoice_URL != null && input.Invoice_URL != "")
+{
+	openUrl(input.Invoice_URL,"new window");
+}

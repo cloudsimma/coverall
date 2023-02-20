@@ -1,0 +1,85 @@
+/****************************************************************
+Description: Auto Populate fields by Service Order Line Item 
+Created AT : 05-08-2022
+Created By : Hari Prema M
+*****************************************************************/
+// if(input.Service_Order_Line_Items != null)
+// {
+// 	service_order = Service_Order_Line_Items[ID == input.Service_Order_Line_Items];
+// 	if(service_order.count() > 0)
+// 	{
+// 		input.Document_No = ifnull(service_order.Service_Order,null);
+// 		input.Service_Item_No = ifnull(service_order.Service_Item,null);
+// 		input.Service_Item_Group_Code = ifnull(service_order.Service_Item_Group_Code,null);
+// 		input.Repair_Status_Code = ifnull(service_order.Repair_Status_Code,null);
+// 		service_item = Service_Item[ID == input.Service_Item_No];
+// 		if(service_item.count() > 0)
+// 		{
+// 			input.Serial_No = service_item.Serial_No;
+// 			input.Customer1 = service_item.Customer_No;
+// 			input.Name = service_item.Name;
+// 			input.Address = service_item.Address.address_line_1;
+// 			input.Address_2 = service_item.Address.address_line_2;
+// 			input.City = service_item.Address.district_city;
+// 			input.State_Zip_Code = service_item.Address.state_province;
+// 			input.Zip_Code = service_item.Address.postal_Code;
+// 			input.Phone_No = service_item.contact1;
+// 			input.Ship_to_Name = service_item.Ship_to_Name;
+// 			input.Ship_to_Address = service_item.Ship_to_Address;
+// 			input.Ship_to_Address_2 = service_item.Ship_to_Address_Code.Address.address_line_2;
+// 			input.Ship_to_City = service_item.Ship_to_City;
+// 			input.Ship_t_State_Zip_Code = service_item.Ship_to_State;
+// 			input.Ship_to_Zip_Code = service_item.Ship_to_ZIP_Code;
+// 			Ship_to_Phone_no = service_item.Ship_to_Phone_no1;
+// 		}
+// 		else
+// 		{
+// 			input.Serial_No = "";
+// 			input.Customer1 = null;
+// 			input.Name = "";
+// 			input.Address = "";
+// 			input.Address_2 = "";
+// 			input.City = "";
+// 			input.State_Zip_Code = "";
+// 			input.Zip_Code = "";
+// 			input.Phone_No = "";
+// 			input.Ship_to_Name = "";
+// 			input.Ship_to_Address = "";
+// 			input.Ship_to_Address_2 = "";
+// 			input.Ship_to_City = "";
+// 			input.Ship_t_State_Zip_Code = "";
+// 			input.Ship_to_Zip_Code = "";
+// 			input.Ship_to_Phone_No = "";
+// 		}
+// 	}
+// 	else
+// 	{
+// 		input.Document_No = null;
+// 		input.Service_Item_No = null;
+// 		input.Service_Item_Group_Code = null;
+// 		input.Repair_Status_Code = null;
+// 	}
+// }
+// else
+// {
+// 	input.Document_No = null;
+// 	input.Service_Item_No = null;
+// 	input.Service_Item_Group_Code = null;
+// 	input.Repair_Status_Code = null;
+// 	input.Serial_No = "";
+// 	input.Customer1 = null;
+// 	input.Name = "";
+// 	input.Address = "";
+// 	input.Address_2 = "";
+// 	input.City = "";
+// 	input.State_Zip_Code = "";
+// 	input.Zip_Code = "";
+// 	input.Phone_No = "";
+// 	input.Ship_to_Name = "";
+// 	input.Ship_to_Address = "";
+// 	input.Ship_to_Address_2 = "";
+// 	input.Ship_to_City = "";
+// 	input.Ship_t_State_Zip_Code = "";
+// 	input.Ship_to_Zip_Code = "";
+// 	input.Ship_to_Phone_No = "";
+// }

@@ -1,0 +1,107 @@
+/******************************************************************************
+Description: 1.Check the Customer
+             2.Insert and Update the Service order Record
+			 3.Insert and Update the Service_Order_Line_Items Subform Record
+Created AT : 03-08-2022
+Created By : Punitha N
+*******************************************************************************/
+try 
+{
+	get_mod = Customer[ID != 0];
+	if(get_mod.count() > 0)
+	{
+		get_plan = Planned_Maintenance_Schedule[ID == input.Planned_Maintenance_Schedule];
+		get_serviceitem = Service_Item[ID == get_plan.Service_Item];
+		get_service = Service[Planned_Maintenance_Schedule == input.Planned_Maintenance_Schedule && Status == "Pending"];
+		if(get_service.count() == 0)
+		{
+			new_service = insert into Service
+			[
+				Added_User=zoho.loginuser
+				Posting_Date=input.Order_Date
+				Document_Date=input.Order_Date
+				Due_Date=input.Order_Date
+				Reading=get_serviceitem.Reading
+				Customer=ifnull(get_mod.ID,"")
+				Name=ifnull(get_mod.Name,"")
+				State_Zip_code=ifnull(get_mod.Address.state_province,"")
+				City=ifnull(get_mod.Address.district_city,"")
+				Zip_code=ifnull(get_mod.Address.postal_Code,"")
+				Phone_No=ifnull(get_mod.Phone_No,"")
+				Email=ifnull(get_mod.Email,"")
+				Service_Order_Type=input.Service_Order_Type
+				Response_Date=input.Schedule_Date
+				Priority="Low"
+				Status="Pending"
+				Responsibility_Center=ifnull(get_mod.Responsibility_Center,null)
+				Release_Status="Open"
+				Customer1=ifnull(get_mod.ID,null)
+				Bill_to_city=ifnull(get_mod.Address.district_city,"")
+				State_Zip_code1=ifnull(get_mod.Address.state_province,"")
+				Bill_to_Zip_Code=ifnull(get_mod.Address.postal_Code,"")
+				Tax_Liable=ifnull(get_mod.Tax_Liable,null)
+				Tax_Area=ifnull(get_mod.Tax_Area,null)
+				Payment_Terms_Code=ifnull(get_mod.Payment_Terms_Code,null)
+				Customer2=ifnull(get_mod.ID,null)
+				Ship_to_Name=ifnull(get_mod.Name,"")
+				Ship_to_Address=ifnull(get_mod.Address,null)
+				Ship_to_Email=ifnull(get_mod.Email,"")
+				Shipping_Advice=ifnull(get_mod.Shipping_Advice,"")
+				Location=ifnull(get_mod.Location,null)
+				Planned_Maintenance_Schedule=get_plan.ID
+			];
+			new_lineitem = insert into Service_Order_Line_Items
+			[
+				Added_User=zoho.loginuser
+				Service_Item=ifnull(get_plan.Service_Item,null)
+				Service_Item_Group_Code=ifnull(get_serviceitem.Service_Item_group_code,null)
+				Description=ifnull(get_plan.Service_Item_Description,"")
+				Serial_No=ifnull(get_serviceitem.Serial_No,"")
+				Maintenance_Code=ifnull(get_plan.Maintenance_Code,null)
+				Priority=ifnull(get_serviceitem.Priority,"")
+				Service_Order=new_service
+			];
+			if(get_plan.count() > 0)
+			{
+				get_plan.Service_Order=new_service;
+			}
+			fetch_sericeorder = Service[ID == new_service];
+			thisapp.Schedule.schedule_service_order(input.Planned_Maintenance_Schedule.Service_Item);
+			get_module = Module[Module == "Service Order"];
+			get_serv = Series_List[Module == get_module.ID];
+			if(get_serv.count() > 0)
+			{
+				get_rf_no = 6;
+				get_ls_no = (get_serv.Last_No + 1).toString();
+				get_up_no = get_rf_no - get_ls_no.length() + 1;
+				add_space = get_ls_no.leftpad(get_up_no);
+				add_zero = add_space.replaceAll(" ","0");
+				fetch_sericeorder.No="SE-" + add_zero;
+				get_serv.Last_No_Used=fetch_sericeorder.No;
+				get_serv.Last_No=add_zero.toLong();
+			}
+			else
+			{
+				fetch_sericeorder.No="SE-000001";
+				get_no = 1;
+				serv_ins = insert into Series_List
+				[
+					Module=get_mod.ID
+					Added_User=zoho.loginuser
+					Last_No_Used=fetch_sericeorder.No
+					Last_No=get_no
+				];
+			}
+			openUrl("#Script:page.parent.refresh ","parent window");
+			openUrl("#Report:Service_Order","same window");
+		}
+		else
+		{
+			openUrl("#Script:page.Close ","popup window");
+		}
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Carry Out Action","Create - Insert and Update the Service order Record",input.ID.toString(),e);
+}

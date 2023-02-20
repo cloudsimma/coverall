@@ -1,0 +1,68 @@
+void zoho_Books.purchase_order(int PO_id)
+{
+	if(PO_id != null)
+	{
+		PO = Purchase_Order_POM[ID == input.PO_id];
+		if(PO.count() > 0)
+		{
+			if(PO.Buy_from_Vendor_No != null)
+			{
+				if(PO.Buy_from_Vendor_No.Zoho_CRM_ID != null && PO.Buy_from_Vendor_No.Zoho_CRM_ID != "")
+				{
+					crm_id = PO.Buy_from_Vendor_No.Zoho_CRM_ID;
+					response = invokeurl
+					[
+						url :"https://books.zoho.com/api/v3/crm/vendor/" + crm_id + "/import?organization_id=768861030"
+						type :POST
+						connection:"books_connect"
+					];
+					dataMap = Map();
+					if(response.get("code") == 0 && response.get("data") != null && response.get("data") != "")
+					{
+						dataMap.put("vendor_id",response.get("data").get("customer_id"));
+					}
+					line_item_list = List();
+					for each  rec in PO.Purchase_Order_POM_Lines
+					{
+						line_item_map = Map();
+						line_item_map.put("item_id",rec.No.Zoho_Books_ID);
+						line_item_map.put("rate",rec.Unit_Price);
+						line_item_map.put("quantity",ifnull(rec.Quantity,1));
+						line_item_list.add(line_item_map);
+					}
+					dataMap.put("line_items",line_item_list);
+					custom_field_map = Map();
+					custom_field_map.put("label","Zoho Creator ID");
+					custom_field_map.put("value",PO_id);
+					custom_list = List();
+					custom_list.add(custom_field_map);
+					dataMap.put("custom_fields",custom_list);
+					if(PO.Zoho_Books_ID != "" && PO.Zoho_Books_ID != null)
+					{
+						// 				update Zoho Book's Purchase order
+						update_PO = zoho.books.updateRecord("purchaseorders","768861030",PO.Zoho_Books_ID,dataMap,"books_connect");
+						info "update po - " + update_PO;
+					}
+					else
+					{
+						// 				create Zoho Books Purchase Order
+						create_PO = zoho.books.createRecord("purchaseorders","768861030",dataMap,"books_connect");
+						info "create po - " + create_PO;
+						if(create_PO.get("code") == 0)
+						{
+							if(create_PO.containKey("purchaseorder") && create_PO.get("purchaseorder") != null)
+							{
+								purchase_id = create_PO.get("purchaseorder");
+								PO.Zoho_Books_ID=purchase_id.get("purchaseorder_id");
+							}
+						}
+						else
+						{
+							thisapp.DeveloperLog.addActivityLog("Purchase Orders","create record","create record from purchase order",PO_id.toString(),create_PO.toString());
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+/******************
+Description: Create Meter Reading Journal from Bulk Meter Reading Journal
+Created AT : 13/10/2022
+Created By : Hari Prema M
+// *****************/
+try 
+{
+	for each  rows in input.Meter_Reading_Journals
+	{
+		create_meter_reading_journal = insert into Meter_Reading_Journals
+		[
+			Service_Item=rows.Service_Item
+			FA_Description=rows.FA_Description
+			Meter_Code=rows.Meter_Code
+			Reading=rows.Reading
+			Last_Reading=rows.Last_Reading
+			Usage=rows.Usage
+			Maintenance_Code=rows.Maintenance_Code
+			Description=rows.Description
+			Allowance_Date=rows.Allowance_Date
+			Posting_Date=input.Posting_Date
+			Bulk_Meter_Reading_Journal=input.ID
+			Added_User=zoho.loginuser
+		];
+	}
+}
+catch (e)
+{
+	thisapp.DeveloperLog.addDeveloperLog("Creator : Bulk Meter Reading Journal","Create Meter Reading Journals",input.ID.toString(),e);
+}

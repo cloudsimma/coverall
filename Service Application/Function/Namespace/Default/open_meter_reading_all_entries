@@ -1,0 +1,4 @@
+void open_meter_reading_all_entries(string service_name)
+{
+	openUrl("https://creatorapp.zoho.com/getcoverall/service/#Report:Posted_Meter_Reading_Journals?Service_Item=" + service_name,"same window");
+}
