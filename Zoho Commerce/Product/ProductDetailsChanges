@@ -1,0 +1,80 @@
+/***********************************************
+Description: Product Details Updates
+Created AT : 22/08/2022
+Created By : Punitha
+************************************************/
+
+Add Menus In Top Bar :----------------------------
+<script type="application/javascript">
+    function addMenusInTopBar(){
+        var target_elme = document.querySelectorAll("[data-theme-portal='zptheme-portal']")[0];
+        var menu_elm = document.createElement("div");
+        menu_elm.innerHTML='<a href="https://www.zohosites.com">Zoho</a>';
+        menu_elm.style="flex:1;margin:0 20px";
+        target_elme.parentNode.insertBefore(menu_elm, target_elme);
+    }
+    window.addEventListener("load", addMenusInTopBar);
+</script>
+
+
+Extra Tab in Product Detail Page:-------------
+1. Create a folder json in root and this json file there
+2. User need to add each json for each product
+3. File name should be product url example : shirt.json
+4. Also change product_url key value as product url 
+
+
+
+File Url:----------------------------------------
+https://getcoverall.zohocommerce.com/files/2019_ArmourReady_catalogue.pdf
+
+
+
+Left Side Panel(customSidebar):------------------------------
+<script>
+<div id="customSidebar" data-theme-sidebar-mobile-content-container class="theme-sidebar-area">
+    <div class="zpcontent-container sidebar-container ">
+        <div data-element-id="" data-element-type="sidebarsection" class="zpsidebar-section zpdefault-section zpdefault-section-bg ">
+            <div id="customSidebarCont"class="zpsidebar-container">
+                <!--html of the content need to be displayed in the sidebar-->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+    if(window.zs_view === "category" || window.zs_view === "product" || window.zs_view === "collection"){
+            var themeCont = document.body.querySelector("[data-theme-content-container]");
+            themeCont.classList.add("theme-sidebar-enable");
+            themeCont.appendChild(document.getElementById("customSidebar"));
+        }
+    });
+</script>
+
+
+
+
+Fetch cart details:------------------------------
+<script type="application/javascript">
+
+    function fetchCartDataOnLoad() {
+        $X.get({
+            url: "/storefront/api/v1/cart",
+            handler: function () {
+                var res = JSON.parse(this.responseText);
+                if (!res || res.status_code != 0) {
+                    return;
+                }
+                var cart_obj = res.payload;
+                console.log(cart_obj);
+                /* Custom code to show cart data can be written here */
+            }
+        });
+    }
+    window.addEventListener("load", fetchCartDataOnLoad);
+</script>
+
+
+
+Product Custom fields Changes :----------------------------
+https://getcoverall.zohocommerce.com/api/products/ultrasoft%C2%AE-unlined-safety-vest-%E2%80%93-red/3014970000001031005

@@ -1,0 +1,43 @@
+/***********************************************
+Description: Custom Css Updates
+Created AT : 22/08/2022
+Created By : Punitha
+************************************************/
+
+/*
+.theme-prod-box.theme-product-list-style-02 .theme-product-box-container .theme-product-name {
+ margin-bottom:0px;   
+}
+
+.theme-prod-box.theme-product-list-style-02 .theme-product-box-container .theme-product-discription-and-pricing {
+ padding-bottom:0px;   
+}
+
+.theme-prod-box.theme-product-list-style-02 .theme-prod-coupons-code-container .theme-prod-coupons-code {
+ border:0px;   
+}
+.theme-prod-box.theme-product-list-style-02 .theme-prod-coupons-container .theme-prod-coupons-duration-container, .theme-prod-box.theme-product-list-style-02 .theme-prod-coupons-container .theme-prod-coupons-claimed-container{
+ margin-top:0px;  
+}
+.theme-prod-box.theme-product-list-style-02 .theme-prod-coupons-container {
+ font-size:65%;   
+}
+.theme-prod-box.theme-product-list-style-02 .theme-prod-coupons-container .theme-prod-coupons-claimed-container .theme-prod-coupons-claimed-progress {
+ margin-bottom:5px;   
+}
+
+.theme-prod-box.theme-product-list-style-02 .theme-product-box-container .theme-product-discription-and-pricing .theme-product-pricing {
+    font-size: 85%;
+}*/
+
+@media (max-width: 768px) {
+    .theme-header .zpcontainer .theme-branding-info .theme-logo-parent a img {
+        width: 110px !important;
+        height: 110px !important;
+    }
+}
+@media (min-width: 992px) {
+.theme-pages-full-stretch .zpcontainer {
+max-inline-size: 1440px
+}
+}
