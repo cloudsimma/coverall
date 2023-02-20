@@ -1,0 +1,17 @@
+float Rental_Order.extendedPrice(int selectRentalCode, float billingQuantity, float shippingQuantity, float unitPrice)
+{
+	extendedPrice = 0;
+	selectCode = No_Series_List[ID == input.selectRentalCode];
+	if(selectCode.count() > 0)
+	{
+		if(selectCode.ID == 4255146000000237039)
+		{
+			extendedPrice = ifnull(input.billingQuantity,1) * ifnull(input.unitPrice,0);
+		}
+		else
+		{
+			extendedPrice = ifnull(input.shippingQuantity,1) * ifnull(input.unitPrice,0);
+		}
+	}
+	return extendedPrice;
+}
