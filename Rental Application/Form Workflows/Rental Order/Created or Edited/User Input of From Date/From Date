@@ -1,0 +1,19 @@
+/**********************
+Description: auto populate the fields by the From Date
+Created AT : 05/09/2022
+Created By : Hari Prema M 
+***********************/
+if(input.From_Date != null)
+{
+	input.From_Date1 = input.From_Date;
+	input.Cleaning_Date = input.From_Date;
+	input.Delivery_Date = input.From_Date;
+	input.Deal_Length = 1;
+}
+else
+{
+	input.From_Date1 = null;
+	input.Cleaning_Date = null;
+	input.Delivery_Date = null;
+	input.Deal_Length = "";
+}

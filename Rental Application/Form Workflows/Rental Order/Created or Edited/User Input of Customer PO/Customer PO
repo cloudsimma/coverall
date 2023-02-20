@@ -1,0 +1,25 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Customer_PO2 == true)
+{
+	show PO_Applicable;
+	show Customer_PO_No;
+	show PO_Allocated_Amount;
+	show PO_Amount_Used;
+	show PO_Remaining_Amount;
+	show PO_Expiration_Date;
+	show PO_Date;
+}
+else
+{
+	hide PO_Applicable;
+	hide Customer_PO_No;
+	hide PO_Allocated_Amount;
+	hide PO_Amount_Used;
+	hide PO_Remaining_Amount;
+	hide PO_Expiration_Date;
+	hide PO_Date;
+}

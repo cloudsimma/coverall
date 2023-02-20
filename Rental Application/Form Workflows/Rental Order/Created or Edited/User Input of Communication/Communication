@@ -1,0 +1,49 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Communication1 == true)
+{
+	show plain;
+	show Contact_No;
+	show Sell_to_Contact_Name;
+	show Sell_to_Phone_No;
+	show Sell_to_Fax_No;
+	show Sell_to_Email;
+	show plain1;
+	show Contact_No1;
+	show Bill_to_Contact_Name;
+	show Bill_to_Phone_No;
+	show Bill_to_Fax_No;
+	show Bill_to_Email;
+	show plain2;
+	show Ship_to_Contact;
+	show Ship_to_Phone_No;
+	show Ship_to_Fax_No;
+	show Ship_to_Email;
+	show Delivery_Ticket_E_Mail;
+	show CC_Delivery_Ticket_E_Mail;
+}
+else
+{
+	hide plain;
+	hide Contact_No;
+	hide Sell_to_Contact_Name;
+	hide Sell_to_Phone_No;
+	hide Sell_to_Fax_No;
+	hide Sell_to_Email;
+	hide plain1;
+	hide Contact_No1;
+	hide Bill_to_Contact_Name;
+	hide Bill_to_Phone_No;
+	hide Bill_to_Fax_No;
+	hide Bill_to_Email;
+	hide plain2;
+	hide Ship_to_Contact;
+	hide Ship_to_Phone_No;
+	hide Ship_to_Fax_No;
+	hide Ship_to_Email;
+	hide Delivery_Ticket_E_Mail;
+	hide CC_Delivery_Ticket_E_Mail;
+}

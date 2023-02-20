@@ -1,0 +1,39 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Invoicing1 == true)
+{
+	show Bill_to_Customer_No;
+	show Bill_to_Contact_No;
+	show Name;
+	show Address_Invoicing;
+	show Branch;
+	show Department;
+	show Payment_Terms_Code;
+	show Applies_to_Doc_Type;
+	show Applies_to_Doc_No;
+	show Applies_to_ID;
+	show Environmental_Charges;
+	show Price_List;
+	show Invoice_Disc;
+	show Tax_are;
+}
+else
+{
+	hide Bill_to_Customer_No;
+	hide Bill_to_Contact_No;
+	hide Name;
+	hide Address_Invoicing;
+	hide Branch;
+	hide Department;
+	hide Payment_Terms_Code;
+	hide Applies_to_Doc_Type;
+	hide Applies_to_Doc_No;
+	hide Applies_to_ID;
+	hide Environmental_Charges;
+	hide Price_List;
+	hide Tax_are;
+	hide Invoice_Disc;
+}

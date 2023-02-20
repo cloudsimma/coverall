@@ -1,0 +1,25 @@
+/******************
+Description: Populate Customer Location Name
+Created AT : 11/08/2022
+Created By : Hari Prema
+*****************/
+if(row.Customer_Location != null)
+{
+	get_emp = Employee_Master[Customer_Locations_No == row.Customer_Location].ID.getAll();
+	row.Employee_No:ui.add(get_emp);
+	cust_location = Customer_Locations[ID == row.Customer_Location];
+	if(cust_location.count() > 0)
+	{
+		row.Cust_Location_Name=cust_location.Location_Name;
+	}
+	else
+	{
+		row.Cust_Location_Name="";
+	}
+}
+else
+{
+	get_emp = Employee_Master[ID != 0].ID.getAll();
+	row.Employee_No:ui.add(get_emp);
+	row.Cust_Location_Name="";
+}

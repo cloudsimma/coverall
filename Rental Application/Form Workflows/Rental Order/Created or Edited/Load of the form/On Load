@@ -1,0 +1,238 @@
+/******************
+Description: Populate Posting Description
+Created AT : 10/08/2022
+Created By : Hari Prema
+*****************/
+// disable Rentals.Billing_Quantity;
+disable Rentals.Extended_Price;
+disable Sales.Description;
+disable Rentals.Description;
+disable Rentals.Quantity_Shipped;
+disable Sell_to_Customer_Name;
+disable Sell_to_Address;
+disable Name;
+disable Address_Invoicing;
+disable Name1;
+disable Address_Shipping;
+disable Sell_to_Contact_Name;
+disable Sell_to_Phone_No;
+disable Sell_to_Email;
+disable Ship_to_Phone_No;
+disable Ship_to_Email;
+disable Bill_to_Contact_Name;
+disable Bill_to_Phone_No;
+disable Bill_to_Email;
+disable Rentals.Cust_Location_Name;
+disable Sales.Customer_Location_Name1;
+disable No;
+disable Deal_Code;
+disable Rentals.Line_No;
+disable Rentals.Quantity_Shipped;
+hide Rentals.Order_Shipping_Journal;
+hide Sales.Order_Shipping_Journal;
+hide Sales.Start_Date;
+hide Page_Option;
+disable Rentals.Billing_Quantity;
+if(input.Page_Option == "Create")
+{
+	enable Deal_Code1;
+	enable Contact_No;
+	enable Contact_No1;
+	enable Bill_to_Customer_No;
+	enable Bill_to_Contact_No;
+	enable Ship_to_Contact;
+}
+else if(input.Page_Option == "View")
+{
+	disable Deal_Code1;
+	disable Contact_No;
+	disable Contact_No1;
+	disable Bill_to_Customer_No;
+	disable Bill_to_Contact_No;
+	disable Ship_to_Contact;
+}
+/***********
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+hide Select_Code;
+hide No;
+hide Sell_to_Customer_No;
+hide Sell_to_Contact_No;
+hide Sell_to_Customer_Name;
+hide Sell_to_Address;
+hide Deal_Code;
+hide From_Date;
+hide Thru_Date;
+hide Order_Date;
+hide Customer_PO;
+hide Comments;
+hide Posting_Description;
+hide Status;
+hide Deal_Code1;
+hide From_Date1;
+hide Thru_Date1;
+hide Deal_Length;
+hide Cleaning_Date;
+hide Delivery_Date;
+hide Rentals;
+hide Sales;
+hide Bill_to_Customer_No;
+hide Bill_to_Contact_No;
+hide Name;
+hide Address_Invoicing;
+hide Branch;
+hide Department;
+hide Payment_Terms_Code;
+hide Applies_to_Doc_Type;
+hide Applies_to_Doc_No;
+hide Applies_to_ID;
+hide Environmental_Charges;
+hide Price_List;
+hide Tax_are;
+hide Invoice_Disc;
+hide Service_Charge;
+hide Include_Resources_in_Tx_Care;
+hide Include_Resources_in_SVC_CHG;
+hide SAM_Charge;
+hide Code;
+hide Address_Shipping;
+hide Name1;
+hide Tax_Liable;
+hide Tax_Area_Code;
+hide Del_Ticket_Date;
+hide Location_Code;
+hide plain;
+hide Contact_No;
+hide Sell_to_Contact_Name;
+hide Sell_to_Phone_No;
+hide Sell_to_Fax_No;
+hide Sell_to_Email;
+hide plain1;
+hide Contact_No1;
+hide Bill_to_Contact_Name;
+hide Bill_to_Phone_No;
+hide Bill_to_Fax_No;
+hide Bill_to_Email;
+hide plain2;
+hide Ship_to_Contact;
+hide Ship_to_Phone_No;
+hide Ship_to_Fax_No;
+hide Ship_to_Email;
+hide Delivery_Ticket_E_Mail;
+hide CC_Delivery_Ticket_E_Mail;
+hide Payment_Method_Code;
+hide Customer_Credit_Cards;
+hide Account_Type;
+hide Expiration_Month;
+hide Expiration_Year;
+hide Recurring_Credit_Card_Charge;
+hide Frequency_Code;
+hide Repair_Code;
+hide Bin_Code;
+hide Load_Code;
+hide Due_Back_Code;
+hide PO_Applicable;
+hide Customer_PO_No;
+hide PO_Allocated_Amount;
+hide PO_Amount_Used;
+hide PO_Remaining_Amount;
+hide PO_Expiration_Date;
+hide PO_Date;
+hide Billing_Type;
+input.General = false;
+input.Default_Deal1 = false;
+input.Rentals1 = false;
+input.Sales2 = false;
+input.Invoicing1 = false;
+input.Shipping1 = false;
+input.Communication1 = false;
+input.EFT1 = false;
+input.Service1 = false;
+input.Customer_PO2 = false;
+hide Rentals.Comments_by_User;
+hide Sales.Comments_by_User;
+hide Add_Notes;
+hide Add_Notes1;
+/******************
+Description: Enable Comments
+Created AT: 20/12/2022
+Created By: Hari Prema M
+*****************/
+for each  rentals in input.Rentals
+{
+	if(rentals.Comments_by_User != null && rentals.Comments_by_User != "")
+	{
+		if(rentals.Comments_by_User == zoho.loginuserid)
+		{
+			enable Rentals.Comments;
+		}
+		else
+		{
+			disable Rentals.Comments;
+		}
+	}
+}
+for each  sales in input.Sales
+{
+	if(sales.Comments_by_User != null && sales.Comments_by_User != "")
+	{
+		if(sales.Comments_by_User == zoho.loginuserid)
+		{
+			enable Sales.Comments;
+		}
+		else
+		{
+			disable Sales.Comments;
+		}
+	}
+}
+/****************************************************************************************
+Description: Employee no and the related field should removed in Rentals,sales Line items
+Created AT: 20/12/2022
+Created By: Punitha N
+***************************************************************************************/
+hide Rentals.Page_Option;
+hide Sales.Page_Option;
+if(input.Select_Code != null)
+{
+	if(input.Select_Code.ID == 4255146000000237039)
+	{
+		show Billing_Type;
+		show Rentals.Billing_Quantity;
+		hide Rentals.Employee_No;
+		hide Rentals.Employee_Name;
+		hide Rentals.Phone_Number;
+		hide Rentals.Team_Lead_Name;
+		hide Rentals.Team_Lead_E_mail;
+		hide Sales.Employee_No;
+		hide Sales.Employee_Name;
+	}
+	else
+	{
+		hide Billing_Type;
+		input.Billing_Type = null;
+		hide Rentals.Billing_Quantity;
+		show Rentals.Employee_No;
+		show Rentals.Employee_Name;
+		show Rentals.Phone_Number;
+		show Rentals.Team_Lead_Name;
+		show Rentals.Team_Lead_E_mail;
+		show Sales.Employee_No;
+		show Sales.Employee_Name;
+	}
+}
+else
+{
+	hide Billing_Type;
+	input.Billing_Type = null;
+	hide Rentals.Billing_Quantity;
+	show Rentals.Employee_No;
+	show Rentals.Employee_Name;
+	show Rentals.Phone_Number;
+	show Rentals.Team_Lead_Name;
+	show Rentals.Team_Lead_E_mail;
+	show Sales.Employee_No;
+	show Sales.Employee_Name;
+}

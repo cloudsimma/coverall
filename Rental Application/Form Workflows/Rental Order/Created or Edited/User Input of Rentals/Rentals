@@ -1,0 +1,15 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Rentals1 == true)
+{
+	show Rentals;
+	show Add_Notes;
+}
+else
+{
+	hide Rentals;
+	hide Add_Notes;
+}

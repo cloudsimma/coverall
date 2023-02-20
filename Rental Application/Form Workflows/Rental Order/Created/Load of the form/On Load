@@ -1,0 +1,21 @@
+hide No;
+hide Posting_Description;
+input.From_Date = zoho.currentdate;
+input.Cleaning_Date = zoho.currentdate;
+input.Delivery_Date = zoho.currentdate;
+input.From_Date1 = zoho.currentdate;
+input.Order_Date = zoho.currentdate;
+deal_code = Rental_Deal_Card[ID == 4255146000000775135];
+if(deal_code.count() > 0)
+{
+	input.Deal_Code1 = deal_code.ID;
+	input.Deal_Code = deal_code.ID;
+}
+else
+{
+	input.Deal_Code1 = null;
+	input.Deal_Code = null;
+}
+input.Tax_are = 0;
+input.Service_Charge = 0;
+input.SAM_Charge = 0;

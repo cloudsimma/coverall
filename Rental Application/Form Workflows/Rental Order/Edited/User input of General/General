@@ -1,0 +1,48 @@
+/***********
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.General == true)
+{
+	show Select_Code;
+	show No;
+	show Sell_to_Customer_No;
+	show Sell_to_Contact_No;
+	show Sell_to_Customer_Name;
+	show Sell_to_Address;
+	show Deal_Code;
+	show From_Date;
+	show Thru_Date;
+	show Order_Date;
+	show Customer_PO;
+	show Comments;
+	show Posting_Description;
+	show Status;
+	if(input.Select_Code.ID == 4255146000000237039)
+	{
+		show Billing_Type;
+	}
+	else
+	{
+		hide Billing_Type;
+	}
+}
+else
+{
+	hide Select_Code;
+	hide No;
+	hide Sell_to_Customer_No;
+	hide Sell_to_Contact_No;
+	hide Sell_to_Customer_Name;
+	hide Sell_to_Address;
+	hide Deal_Code;
+	hide From_Date;
+	hide Thru_Date;
+	hide Order_Date;
+	hide Customer_PO;
+	hide Comments;
+	hide Posting_Description;
+	hide Status;
+	hide Billing_Type;
+}

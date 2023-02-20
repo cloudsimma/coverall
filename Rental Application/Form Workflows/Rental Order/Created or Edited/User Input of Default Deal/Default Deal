@@ -1,0 +1,23 @@
+/***********
+Description: Hide and show 
+Created AT: 14/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Default_Deal1 == true)
+{
+	show Deal_Code1;
+	show From_Date1;
+	show Thru_Date1;
+	show Deal_Length;
+	show Cleaning_Date;
+	show Delivery_Date;
+}
+else
+{
+	hide Deal_Code1;
+	hide From_Date1;
+	hide Thru_Date1;
+	hide Deal_Length;
+	hide Cleaning_Date;
+	hide Delivery_Date;
+}

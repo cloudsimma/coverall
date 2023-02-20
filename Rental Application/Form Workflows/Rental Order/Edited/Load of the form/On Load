@@ -1,0 +1,253 @@
+show No;
+show Posting_Description;
+disable Select_Code;
+/**********
+Description: Edit record based on Page Option
+Created AT: 23/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Page_Option == "View")
+{
+	// General
+	disable Select_Code;
+	disable No;
+	disable Billing_Type;
+	disable Sell_to_Customer_No;
+	disable Sell_to_Contact_No;
+	disable Sell_to_Customer_Name;
+	disable Sell_to_Address;
+	disable Deal_Code;
+	disable From_Date;
+	disable Thru_Date;
+	disable Order_Date;
+	disable Customer_PO;
+	disable Comments;
+	disable Posting_Description;
+	disable Status;
+	// Default Deal
+	disable Deal_Code1;
+	disable From_Date1;
+	disable Thru_Date1;
+	disable Deal_Length;
+	disable Cleaning_Date;
+	disable Delivery_Date;
+	disable Add_Notes;
+	disable Add_Notes1;
+	// 	Invoicing
+	disable Bill_to_Customer_No;
+	disable Bill_to_Contact_No;
+	disable Name;
+	disable Address_Invoicing;
+	disable Branch;
+	disable Department;
+	disable Payment_Terms_Code;
+	disable Applies_to_Doc_Type;
+	disable Applies_to_Doc_No;
+	disable Applies_to_ID;
+	disable Environmental_Charges;
+	disable Price_List;
+	disable Invoice_Disc;
+	disable Tax_are;
+	// Shipping
+	disable Code;
+	disable Address_Shipping;
+	disable Name1;
+	disable Tax_Liable;
+	disable Tax_Area_Code;
+	disable Del_Ticket_Date;
+	disable Location_Code;
+	disable Service_Charge;
+	disable Include_Resources_in_Tx_Care;
+	disable Include_Resources_in_SVC_CHG;
+	disable SAM_Charge;
+	// 	Communication
+	// 	disable plain;
+	disable Contact_No;
+	disable Sell_to_Contact_Name;
+	disable Sell_to_Phone_No;
+	disable Sell_to_Fax_No;
+	disable Sell_to_Email;
+	// 	disable plain1;
+	disable Contact_No1;
+	disable Bill_to_Contact_Name;
+	disable Bill_to_Phone_No;
+	disable Bill_to_Fax_No;
+	disable Bill_to_Email;
+	// 	disable plain2;
+	disable Ship_to_Contact;
+	disable Ship_to_Phone_No;
+	disable Ship_to_Fax_No;
+	disable Ship_to_Email;
+	disable Delivery_Ticket_E_Mail;
+	disable CC_Delivery_Ticket_E_Mail;
+	// 	EFT
+	disable Payment_Method_Code;
+	disable Customer_Credit_Cards;
+	disable Account_Type;
+	disable Expiration_Month;
+	disable Expiration_Year;
+	disable Recurring_Credit_Card_Charge;
+	// 	Service
+	disable Frequency_Code;
+	disable Repair_Code;
+	disable Bin_Code;
+	disable Load_Code;
+	disable Due_Back_Code;
+	// 	Customer PO
+	disable PO_Applicable;
+	disable Customer_PO_No;
+	disable PO_Allocated_Amount;
+	disable PO_Amount_Used;
+	disable PO_Remaining_Amount;
+	disable PO_Expiration_Date;
+	disable PO_Date;
+	// 	Rentals
+	disable Rentals.Type;
+	disable Rentals.Resource_Item;
+	disable Rentals.Comments;
+	disable Rentals.Rental_Notes;
+	disable Rentals.Cleaning_Date;
+	disable Rentals.Start_Date;
+	disable Rentals.Shipping_Quantity;
+	disable Rentals.Customer_Location;
+	disable Rentals.Employee_No;
+	disable Rentals.Employee_Name;
+	disable Rentals.Team_Lead_Name;
+	disable Rentals.Team_Lead_E_mail;
+	disable Rentals.Phone_Number;
+	disable Rentals.Deal_code;
+	disable Rentals.From_Date;
+	disable Rentals.Deal_Length;
+	disable Rentals.Thru_Date;
+	disable Rentals.Unit_Price_Pack_Price;
+	disable Rentals.Show_in_delivery_ticket;
+	disable Rentals.Allow_Invoice_Disc;
+	disable Rentals.Alt_Rate_1;
+	disable Rentals.Alt_Rate_2;
+	disable Rentals.Availability_Date;
+	disable Rentals.Availability_Status;
+	disable Rentals.Availability_StaBest_Price_Calculated;
+	disable Rentals.Billing_Action;
+	disable Rentals.Billing_Action_No_Periods;
+	disable Rentals.Branch_Code;
+	disable Rentals.Commissionable;
+	disable Rentals.Customer_Type;
+	disable Rentals.Customer_Bin_Code;
+	disable Rentals.Damage_Waiver;
+	disable Rentals.Damage_Waiver_Declined;
+	disable Rentals.Delivery_Date;
+	disable Rentals.Department_Code;
+	disable Rentals.Description_2;
+	disable Rentals.Final_Term_Billing_Action;
+	disable Rentals.Final_Term_Invoiced;
+	disable Rentals.Final_Term;
+	disable Rentals.Final_Term_Line_Disc;
+	disable Rentals.Final_Term_Pack_Price;
+	disable Rentals.Final_Term_Price_Type;
+	disable Rentals.Final_Term_Thru_Date;
+	disable Rentals.Final_Term_Unit_Price_Packaged_Price;
+	disable Rentals.Gen_Bus_Posting_Group;
+	disable Rentals.Gen_Product_Posting_Groups;
+	disable Rentals.Implosion_Action;
+	disable Rentals.Implosion_Line_Type;
+	disable Rentals.Init;
+	disable Rentals.Initial_Term_BIling_Action;
+	disable Rentals.Initial_Term_From_Date;
+	disable Rentals.Initial_Term_Invoiced;
+	disable Rentals.Initial_Term_Line;
+	disable Rentals.Initial_Term_Pack_Price;
+	disable Rentals.Initial_Term_Price_Type;
+	disable Rentals.Initial_term_Thru_Date;
+	disable Rentals.Invoiced_Thru_Date;
+	disable Rentals.Line_Discount;
+	disable Rentals.Line_No;
+	disable Rentals.Location_Code;
+	disable Rentals.Location_Name;
+	disable Rentals.Meter_Charges;
+	disable Rentals.Minimum_Days;
+	disable Rentals.Notes;
+	disable Rentals.Packaged_Price;
+	disable Rentals.Return_Confirmed;
+	disable Rentals.Return_Date;
+	disable Rentals.Service_Required;
+	disable Rentals.Shipping_Required;
+	disable Rentals.Spiff;
+	disable Rentals.Tax_Group_Code;
+	disable Rentals.Tax_Liable;
+	disable Rentals.Unit_of_Measure_Code;
+	disable Rentals.Unit_of_Measure;
+	disable Rentals.Wash_Qty;
+	disable Rentals.Invoiced;
+	// 	Sales
+	disable Sales.Type;
+	disable Sales.No;
+	disable Sales.Comments;
+	disable Sales.Sales_Notes;
+	disable Sales.Comments_by_User;
+	disable Sales.Location_Name;
+	disable Sales.Start_Date;
+	disable Sales.Quantity;
+	disable Sales.Quantity_shipped;
+	disable Sales.Employee_No;
+	disable Sales.Employee_Name;
+	disable Sales.Customer_Location;
+	disable Sales.Customer_Location_Name1;
+	disable Sales.Unit_Price;
+	disable Sales.Sale_Date;
+	disable Sales.Show_in_delivery_ticket;
+	disable Sales.Allow_Invoice;
+	disable Sales.Appl_From_Item_Entry;
+	disable Sales.Appl_To_Item_Entry;
+	disable Sales.Billing_Action;
+	disable Sales.Branch_Code;
+	disable Sales.Cleaning_Date;
+	disable Sales.Commisionable;
+	disable Sales.Delivery_Date;
+	disable Sales.Department_Code;
+	disable Sales.Depec;
+	disable Sales.Depreciation_Book_Code;
+	disable Sales.Description_2;
+	disable Sales.Dublicate_Depreciation_Book;
+	disable Sales.Extended_Price;
+	disable Sales.FA_Posting_Date;
+	disable Sales.Gen_Bus_Posting_Group;
+	disable Sales.Gen_Product_Posting_Groups;
+	disable Sales.Implosian;
+	disable Sales.Implosian_Type;
+	disable Sales.Job_Contract_Entry_No;
+	disable Sales.Job_No;
+	disable Sales.Job_Task_No;
+	disable Sales.Line_Discount;
+	disable Sales.Line_No;
+	disable Sales.Location_Code;
+	disable Sales.No1;
+	disable Sales.Packaged_Price;
+	disable Sales.Parts_Kit;
+	disable Sales.Shipping_Required;
+	disable Sales.Spiff;
+	disable Sales.Tax_Groups_Code;
+	disable Sales.Tax_Liable;
+	disable Sales.Unit_Cost;
+	disable Sales.Unit_of_Measure;
+	disable Sales.Use_Dublication_List;
+	disable Sales.Invoiced;
+}
+/**********************
+Description: Set filter for Line item Rentals and sales Type.
+Created AT : 07/02/2023
+Created By : Punitha N
+***********************/
+RI = input.Rentals.Resource_Item;
+if(Rentals.Type != null)
+{
+	_rent = Resource_Item[ID != 0 && Goods_Type == input.Rentals.Type].ID.getAll();
+	Rentals.Resource_Item:ui.add(_rent);
+	input.Rentals.Resource_Item = RI;
+}
+SI = input.Sales.No;
+if(Sales.Type != null)
+{
+	sales = Resource_Item[ID != 0 && Goods_Type == input.Sales.Type].ID.getAll();
+	Sales.No:ui.add(sales);
+	input.Sales.No = SI;
+}

@@ -1,0 +1,13 @@
+/**********************
+Description: validation delivery date
+Created AT : 05/09/2022
+Created By : vivek v
+***********************/
+if(input.Delivery_Date != null)
+{
+	if(input.Delivery_Date < input.Cleaning_Date)
+	{
+		alert "Delivery Date should not be less than the Cleaning Date";
+		input.Delivery_Date = null;
+	}
+}

@@ -1,0 +1,30 @@
+/****************************************************************
+Description: get code record fill address 
+Created AT : 17-08-2022
+Created By : Arun Krishnan 
+*****************************************************************/
+if(input.Code != null)
+{
+	resp = Ship_to_Address[ID == input.Code];
+	if(resp.count() > 0)
+	{
+		input.Name1 = ifnull(resp.Name1,"");
+		input.Address_Shipping = ifnull(resp.Address,null);
+		input.Tax_Area_Code = ifnull(resp.Tax_Area_Code,null);
+		input.Location_Code = ifnull(resp.Location_Code,null);
+	}
+	else
+	{
+		input.Name1 = "";
+		input.Address_Shipping = null;
+		input.Tax_Area_Code = null;
+		input.Location_Code = null;
+	}
+}
+else
+{
+	input.Name1 = "";
+	input.Address_Shipping = null;
+	input.Tax_Area_Code = null;
+	input.Location_Code = null;
+}

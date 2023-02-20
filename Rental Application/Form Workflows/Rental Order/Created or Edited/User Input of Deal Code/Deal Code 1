@@ -1,0 +1,15 @@
+/******************
+Description: Populate Deal Code from Default Deal Code
+Created AT : 24/11/2022
+Created By : Hari Prema M
+*****************/
+if(input.Deal_Code1 != null)
+{
+	input.Deal_Code = input.Deal_Code1;
+	input.Deal_Length = 1;
+}
+else
+{
+	input.Deal_Code = null;
+	input.Deal_Length = "";
+}

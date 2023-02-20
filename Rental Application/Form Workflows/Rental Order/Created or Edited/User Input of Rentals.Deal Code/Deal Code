@@ -1,0 +1,21 @@
+/******************
+Description: Unit Price based on Deal Code
+Created AT: 31/01/2023
+Created By: Hari Prema M
+*****************/
+sales_rate = 0;
+resource_item = Resource_Item[ID == row.Resource_Item];
+if(resource_item.count() > 0)
+{
+	fet_product_deal = Product_Deal_Code[Resource_Item == row.Resource_Item && Deal_Code == row.Deal_code];
+	if(fet_product_deal.count() > 0)
+	{
+		unitPrice = fet_product_deal.Unit_Price;
+	}
+	else
+	{
+		unitPrice = resource_item.Unit_Price;
+	}
+	row.Unit_Price_Pack_Price=thisapp.Rental_Order.unitPriceCalculation(row.Resource_Item,row.Deal_code,input.Sell_to_Customer_No,row.Type,unitPrice);
+}
+row.Extended_Price=thisapp.Rental_Order.extendedPrice(input.Select_Code,row.Billing_Quantity,row.Shipping_Quantity,row.Unit_Price_Pack_Price);

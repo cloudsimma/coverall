@@ -1,0 +1,13 @@
+/**********************************************
+Description: PO Remainning Ammount validation 
+Created AT : 03/08/2022
+Created By : Arun Krishna
+***********************************************/
+if(input.PO_Remaining_Amount != null)
+{
+	if(input.PO_Remaining_Amount < 0)
+	{
+		alert "This value Shouldn't be less than 0 ";
+		input.PO_Remaining_Amount = null;
+	}
+}

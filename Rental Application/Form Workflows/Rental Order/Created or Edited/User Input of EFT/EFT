@@ -1,0 +1,23 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.EFT1 == true)
+{
+	show Payment_Method_Code;
+	show Customer_Credit_Cards;
+	show Account_Type;
+	show Expiration_Month;
+	show Expiration_Year;
+	show Recurring_Credit_Card_Charge;
+}
+else
+{
+	hide Payment_Method_Code;
+	hide Customer_Credit_Cards;
+	hide Account_Type;
+	hide Expiration_Month;
+	hide Expiration_Year;
+	hide Recurring_Credit_Card_Charge;
+}

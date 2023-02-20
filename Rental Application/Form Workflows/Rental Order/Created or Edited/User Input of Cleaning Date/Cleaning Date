@@ -1,0 +1,10 @@
+/******************
+Description: Validation for Cleaning Date. Cleaning date should not greater than the Delivery Date
+Created AT : 25/11/2022
+Created By : Hari Prema M
+*****************/
+if(input.Cleaning_Date > input.Delivery_Date)
+{
+	alert "Cleaning Date should not greater than Delivery Date";
+	input.Cleaning_Date = null;
+}

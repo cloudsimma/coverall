@@ -1,0 +1,42 @@
+/****************************************************************
+Description: create auto number in No field
+Created AT : 17-08-2022
+Created By : Hariharan 
+*****************************************************************/
+if(input.Select_Code != null)
+{
+	fetch_code_list = No_Series_List[ID == input.Select_Code];
+	if(fetch_code_list.count() > 0)
+	{
+		if(input.Select_Code == 4255146000000237055 || input.Select_Code == 4255146000000237063 || input.Select_Code == 4255146000000237059 || input.Select_Code == 4255146000001015077)
+		{
+			get_prifix = ifnull(fetch_code_list.Last_Used_Number.getAlpha(),"");
+			remove_alpa = ifnull(fetch_code_list.Last_Used_Number.removeAllAlpha(),"");
+			num = remove_alpa.tonumber() + 1;
+			gen_num = num.tostring().leftpad(3).replaceAll(" ","0");
+			input.No = get_prifix + gen_num;
+			input.Posting_Description = input.Posting_Description + " " + input.No;
+			fetch_code_list.Last_Used_Number=get_prifix + gen_num;
+		}
+		else if(input.Select_Code == 4255146000000237031 || input.Select_Code == 4255146000000237035)
+		{
+			get_prifix = ifnull(fetch_code_list.Last_Used_Number.getAlpha(),"");
+			remove_alpa = ifnull(fetch_code_list.Last_Used_Number.removeAllAlpha(),"");
+			num = remove_alpa.tonumber() + 1;
+			gen_num = num.tostring().leftpad(4).replaceAll(" ","0");
+			input.No = get_prifix + gen_num;
+			input.Posting_Description = input.Posting_Description + " " + input.No;
+			fetch_code_list.Last_Used_Number=get_prifix + gen_num;
+		}
+		else
+		{
+			get_prifix = ifnull(fetch_code_list.Last_Used_Number.getAlpha(),"");
+			remove_alpa = ifnull(fetch_code_list.Last_Used_Number.removeAllAlpha(),"");
+			num = remove_alpa.tonumber() + 1;
+			gen_num = num.tostring().leftpad(5).replaceAll(" ","0");
+			input.No = get_prifix + gen_num;
+			input.Posting_Description = input.Posting_Description + " " + input.No;
+			fetch_code_list.Last_Used_Number=get_prifix + gen_num;
+		}
+	}
+}
