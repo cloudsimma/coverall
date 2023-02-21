@@ -1,0 +1,330 @@
+<%{
+	if(input.quote != null)
+	{
+		details = thisapp.crm.quote_details(5126176000001402001);
+		thisapp.crm.estimate_status_update(details.get("quote_id").toNumber(),details.get("deal_id").toNumber(),details.get("Stage"),details.get("zoho_book_id"));
+		%>
+<style>
+.main_div_center
+{
+	width: 50%;
+	margin:auto;
+}
+.cust_button
+{
+	height:20px;
+	width:25px;
+	background:black;
+	color:white;
+}
+.button {
+  background-color: Green; 
+  border: none;
+  color: Black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 15px;
+ }
+.button-span
+{
+	 color : white; 
+	 padding : 5px;
+	 text-shadow: none;
+}
+.product-image img:hover {
+    -webkit-transform:scale(1.7); /* or some other value */
+    transform:scale(1.7);
+  }
+@media print {
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+// 	.order-submission {
+// 		display: none;
+// 	}
+// @page { 
+// 		size: auto;
+// 		margin: 0mm 0 0mm 0;
+// 		border: 2px solid;
+//     }
+	.main_div_center
+	{
+	   margin: 0;
+	   width: 100%;
+	}
+
+}
+ @media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+	.main_div_center
+	{
+	   margin: auto;
+	   width: 100% !important;
+	}
+	.form-label{
+		padding-right:0px !important;
+	}
+}
+
+</style>	<!----Main Div Start Here-------->
+<div class="main_div_center">
+
+<!------Outer Table start here------>
+<table style="width:100%;">
+<tr>
+<td>
+   <!----Table 1 - Header Table Start here--->
+<table style="width:100%;align:center">
+
+<tr>
+	   <td>
+	   <div style="width:70px;display: inline;float: left;"><img src="" height="50"></img></div>
+	   <div style="width:400px;display: inline;float: left;padding:10px;"><font size="4"><%=details.get("Stage")%></font></div>
+	   </td>
+</tr>
+
+<tr>
+	   <td>
+	   <img style="width:100%" src="" height=""></img>
+	   </td>
+</tr>
+<tr>
+    <td> 
+	<div class="Header-image">
+	<hr>
+	</div>
+	</td>
+</tr>
+</table>
+
+	<!----Table 1 - Header Table End here--->
+ <div class="table-row1">	
+	<!----Table 2 - Address Table Start here--->
+	 <table style="width:97%;align:center">
+            <tr>
+				<td style="vertical-align:top;">
+				    <!--<b>GSPD CSP INTERNAL CONTROLS</b><br>-->
+Billing Address:<br>
+<%
+		if(details.containKey("bill_street") && details.get("bill_street") != "")
+		{
+			%>
+<%=details.get("bill_street")%><br>
+<%
+		}
+		if(details.containKey("bill_city") && details.get("bill_city") != "")
+		{
+			%>
+<%=details.get("bill_city")%><br>
+<%
+		}
+		if(details.containKey("bill_state") && details.get("bill_state") != "")
+		{
+			%>
+<%=details.get("bill_state")%><br>
+<%
+		}
+		if(details.containKey("bill_country") && details.get("bill_country") != "")
+		{
+			%>
+<%=details.get("bill_country")%><br>
+<%
+		}
+		if(details.containKey("bill_code") && details.get("bill_code") != "")
+		{
+			%>
+<%=details.get("bill_code")%><br>
+<%
+		}
+		%>
+</td>
+	   
+				<td style="text-align:left;vertical_align:top;">
+				 Shipping Address:<br>
+<%
+		if(details.containKey("ship_street") && details.get("ship_street") != "")
+		{
+			%>
+<%=details.get("ship_street")%><br>
+<%
+		}
+		if(details.containKey("ship_city") && details.get("ship_city") != "")
+		{
+			%>
+<%=details.get("ship_city")%><br>
+<%
+		}
+		if(details.containKey("ship_state") && details.get("ship_state") != "")
+		{
+			%>
+<%=details.get("ship_state")%><br>
+<%
+		}
+		if(details.containKey("ship_country") && details.get("ship_country") != "")
+		{
+			%>
+<%=details.get("ship_country")%><br>
+<%
+		}
+		if(details.containKey("ship_code") && details.get("ship_code") != "")
+		{
+			%>
+<%=details.get("ship_code")%><br>
+<%
+		}
+		%>
+</td>
+			</tr>
+			<tr>
+    <td> 
+	<div class="Header-image">
+	<hr>
+	</div>
+	</td>
+	<td> 
+	<div class="Header-image">
+	<hr>
+	</div>
+	</td>
+</tr>
+	  </table>
+	 <table style="width:97%;align:center">
+            <tr>
+				<td style="vertical-align:top;width:50%">
+				    <!--<b>GSPD CSP INTERNAL CONTROLS</b><br>-->
+Account Name :
+<%
+		if(details.containKey("account_name") && details.get("account_name") != "")
+		{
+			%>
+<%=details.get("account_name")%><br>
+	Contact Name :
+<%
+		}
+		if(details.containKey("contact_name") && details.get("contact_name") != "")
+		{
+			%>
+<%=details.get("contact_name")%><br>
+<%
+		}
+		%>
+</td>
+	   
+				<td style="text-align:left;vertical_align:top;">
+				 Quote Number :
+<%
+		if(details.containKey("quote_no") && details.get("quote_no") != "")
+		{
+			%>
+<%=details.get("quote_no")%><br>
+	Valid Till :
+<%
+		}
+		if(details.containKey("valid_till") && details.get("valid_till") != "")
+		{
+			%>
+<%=details.get("valid_till")%><br>
+<%
+		}
+		%>
+</td>
+	  </table>
+	<!----Table 2 - Address Table End here--->
+	
+		<!----Table 3 - Item Outer Table Start here--->
+
+<tbody>
+    	<tr>
+			<td style="text-align:center;">
+			
+				  
+				  <!----Inner Table Start Here - Items---->
+				   <table style="width:100%; margin:auto; background-color: #f2f2f2;" cellpadding="5" cellspacing="5">
+				    <table style="width:98%;" border="1" cellpadding="5" cellspacing="5">
+				      <tbody>
+					       <tr>
+						        <th style="width:40%; text-align:left;"><font size="3">Product</font></th>
+								<th style="width:20%;text-align:right;"><font size="3">Quantity</font></th>
+								<th style="width:20%;text-align:right;"><font size="3">Unit Price</font></th>			
+								<th style="width:20%;text-align:right;"><font size="3">Total</font></th>		
+						   </tr>
+<%
+		l_list = details.get("item_list");
+		c = 0;
+		v_total = 0.0;
+		for each  rec in l_list
+		{
+			re_map = rec.toMap();
+			%>
+<tr>
+<td style="text-align:left;" valign="center"><%=re_map.get("product")%></td>
+								<td style="text-align:right;" valign="right"><%=re_map.get("quantity")%></td>
+								<td style="text-align:right;" valign="right"><%=re_map.get("unit_price")%></td>			
+								<td style="text-align:right;" valign="right"><%=re_map.get("total")%></td>		
+							</tr>
+<%
+			v_total = v_total + if(re_map.get("total") != null,re_map.get("total").toDecimal(),0.0);
+		}
+		%>
+</tbody>
+				   </table>
+				  
+				  <!-----Inner Table End Here- Items------->
+			 
+			</td>
+		</tr>
+	  </tbody>
+	</table>
+
+<!----Table 3 - Item Outer Table ENd here--->
+<table style="width:98%; background-color: #f2f2f2;">
+<tr>
+						       <th style="width:50%;text-align:right;"><font size="3"></font></th>
+								<th style="width:25%;text-align:right;"><font size="4">Total</font></th>
+								<th style="width:25%;text-align:right;"><font size="4"><%=v_total%></font></th>	
+</tr>
+</table>
+	<!-----Terms and conditions section Start here----->
+	<table style="width:98%;">
+	 <tbody>
+		        <tr>
+				    <td>
+					<p style="text-align:left;background-color:grey;color: white; padding:5px; margin: 3px;"><b><font size="3">*TERMS</font></b></p>
+<div align="left"> 
+<p><font size="2">
+TERMES : Le fait de ne pas confirmer l'approbation dans les 24 heures pourrait affecter votre date d'expédition. Un dépot de 50% est exigible pour toute première commande et la balance payable sur réception de la marchandise.
+Toute réclamation doit être faite dans les 2 jours ouvrables suivant la livraison. Des frais de manutention si applicable seront facturés au cout de 25$/h. Des frais de graphisme si applicable seront facturés au cout de 50$/h.<br>Avis de non-responsabilité :Il est de la seule responsabilité du client d'approuver l'exactitude de tous les détails liés à l'œuvre d'art conformément à son bon de commande et à ses spécifications.
+</font></p>
+<hr style="border: 3px solid black;">
+</div>
+                      </td>
+				</tr>
+		 </tbody>
+		 </table>
+	
+	<!----Terms and conditions section End here------->
+	
+</td>
+</tr>
+</table>
+<!------Outer Table End here---------->
+<%
+		if(details.get("Stage") != "Confirmed" && details.get("Stage") != "Closed Won" && details.get("Stage") != "Closed Lost")
+		{
+			%>
+<div class="order-submission">
+
+ <div elName='zc-component' formLinkName='Estimate_Approval' params='zc_Header=false&amp;zc_SuccMsg=Data Added Successfully!&amp;zc_SubmitVal=Submit&amp;zc_ResetVal=Reset&amp;quote_id=<%=details.get("quote_id")%>&Deal_ID=<%=details.get("deal_id")%>&Stage=<%=details.get("Stage")%>&Zoho_Book_ID=<%=details.get("zoho_book_id")%>&amp;privateLink=QfJwSNvzvqCutvvkbKwFG03QCqCuKZ7yup6EfW1sGGzt9kW0efETgwaQvVvQEYsmGwdrHbT5XWfCJy56wWSW2qehJngtO3YvgQxD'>Loading Form...</div>
+<%
+		}
+		%>
+</div>
+</div>
+</div>
+</div>
+<%
+	}
+
+}%>

@@ -1,0 +1,20 @@
+void crm.image_test()
+{
+	v_fet = Leads[ID == 4255146000000038009];
+	//info v_fet.Added_Location.district_city1;
+	//	https://creator.zohopublic.com/file/getcoverall/lead-management-system/Leads_Report/4255146000000038009/Image/image-download/J6meaTeW8yHvRXp7K6hExMWjCuB8TgF2FXUffHDJuEMr46eS3F8GrVpFKX1ts8wghKj3GN0kjFTb4wH6fkYPya5QYfwzsTNtP86K?filepath=/1645377093234_Offers_1.png
+	// 	photo = invokeurl
+	// 	[
+	// 		url :"https://creator.zohopublic.com/file/getcoverall/lead-management-system/Leads_Report/4255146000000038009/Image/image-download/J6meaTeW8yHvRXp7K6hExMWjCuB8TgF2FXUffHDJuEMr46eS3F8GrVpFKX1ts8wghKj3GN0kjFTb4wH6fkYPya5QYfwzsTNtP86K?filepath=/1645522948678_Coverall.png"
+	// 		type :GET
+	// 	];
+	// 	photo.setParamName("file");
+	// 	val = invokeurl
+	// 	[
+	// 		url :"https://www.zohoapis.com/crm/v2/Leads/5126176000000891139/photo"
+	// 		type :POST
+	// 		files:photo
+	// 		connection:"crm_connect"
+	// 	];
+	// 	info val;
+}

@@ -1,0 +1,105 @@
+void crm.estimate_create(int quote_id)
+{
+	response = "";
+	if(input.quote_id != null)
+	{
+		det = Map();
+		quote = zoho.crm.getRecordById("Quotes",quote_id,det,"crm_connect");
+		if(quote.get("Zoho_Books_ID") == null || quote.get("Zoho_Books_ID") == "")
+		{
+			if(quote.containKey("Account_Name"))
+			{
+				acc = quote.get("Account_Name");
+				if(acc.containKey("id"))
+				{
+					acc_id = acc.get("id");
+					if(acc_id != null)
+					{
+						book_acc = zoho.books.getRecords("contacts","768861030","zcrm_account_id=" + acc_id,"books_connect");
+						if(book_acc.containKey("contacts"))
+						{
+							con_list = book_acc.get("contacts");
+							if(con_list.size() > 0)
+							{
+								con_map = con_list.get(0);
+								if(con_map.containKey("contact_id"))
+								{
+									book_con_id = con_map.get("contact_id");
+									quote_map = Map();
+									if(quote.containKey("Deal_Name"))
+									{
+										dea = quote.get("Deal_Name");
+										if(dea.containKey("id"))
+										{
+											quote_map.put("zcrm_potential_id",dea.get("id"));
+										}
+									}
+									quote_map.put("date",quote.get("Created_Time").toDate());
+									quote_map.put("expiry_date",quote.get("Valid_Til"));
+									quote_map.put("status","accepted");
+									quote_map.put("customer_id",book_con_id);
+									ite_list = List();
+									for each  rec in quote.get("Product_Details")
+									{
+										ite_map = Map();
+										re_map = rec.toMap();
+										if(re_map.containKey("product"))
+										{
+											pro_id = re_map.get("product").get("id");
+											if(pro_id != null)
+											{
+												book_pro = zoho.books.getRecords("items","768861030","zcrm_product_id=" + pro_id,"books_connect");
+												if(book_pro.containKey("items"))
+												{
+													book_pro_list = book_pro.get("items");
+													if(book_pro_list.size() > 0)
+													{
+														book_pro_map = book_pro_list.get(0);
+														if(book_pro_map.containKey("item_id"))
+														{
+															book_pro_id = book_pro_map.get("item_id");
+															if(book_pro_id != null)
+															{
+																ite_map.put("item_id",book_pro_id);
+																ite_map.put("quantity",re_map.get("quantity"));
+																ite_list.add(ite_map);
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+									quote_map.put("line_items",ite_list);
+									est_res = zoho.books.createRecord("estimates","768861030",quote_map,"books_connect");
+									if(est_res.containKey("estimate"))
+									{
+										resp = est_res.get("estimate");
+										if(resp.containKey("estimate_id") && resp.get("estimate_id") != null)
+										{
+											up_map = Map();
+											up_map.put("Zoho_Books_ID",resp.get("estimate_id"));
+											quote_crm_up = zoho.crm.updateRecord("Quotes",quote_id,up_map,det,"crm_connect");
+											up_est_sent = invokeurl
+											[
+												url :"https://books.zoho.com/api/v3/estimates/" + resp.get("estimate_id") + "/status/sent?organization_id=768861030"
+												type :POST
+												connection:"books_connect"
+											];
+											up_est = invokeurl
+											[
+												url :"https://books.zoho.com/api/v3/estimates/" + resp.get("estimate_id") + "/status/accepted?organization_id=768861030"
+												type :POST
+												connection:"books_connect"
+											];
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

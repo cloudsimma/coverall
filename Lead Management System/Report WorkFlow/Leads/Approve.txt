@@ -1,0 +1,20 @@
+lead_map = Map();
+lead_map.put("First_Name",ifnull(input.First_Name,""));
+lead_map.put("Last_Name",ifnull(input.Last_Name,""));
+lead_map.put("Company",ifnull(input.Company,""));
+lead_map.put("Phone",ifnull(input.Phone_Number,""));
+lead_map.put("Email",ifnull(input.Email,""));
+lead_map.put("Record_Image",ifnull(input.Image,""));
+lead_map.put("Street",ifnull(input.Address.address_line_1 + " " + input.Address.address_line_2,""));
+lead_map.put("State",ifnull(input.Address.state_province,""));
+lead_map.put("Zip_Code",ifnull(input.Address.postal_Code,""));
+lead_map.put("City",ifnull(input.Address.district_city,""));
+lead_map.put("Country",ifnull(input.Address.country,""));
+lead_map.put("Lead_Status","New Lead");
+det = Map();
+val = zoho.crm.createRecord("Leads",lead_map,det,"crm_connect");
+if(val.containKey("id"))
+{
+	input.Zoho_CRM_ID = val.get("id").toString();
+	input.Status = "Converted";
+}

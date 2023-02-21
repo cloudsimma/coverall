@@ -1,0 +1,13 @@
+/*****************************************************
+Description: Signature Validation
+Created AT : 18/08/2022
+Created By : Punitha N
+*****************************************************/
+if(input.Confirm_and_place_the_order == true)
+{
+	if(input.Signature == null || input.Signature == "")
+	{
+		alert "Please sign for this order to place.";
+		cancel submit;
+	}
+}

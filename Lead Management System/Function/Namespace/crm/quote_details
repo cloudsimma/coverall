@@ -1,0 +1,74 @@
+map crm.quote_details(int id)
+{
+	details = Map();
+	if(input.id != null)
+	{
+		det = Map();
+		v_fet = zoho.crm.getRecordById("Quotes",input.id,det,"crm_connect");
+		details.put("quote_no",v_fet.get("Quote_Number"));
+		if(v_fet.containKey("Account_Name"))
+		{
+			acc = v_fet.get("Account_Name");
+			if(acc != null)
+			{
+				if(acc.containKey("name"))
+				{
+					details.put("account_name",acc.get("name"));
+				}
+			}
+		}
+		if(v_fet.containKey("Contact_Name"))
+		{
+			con = v_fet.get("Contact_Name");
+			if(con != null)
+			{
+				if(con.containKey("name"))
+				{
+					details.put("contact_name",con.get("name"));
+				}
+			}
+		}
+		if(v_fet.containKey("Deal_Name"))
+		{
+			dea = v_fet.get("Deal_Name");
+			if(dea != null)
+			{
+				if(dea.containKey("id"))
+				{
+					details.put("deal_id",dea.get("id"));
+				}
+			}
+		}
+		details.put("quote_id",v_fet.get("id"));
+		details.put("Stage",v_fet.get("Quote_Stage"));
+		details.put("bill_street",v_fet.get("Billing_Street"));
+		details.put("bill_city",v_fet.get("Billing_City"));
+		details.put("bill_state",v_fet.get("Billing_State"));
+		details.put("bill_country",v_fet.get("Billing_Country"));
+		details.put("bill_code",v_fet.get("Billing_Code"));
+		details.put("ship_street",v_fet.get("Shipping_Street"));
+		details.put("ship_city",v_fet.get("Shipping_City"));
+		details.put("ship_state",v_fet.get("Shipping_State"));
+		details.put("ship_country",v_fet.get("Shipping_Country"));
+		details.put("ship_code",v_fet.get("Shipping_Code"));
+		details.put("valid_till",v_fet.get("Valid_Till"));
+		details.put("zoho_book_id",ifnull(v_fet.get("Zoho_Books_ID"),""));
+		line_list = List();
+		tag = v_fet.get("Product_Details");
+		for each  rec in tag
+		{
+			item = rec.toMap();
+			ite_map = Map();
+			if(item.containKey("product"))
+			{
+				ite_map.put("product",item.get("product").get("name"));
+			}
+			ite_map.put("quantity",item.get("quantity"));
+			ite_map.put("unit_price",item.get("unit_price"));
+			ite_map.put("total",item.get("net_total"));
+			line_list.add(ite_map);
+		}
+		details.put("item_list",line_list);
+	}
+	return details;
+}
