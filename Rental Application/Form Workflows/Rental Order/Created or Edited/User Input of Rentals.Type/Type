@@ -1,0 +1,26 @@
+/**********************
+Description: set filter for Rentals Resource Item based on Rental Type.
+Created AT : 12/09/2022
+Created By : Hari Prema M
+***********************/
+if(row.Type != null)
+{
+	if(input.Deal_Code == null)
+	{
+		alert "You should select the Deal Code before adding the line items";
+		row.Type=null;
+	}
+	res_rent = Resource_Item[ID != 0 && Goods_Type == row.Type].ID.getAll();
+	row.Resource_Item:ui.add(res_rent);
+	row.Allow_Invoice_Disc=true;
+	row.Notes="No";
+	row.Meter_Charges="No";
+}
+else
+{
+	res_rent = Resource_Item[ID != 0].ID.getAll();
+	row.Resource_Item:ui.add(res_rent);
+	row.Allow_Invoice_Disc=false;
+	row.Notes="No";
+	row.Meter_Charges="No";
+}

@@ -1,0 +1,18 @@
+/**********************************************
+Description: Tax Care validation 
+Created AT : 03/08/2022
+Created By : Arun Krishna
+***********************************************/
+if(input.Tax_are != null)
+{
+	if(input.Tax_are < 0)
+	{
+		alert "This value Shouldn't be less than 0 ";
+		input.Tax_are = null;
+	}
+	else if(input.Tax_are > 100)
+	{
+		alert "The value Shouldn't greater than 100";
+		input.Tax_are = null;
+	}
+}

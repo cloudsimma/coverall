@@ -1,0 +1,94 @@
+/******************
+Description: Add Description
+Created AT : 11/08/2022
+Created By : Hari Prema
+*****************/
+if(row.No != null)
+{
+	resouce_item = Resource_Item[ID == row.No];
+	if(resouce_item.count() > 0)
+	{
+		row.Description=resouce_item.Description;
+		row.Cleaning_Date=input.Cleaning_Date;
+		row.Delivery_Date=input.Delivery_Date;
+		row.Sale_Date=input.Delivery_Date;
+		unitPrice = resouce_item.Unit_Price;
+		row.Unit_Price=thisapp.Rental_Order.unitPriceCalculationSales(row.No,input.Sell_to_Customer_No,row.Type,unitPrice);
+		row.Extended_Price=ifnull(row.Quantity,1) * ifnull(row.Unit_Price,0);
+		row.Unit_Cost=ifnull(resouce_item.Unit_Cost,null);
+		row.Unit_of_Measure=ifnull(resouce_item.Base_Unit_of_Measure.Code,null);
+		row.Branch_Code=input.Branch;
+		row.Location_Code=input.Location_Code;
+		row.Gen_Product_Posting_Groups=ifnull(resouce_item.Gen_Prod_Posting_Group,null);
+		row.Department_Code=input.Department;
+		row.Quantity=1;
+		row.Allow_Invoice=true;
+		row.Appl_To_Item_Entry=0;
+		row.Appl_From_Item_Entry=0;
+		row.Job_Contract_Entry_No=0;
+		row.Shipping_Required=true;
+		row.Tax_Liable=true;
+		//row.Extended_Price=ifnull(row.Quantity,1) * ifnull(row.Unit_Price,0);
+		if(input.Select_Code != null)
+		{
+			row.Location_Code=4255146000000867009;
+			row.Location_Name=4255146000000867009;
+			if(input.Select_Code == 4255146000000237003)
+			{
+				row.Tax_Groups_Code=4255146000001073079;
+			}
+		}
+		else
+		{
+			row.Location_Name=null;
+			row.Location_Code=null;
+		}
+	}
+	else
+	{
+		row.Description=null;
+		row.Sale_Date=null;
+		row.Cleaning_Date=null;
+		row.Delivery_Date=null;
+		row.Unit_Price=null;
+		row.Unit_Cost=null;
+		row.Unit_of_Measure=null;
+		row.Branch_Code=null;
+		row.Location_Code=null;
+		row.Gen_Product_Posting_Groups=null;
+		row.Department_Code=null;
+		row.Allow_Invoice=null;
+		row.Appl_To_Item_Entry=null;
+		row.Appl_From_Item_Entry=null;
+		row.Job_Contract_Entry_No=null;
+		row.Shipping_Required=null;
+		row.Tax_Liable=null;
+		row.Extended_Price=null;
+		// 		row.Location_Name="";
+	}
+	row.Quantity=1;
+}
+else
+{
+	row.Description=null;
+	row.Sale_Date=null;
+	row.Cleaning_Date=null;
+	row.Delivery_Date=null;
+	row.Unit_Price=null;
+	row.Unit_Cost=null;
+	row.Unit_of_Measure=null;
+	row.Branch_Code=null;
+	row.Location_Code=null;
+	row.Gen_Product_Posting_Groups=null;
+	row.Department_Code=null;
+	row.Quantity=null;
+	row.Allow_Invoice=null;
+	row.Appl_To_Item_Entry=null;
+	row.Appl_From_Item_Entry=null;
+	row.Job_Contract_Entry_No=null;
+	row.Shipping_Required=null;
+	row.Tax_Liable=null;
+	row.Extended_Price=null;
+	// 	row.Location_Name="";
+}
+row.Show_in_delivery_ticket=true;

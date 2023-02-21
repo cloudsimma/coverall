@@ -1,0 +1,22 @@
+/******************
+Description: Assign Billing Quantity is double of Shipping Quantity
+Created AT : 24/11/2022
+Created By : Hari Prema M
+*****************/
+// Billing Quantity calculate by the Billing Type and Rental Order type for RM and others
+row.Billing_Quantity = thisapp.Rental_Order.billingQuantity(input.Select_Code,input.Billing_Type, row.Shipping_Quantity);
+// Extended Price calculate by the Billing Quantity and Shipping Quantity for RM and others
+row.Extended_Price = thisapp.Rental_Order.extendedPrice(input.Select_Code, row.Billing_Quantity, row.Shipping_Quantity, row.Unit_Price_Pack_Price);
+/**********************************************
+Description:Shipping quantity validation
+Created AT : 15-02-2023
+Created By : Punitha N
+***********************************************/
+if(row.Shipping_Quantity != null)
+{
+	if(row.Shipping_Quantity <= 0)
+	{
+		alert "Shipping Quantity shouldn't be less than or equal to 0 ";
+		row.Shipping_Quantity=null;
+	}
+}

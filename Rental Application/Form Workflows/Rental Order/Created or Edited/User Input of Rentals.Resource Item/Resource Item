@@ -1,0 +1,122 @@
+/**********************
+Description: Auto populate Rental form fields
+Created AT : 12/09/2022
+Created By : Hari Prema M
+***********************/
+if(row.Resource_Item != null)
+{
+	row.Quantity_Shipped=0;
+	row.Deal_code=input.Deal_Code1;
+	resource_item = Resource_Item[ID == row.Resource_Item];
+	if(resource_item.count() > 0)
+	{
+		fet_product_deal = Product_Deal_Code[Resource_Item == row.Resource_Item && Deal_Code == row.Deal_code];
+		if(fet_product_deal.count() > 0)
+		{
+			unitPrice = fet_product_deal.Unit_Price;
+		}
+		else
+		{
+			unitPrice = resource_item.Unit_Price;
+		}
+		cust = Customer[ID == input.Sell_to_Customer_No];
+		row.Unit_Price_Pack_Price=thisapp.Rental_Order.unitPriceCalculation(row.Resource_Item,row.Deal_code,input.Sell_to_Customer_No,row.Type,unitPrice);
+		row.Description=ifnull(resource_item.Description,null);
+		row.Cleaning_Date=input.Cleaning_Date;
+		row.Delivery_Date=input.Delivery_Date;
+		row.Shipping_Quantity=1;
+		/**********************
+Description: Choose Billing type only for Rental Mats
+Created AT : 19/01/2023
+Created By : Hari Prema M
+***********************/
+		if(input.Select_Code == 4255146000000237039)
+		{
+			if(input.Billing_Type == null || input.Billing_Type == "")
+			{
+				alert "Please select the Billing Type in the General tab";
+				row.Resource_Item=null;
+			}
+			else
+			{
+				if(input.Billing_Type == "Same Quantity")
+				{
+					row.Billing_Quantity=row.Shipping_Quantity;
+				}
+				else if(input.Billing_Type == "Double Quantity")
+				{
+					row.Billing_Quantity=row.Shipping_Quantity * 2;
+				}
+			}
+		}
+		row.Branch_Code=input.Branch;
+		row.Department_Code=input.Department;
+		row.Gen_Product_Posting_Groups=resource_item.Gen_Prod_Posting_Group;
+		row.Gen_Bus_Posting_Group=input.Sell_to_Customer_No.Gen_Bus_Posting_Group1;
+		row.Location_Code=4255146000000867009;
+		row.Location_Name=row.Location_Code.Name;
+		row.Shipping_Required=true;
+		row.Tax_Group_Code=resource_item.Tax_Group_Code;
+		row.Tax_Liable=input.Tax_Liable;
+		row.Unit_of_Measure_Code=resource_item.Base_Unit_of_Measure;
+		row.Unit_of_Measure=resource_item.Base_Unit_of_Measure.Code;
+		row.From_Date=input.From_Date1;
+		row.Deal_Length=input.Deal_Length;
+		row.Thru_Date=input.Thru_Date1;
+		row.Customer_Type=4255146000001042019;
+		row.Show_in_delivery_ticket=true;
+		row.Extended_Price=thisapp.Rental_Order.extendedPrice(input.Select_Code,row.Billing_Quantity,row.Shipping_Quantity,row.Unit_Price_Pack_Price);
+	}
+	else
+	{
+		row.Unit_Price_Pack_Price=null;
+		row.Description=null;
+		row.Cleaning_Date=null;
+		row.Delivery_Date=null;
+		row.Billing_Quantity=null;
+		row.Shipping_Quantity=null;
+		row.Branch_Code=null;
+		row.Department_Code=null;
+		row.Gen_Product_Posting_Groups=null;
+		row.Gen_Bus_Posting_Group=null;
+		row.Location_Code=null;
+		row.Location_Name="";
+		row.Shipping_Required=false;
+		row.Tax_Group_Code=null;
+		row.Tax_Liable=input.Tax_Liable;
+		row.Unit_of_Measure_Code=null;
+		row.Unit_of_Measure="";
+		row.Deal_code=null;
+		row.From_Date=null;
+		row.Deal_Length="";
+		row.Thru_Date=null;
+		row.Extended_Price=null;
+		row.Show_in_delivery_ticket=true;
+	}
+}
+else
+{
+	row.Unit_Price_Pack_Price=null;
+	row.Description=null;
+	row.Cleaning_Date=null;
+	row.Delivery_Date=null;
+	row.Billing_Quantity=null;
+	row.Shipping_Quantity=null;
+	row.Branch_Code=null;
+	row.Department_Code=null;
+	row.Gen_Product_Posting_Groups=null;
+	row.Gen_Bus_Posting_Group=null;
+	row.Location_Code=null;
+	row.Location_Name="";
+	row.Shipping_Required=false;
+	row.Tax_Group_Code=null;
+	row.Tax_Liable=input.Tax_Liable;
+	row.Unit_of_Measure_Code=null;
+	row.Unit_of_Measure="";
+	row.Deal_code=null;
+	row.From_Date=null;
+	row.Deal_Length="";
+	row.Thru_Date=null;
+	row.Extended_Price=null;
+	row.Show_in_delivery_ticket=true;
+}

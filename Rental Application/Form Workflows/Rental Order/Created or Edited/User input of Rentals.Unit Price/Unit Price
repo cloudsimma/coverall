@@ -1,0 +1,16 @@
+/**********************************************
+Description: Extended Price Calculation
+Created AT : 27/12/2022
+Created By : Hari Prema M
+***********************************************/
+if(row.Unit_Price_Pack_Price <= 0)
+{
+	alert "This value Shouldn't be less than are equals to 0";
+	row.Unit_Price_Pack_Price=null;
+}
+else
+{
+	
+		row.Extended_Price=thisapp.Rental_Order.extendedPrice(input.Select_Code, row.Billing_Quantity, row.Shipping_Quantity, row.Unit_Price_Pack_Price);
+	
+}

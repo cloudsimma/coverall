@@ -1,0 +1,25 @@
+/******************
+Description: Populate Sell to Contact detail
+Created AT : 10/08/2022
+Created By : Hari Prema
+*****************/
+if(input.Sell_to_Contact_No != null)
+{
+	input.Bill_to_Contact_No = ifnull(input.Sell_to_Contact_No,null);
+	input.Name = ifnull(input.Sell_to_Contact_No.Name,"");
+	input.Contact_No = ifnull(input.Sell_to_Contact_No,null);
+	input.Sell_to_Contact_Name = ifnull(input.Sell_to_Contact_No.Name,"");
+	input.Ship_to_Contact = ifnull(input.Sell_to_Contact_No.Name,"");
+	input.Contact_No1 = ifnull(input.Sell_to_Contact_No,null);
+	input.Bill_to_Contact_Name = ifnull(input.Sell_to_Contact_No.Name,"");
+}
+else
+{
+	input.Bill_to_Contact_No = null;
+	input.Name = "";
+	input.Contact_No = null;
+	input.Sell_to_Contact_Name = "";
+	input.Ship_to_Contact = "";
+	input.Contact_No1 = null;
+	input.Bill_to_Contact_Name = "";
+}

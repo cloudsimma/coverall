@@ -1,0 +1,23 @@
+int Rental_Order.billingQuantity(int selectCode, string billingType, float shippingQuantity)
+{
+	billingQuantity = 0;
+	selectRentalType = No_Series_List[ID == input.selectCode];
+	if(selectRentalType.count() > 0)
+	{
+		if(selectRentalType.ID == 4255146000000237039)
+		{
+			if(input.billingType != "")
+			{
+				if(input.billingType == "Same Quantity")
+				{
+					billingQuantity = input.shippingQuantity;
+				}
+				else if(input.billingType == "Double Quantity")
+				{
+					billingQuantity = input.shippingQuantity * 2;
+				}
+			}
+		}
+	}
+	return billingQuantity;
+}

@@ -1,0 +1,10 @@
+/******************
+Description: Shipping Qusntity field validation added
+Created AT : 22/11/2022
+Created By : Hari Prema M
+*****************/
+if(row.Quantity_Shipped <= 0)
+{
+	alert "Shipping Quantity should be a positive value";
+	row.Quantity_Shipped=null;
+}

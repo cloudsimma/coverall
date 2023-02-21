@@ -1,0 +1,17 @@
+/**********************************************
+Description: Quantity validation 
+Created AT : 17/08/2022
+Created By : Punitha N
+***********************************************/
+if(row.Quantity <= 0)
+{
+	alert "This value Shouldn't be less than are equals to 0";
+	row.Quantity=null;
+}
+else
+{
+	if(row.Unit_Price > 0 && row.Quantity > 0)
+	{
+		row.Extended_Price=ifnull(row.Quantity,1) * ifnull(row.Unit_Price,0);
+	}
+}

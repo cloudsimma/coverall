@@ -1,0 +1,46 @@
+/******************
+Description: populate billing quantity based on select code
+Created AT: 13/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Select_Code != null)
+{
+	if(input.Select_Code.ID == 4255146000000237039)
+	{
+		show Billing_Type;
+		show Rentals.Billing_Quantity;
+		hide Rentals.Employee_No;
+		hide Rentals.Employee_Name;
+		hide Rentals.Phone_Number;
+		hide Rentals.Team_Lead_Name;
+		hide Rentals.Team_Lead_E_mail;
+		hide Sales.Employee_No;
+		hide Sales.Employee_Name;
+	}
+	else
+	{
+		hide Billing_Type;
+		input.Billing_Type = null;
+		hide Rentals.Billing_Quantity;
+		show Rentals.Employee_No;
+		show Rentals.Employee_Name;
+		show Rentals.Phone_Number;
+		show Rentals.Team_Lead_Name;
+		show Rentals.Team_Lead_E_mail;
+		show Sales.Employee_No;
+		show Sales.Employee_Name;
+	}
+}
+else
+{
+	hide Billing_Type;
+	input.Billing_Type = null;
+	hide Rentals.Billing_Quantity;
+	show Rentals.Employee_No;
+	show Rentals.Employee_Name;
+	show Rentals.Phone_Number;
+	show Rentals.Team_Lead_Name;
+	show Rentals.Team_Lead_E_mail;
+	show Sales.Employee_No;
+	show Sales.Employee_Name;
+}

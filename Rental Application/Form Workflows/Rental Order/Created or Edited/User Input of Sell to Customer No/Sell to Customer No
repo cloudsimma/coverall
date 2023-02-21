@@ -1,0 +1,160 @@
+/******************
+Description: Auto Populate Customer details by the Sell to Customer No
+Created At : 10/08/2022
+Created By : Hari Prema M
+*****************/
+if(input.Sell_to_Customer_No != null)
+{
+	// 	customer_sort = Customer[ID == input.Sell_to_Customer_No].ID.getAll();
+	// 	input.Sell_to_Contact_No:ui.add(customer_sort);
+	customer = Customer[ID == input.Sell_to_Customer_No];
+	if(customer.count() > 0)
+	{
+		input.Sell_to_Customer_Name = ifnull(customer.Name,null);
+		input.Sell_to_Address = ifnull(customer.Billing_Address,null);
+		input.Location_Code = ifnull(customer.Location_Code,null);
+		input.Deal_Code = ifnull(customer.Default_Deal_Code,null);
+		input.Deal_Code1 = ifnull(customer.Default_Deal_Code,null);
+		input.Branch = ifnull(customer.Branch,null);
+		input.Price_List = ifnull(customer.Price_List,null);
+		input.Department = ifnull(customer.Department,null);
+		input.Bill_to_Customer_No = ifnull(input.Sell_to_Customer_No,null);
+		input.Payment_Terms_Code = ifnull(customer.Payment_Terms_Code1,null);
+		input.Sell_to_Contact_No = ifnull(customer.Primary_Contact_No,null);
+		input.Bill_to_Contact_No = ifnull(customer.Primary_Contact_No,null);
+		input.Contact_No = ifnull(customer.Primary_Contact_No,null);
+		if(customer.Primary_Contact_No != null)
+		{
+			contact = Contact[ID == customer.Primary_Contact_No];
+			if(contact.count() > 0)
+			{
+				input.Sell_to_Contact_Name = ifnull(contact.Name,"");
+				input.Bill_to_Contact_Name = ifnull(contact.Name,"");
+				input.Ship_to_Contact = ifnull(contact.Name,"");
+			}
+			else
+			{
+				input.Sell_to_Contact_Name = "";
+				input.Bill_to_Contact_Name = "";
+				input.Ship_to_Contact = "";
+			}
+		}
+		else
+		{
+			input.Sell_to_Contact_Name = "";
+			input.Bill_to_Contact_Name = "";
+			input.Ship_to_Contact = "";
+		}
+		input.Contact_No1 = ifnull(customer.Primary_Contact_No,null);
+		if(input.Bill_to_Customer_No != null)
+		{
+			billing_customer = Customer[ID == input.Sell_to_Customer_No];
+			if(billing_customer.count() > 0)
+			{
+				input.Name = ifnull(billing_customer.Name,"");
+				input.Address_Invoicing = ifnull(billing_customer.Billing_Address,null);
+			}
+			else
+			{
+				input.Name = "";
+				input.Address_Invoicing = null;
+			}
+		}
+		else
+		{
+			input.Name = "";
+			input.Address_Invoicing = null;
+		}
+		input.Address_Shipping = ifnull(customer.Shipping_Address,null);
+		input.Tax_Area_Code = ifnull(customer.Tax_Area_Code,null);
+		input.Tax_Liable = customer.Tax_Liable_Area_Code;
+		input.Sell_to_Phone_No = ifnull(customer.Phone_No,"");
+		input.Sell_to_Fax_No = ifnull(customer.Fax_No,"");
+		input.Bill_to_Fax_No = ifnull(customer.Fax_No,"");
+		input.Bill_to_Phone_No = ifnull(customer.Phone_No,"");
+		input.Sell_to_Email = ifnull(customer.Email,"");
+		input.Bill_to_Email = ifnull(customer.Email,"");
+		input.Ship_to_Phone_No = ifnull(customer.Phone_No,"");
+		input.Ship_to_Fax_No = ifnull(customer.Fax_No,"");
+		input.Ship_to_Email = ifnull(customer.Email,"");
+	}
+	else
+	{
+		input.Sell_to_Customer_Name = null;
+		input.Sell_to_Address = null;
+		deal_code = Rental_Deal_Card[ID == 4255146000000775135];
+		if(deal_code.count() > 0)
+		{
+			input.Deal_Code = deal_code.ID;
+			input.Deal_Code1 = deal_code.ID;
+		}
+		input.Branch = null;
+		input.Department = null;
+		input.Price_List = null;
+		input.Location_Code = null;
+		input.Bill_to_Customer_No = null;
+		input.Address_Invoicing = null;
+		input.Payment_Terms_Code = null;
+		input.Address_Shipping = null;
+		input.Tax_Area_Code = null;
+		input.Sell_to_Phone_No = "";
+		input.Sell_to_Fax_No = "";
+		input.Sell_to_Email = "";
+		input.Bill_to_Phone_No = "";
+		input.Bill_to_Fax_No = "";
+		input.Bill_to_Email = "";
+		input.Ship_to_Phone_No = "";
+		input.Ship_to_Fax_No = "";
+		input.Ship_to_Email = "";
+		input.Bill_to_Email = "";
+		input.Tax_Liable = false;
+		input.Payment_Method_Code = null;
+		input.Ship_to_Contact = "";
+		input.Sell_to_Contact_No = null;
+		input.Bill_to_Contact_No = null;
+		input.Contact_No1 = null;
+		input.Contact_No = null;
+		input.Sell_to_Contact_Name = "";
+		input.Bill_to_Contact_Name = "";
+	}
+}
+else
+{
+	input.Sell_to_Customer_Name = null;
+	input.Sell_to_Address = null;
+	deal_code = Rental_Deal_Card[ID == 4255146000000775135];
+	if(deal_code.count() > 0)
+	{
+		input.Deal_Code = deal_code.ID;
+		input.Deal_Code1 = deal_code.ID;
+	}
+	input.Branch = null;
+	input.Price_List = null;
+	input.Department = null;
+	input.Location_Code = null;
+	input.Bill_to_Customer_No = null;
+	input.Name = "";
+	input.Address_Invoicing = null;
+	input.Payment_Terms_Code = null;
+	input.Address_Shipping = null;
+	input.Tax_Area_Code = null;
+	input.Sell_to_Phone_No = "";
+	input.Sell_to_Fax_No = "";
+	input.Sell_to_Email = "";
+	input.Bill_to_Email = "";
+	input.Bill_to_Phone_No = "";
+	input.Bill_to_Fax_No = "";
+	input.Bill_to_Email = "";
+	input.Ship_to_Phone_No = "";
+	input.Ship_to_Fax_No = "";
+	input.Ship_to_Email = "";
+	input.Tax_Liable = false;
+	input.Payment_Method_Code = null;
+	input.Ship_to_Contact = "";
+	input.Sell_to_Contact_No = null;
+	input.Bill_to_Contact_No = null;
+	input.Contact_No1 = null;
+	input.Contact_No = null;
+	input.Sell_to_Contact_Name = "";
+	input.Bill_to_Contact_Name = "";
+}

@@ -1,0 +1,163 @@
+int dealLength_thruDate.thruDate(int dealCode, date Invoiced_Thru_Date, date Thru_Date, date From_Date)
+{
+	between = 0;
+	if(input.dealCode != null)
+		{
+			deal_code = Rental_Deal_Card[ID == input.dealCode];
+			if(deal_code.count() > 0)
+			{
+				if(deal_code.Billing_Period_Code != null)
+				{
+					rental_period_code = deal_code.Billing_Period_Code;
+					rental_period = Rental_Periods[ID == rental_period_code];
+					if(rental_period.count() > 0)
+					{
+						code = rental_period.Code;
+						length = rental_period.Length_field;
+						unit = rental_period.Units;
+						if(input.Invoiced_Thru_Date == null)
+						{
+							if(input.Thru_Date == null)
+							{
+								if(unit == "Day(s)")
+								{
+									between_days = input.From_Date.daysBetween(zoho.currentdate);
+									between = (between_days / length).floor();
+									
+								}
+								else if(unit == "Month(s)")
+								{
+									between_months = input.From_Date.monthsBetween(zoho.currentdate);
+									between = (between_months / length).floor();
+									
+								}
+								else if(unit == "Year(s)")
+								{
+									between_years = input.From_Date.yearsBetween(zoho.currentdate);
+									between = (between_years / length).floor();
+									
+								}
+							}
+							else
+							{
+								if(input.Thru_Date < zoho.currentdate)
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = input.From_Date.daysBetween(input.Thru_Date);
+										between = (between_days / length).floor();
+										
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = input.From_Date.monthsBetween(input.Thru_Date);
+										between = (between_months / length).floor();
+										
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = input.From_Date.yearsBetween(input.Thru_Date);
+										between = (between_years / length).floor();
+										
+									}
+								}
+								else
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = input.From_Date.daysBetween(zoho.currentdate);
+										between = (between_days / length).floor();
+									
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = input.From_Date.monthsBetween(zoho.currentdate);
+										between = (between_months / length).floor();
+										
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = input.From_Date.yearsBetween(zoho.currentdate);
+										between = (between_years / length).floor();
+									
+									}
+								}
+							}
+						}
+						else
+						{
+							if(input.Thru_Date == null)
+							{
+								if(unit == "Day(s)")
+								{
+									between_days = input.Invoiced_Thru_Date.daysBetween(zoho.currentdate);
+									between = (between_days / length).floor();
+									
+								}
+								else if(unit == "Month(s)")
+								{
+									between_months = input.Invoiced_Thru_Date.monthsBetween(zoho.currentdate);
+									between = (between_months / length).floor();
+									
+								}
+								else if(unit == "Year(s)")
+								{
+									between_years = input.Invoiced_Thru_Date.yearsBetween(zoho.currentdate);
+									between = (between_years / length).floor();
+								
+								}
+							}
+							else
+							{
+								if(input.Thru_Date < zoho.currentdate)
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = input.Invoiced_Thru_Date.daysBetween(input.Thru_Date);
+										between = (between_days / length).floor();
+										
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = input.Invoiced_Thru_Date.monthsBetween(input.Thru_Date);
+										between = (between_months / length).floor();
+										
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = input.Invoiced_Thru_Date.yearsBetween(input.Thru_Date);
+										between = (between_years / length).floor();
+										
+									}
+								}
+								else
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = input.Invoiced_Thru_Date.daysBetween(zoho.currentdate);
+										between = (between_days / length).floor();
+										
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = input.Invoiced_Thru_Date.monthsBetween(zoho.currentdate);
+										between = (between_months / length).floor();
+										
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = input.Invoiced_Thru_Date.yearsBetween(zoho.currentdate);
+										between = (between_years / length).floor();
+										
+									}
+								}
+							}
+						}
+					}
+					
+					
+				}
+			}
+		}
+		return between;
+}

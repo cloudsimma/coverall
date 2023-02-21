@@ -1,0 +1,13 @@
+/**********************
+Description: auto populate the fields by the Thru Date
+Created AT : 05/09/2022
+Created By : Vivek K
+***********************/
+if(input.Thru_Date != null)
+{
+	input.Thru_Date1 = input.Thru_Date;
+}
+else
+{
+	input.Thru_Date1 = null;
+}

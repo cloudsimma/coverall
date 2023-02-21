@@ -1,0 +1,15 @@
+/******************
+Description: filter resource and item type
+Created AT : 11/08/2022
+Created By : Hari Prema
+*****************/
+if(row.Type != null)
+{
+	sales = Resource_Item[ID != 0 && Goods_Type == row.Type].ID.getAll();
+	row.No:ui.add(sales);
+}
+else
+{
+	sales = Resource_Item[ID != 0].ID.getAll();
+	row.No:ui.add(sales);
+}

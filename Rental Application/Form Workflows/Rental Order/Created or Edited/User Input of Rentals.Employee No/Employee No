@@ -1,0 +1,19 @@
+/***********************************************************************
+Description: Employee Details - Auto populated
+Created AT : 05-12-2022
+Created By : Punitha N
+************************************************************************/
+if(row.Employee_No != null)
+{
+	row.Employee_Name=ifnull(row.Employee_No.First_Name,"");
+	row.Team_Lead_Name=ifnull(row.Employee_No.Team_Lead_Name,"");
+	row.Team_Lead_E_mail=ifnull(row.Employee_No.Team_Lead_Email,"");
+	row.Phone_Number=ifnull(row.Employee_No.Team_Lead_Phone_No,"");
+}
+else
+{
+	row.Employee_Name="";
+	row.Team_Lead_Name="";
+	row.Team_Lead_E_mail="";
+	row.Phone_Number="";
+}

@@ -1,0 +1,80 @@
+/******************
+Description: Order Shipping Journal Creation for Suggesed Shipping Journals and change the invoice status
+Created AT : 23/11/2022
+Created By : RAJA V
+*****************/
+try 
+{
+	for each  new_rec in input.Rentals
+	{
+		if(new_rec.Resource_Item != null)
+		{
+			ship_quantity = ifnull(new_rec.Shipping_Quantity,0) - ifnull(new_rec.Quantity_Shipped,0);
+			if(ship_quantity > 0 && new_rec.Order_Shipping_Journal == null)
+			{
+				new_add = insert into Order_Shipping_Journal
+				[
+					Added_User=zoho.loginuser
+					Posting_Date=zoho.currentdate
+					Transaction_Type="Shipment"
+					Rental_Line_Type="Rental"
+					Customer_Location_Name=ifnull(new_rec.Cust_Location_Name,"")
+					Rental_Line_No=new_rec.Line_No
+					Type=ifnull(new_rec.Type,"")
+					No=ifnull(new_rec.Resource_Item,null)
+					Quantity=ifnull(ship_quantity,0)
+					Rental_Order=input.ID
+					Status="Ready to Post"
+				];
+				new_rec.Order_Shipping_Journal=new_add;
+			}
+			if(new_rec.Thru_Date == null)
+			{
+				new_rec.Invoiced=false;
+			}
+			else
+			{
+				if(new_rec.Thru_Date > new_rec.Invoiced_Thru_Date)
+				{
+					new_rec.Invoiced=false;
+				}
+				else
+				{
+					new_rec.Invoiced=true;
+				}
+			}
+		}
+	}
+	for each  new_sales in input.Sales
+	{
+		if(new_sales.No != null)
+		{
+			ship_quantity = ifnull(new_sales.Quantity,0) - ifnull(new_sales.Quantity_shipped,0);
+			if(ship_quantity > 0 && new_sales.Order_Shipping_Journal == null)
+			{
+				new_add = insert into Order_Shipping_Journal
+				[
+					Added_User=zoho.loginuser
+					Posting_Date=zoho.currentdate
+					Transaction_Type="Shipment"
+					Rental_Line_Type="Sales"
+					Customer_Location_Name=ifnull(new_sales.Customer_Location_Name1,"")
+					Sales_Line_No=new_sales.Line_No
+					Type=ifnull(new_sales.Type,"")
+					No=ifnull(new_sales.No,null)
+					Quantity=ifnull(ship_quantity,0)
+					Rental_Order=input.ID
+					Status="Ready to Post"
+				];
+				new_sales.Order_Shipping_Journal=new_add;
+			}
+		}
+	}
+	input.Page_Option = "Create";
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh","same window");
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Rental Order","Create or Edit - Create Order Shipping Journals",input.ID.toString(),e);
+}

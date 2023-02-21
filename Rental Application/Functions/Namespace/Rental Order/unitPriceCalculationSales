@@ -1,0 +1,91 @@
+float Rental_Order.unitPriceCalculationSales(int resourceItem, int sellToCustomerNo, string type, float unitPrice)
+{
+	sales_rate = 0;
+	cust = Customer[ID == input.sellToCustomerNo];
+	if(cust.Price_List != null)
+	{
+		price_list_info = Price_List[ID == cust.Price_List];
+		if(price_list_info.count() > 0)
+		{
+			if(price_list_info.Price_List_Type == "All Items")
+			{
+				if(price_list_info.Percentage != null)
+				{
+					percentage_value = ifnull(input.unitPrice,0).toDecimal() * price_list_info.Percentage.toDecimal() / 100;
+					if(price_list_info.Type_field != null)
+					{
+						if(price_list_info.Type_field == "Markup")
+						{
+							sales_rate = ifnull(input.unitPrice,0) + percentage_value;
+						}
+						else if(price_list_info.Type_field == "Markdown")
+						{
+							sales_rate = ifnull(input.unitPrice,0) - percentage_value;
+						}
+					}
+					else
+					{
+						sales_rate = ifnull(input.unitPrice,0);
+					}
+					// 					round off
+					if(price_list_info.Round_Off_To != null)
+					{
+						if(price_list_info.Round_Off_To == "Never mind")
+						{
+							sales_rate = sales_rate;
+						}
+						else if(price_list_info.Round_Off_To == "Nearest whole number")
+						{
+							sales_rate = sales_rate.round(0);
+						}
+					}
+					else
+					{
+						sales_rate = sales_rate;
+					}
+				}
+				else
+				{
+					sales_rate = ifnull(input.unitPrice,0);
+				}
+			}
+			else if(price_list_info.Price_List_Type == "Individual Item")
+			{
+				sales_rate = ifnull(input.unitPrice,0);
+				for each  item in price_list_info.Sales_Item
+				{
+					if(input.type == item.Types && input.resourceItem == item.No)
+					{
+						if(item.Custom_Rate != null)
+						{
+							sales_rate = ifnull(item.Custom_Rate,0);
+						}
+						else
+						{
+							sales_rate = ifnull(input.unitPrice,0);
+						}
+						if(item.Discount != null)
+						{
+							sales_discount = (sales_rate * item.Discount) / 100;
+							sales_rate = sales_rate - sales_discount;
+							sales_rate = sales_rate.round(2);
+						}
+					}
+				}
+			}
+			else
+			{
+				sales_rate = ifnull(input.unitPrice,0);
+			}
+		}
+		else
+		{
+			sales_rate = ifnull(input.unitPrice,0);
+		}
+	}
+	else
+	{
+		sales_rate = ifnull(input.unitPrice,0);
+	}
+	return sales_rate;
+}

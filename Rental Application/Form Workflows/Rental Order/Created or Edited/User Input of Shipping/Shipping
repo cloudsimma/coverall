@@ -1,0 +1,33 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Shipping1 == true)
+{
+	show Code;
+	show Address_Shipping;
+	show Name1;
+	show Tax_Liable;
+	show Tax_Area_Code;
+	show Del_Ticket_Date;
+	show Location_Code;
+	show Service_Charge;
+	show Include_Resources_in_Tx_Care;
+	show Include_Resources_in_SVC_CHG;
+	show SAM_Charge;
+}
+else
+{
+	hide Code;
+	hide Address_Shipping;
+	hide Name1;
+	hide Tax_Liable;
+	hide Tax_Area_Code;
+	hide Del_Ticket_Date;
+	hide Location_Code;
+	hide Service_Charge;
+	hide Include_Resources_in_Tx_Care;
+	hide Include_Resources_in_SVC_CHG;
+	hide SAM_Charge;
+}

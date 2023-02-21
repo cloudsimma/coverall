@@ -1,0 +1,15 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Sales2 == true)
+{
+	show Sales;
+	show Add_Notes1;
+}
+else
+{
+	hide Sales;
+	hide Add_Notes1;
+}

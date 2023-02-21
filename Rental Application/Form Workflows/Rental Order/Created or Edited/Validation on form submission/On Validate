@@ -1,0 +1,75 @@
+/******************
+Description: Rental Subform - Line no auto update
+Created AT : 23/11/2022
+Created By : RAJA V
+*****************/
+last_count = 0;
+for each  rec in input.Rentals
+{
+	if(rec.Line_No != null)
+	{
+		if(rec.Line_No > last_count)
+		{
+			last_count = rec.Line_No;
+		}
+	}
+}
+for each  new_rec in input.Rentals
+{
+	if(new_rec.Resource_Item != null)
+	{
+		if(new_rec.Line_No == null)
+		{
+			last_count = last_count + 1000;
+			new_rec.Line_No=last_count;
+		}
+	}
+}
+// sales
+sales_last_count = 0;
+for each  sales_rec in input.Sales
+{
+	if(sales_rec.Line_No != null)
+	{
+		if(sales_rec.Line_No > sales_last_count)
+		{
+			sales_last_count = sales_rec.Line_No;
+		}
+	}
+}
+for each  sales_new_rec in input.Sales
+{
+	if(sales_new_rec.No != null)
+	{
+		if(sales_new_rec.Line_No == null)
+		{
+			sales_last_count = sales_last_count + 1000;
+			sales_new_rec.Line_No=sales_last_count;
+		}
+	}
+}
+/******************
+Description: Added the user id who added the comments
+Created AT: 20/12/2022
+Created By: Hari Prema M
+*****************/
+for each  rentals in input.Rentals
+{
+	if(rentals.Comments != null)
+	{
+		if(rentals.Comments_by_User == "" || rentals.Comments_by_User == null)
+		{
+			rentals.Comments_by_User=zoho.loginuserid;
+		}
+	}
+}
+for each  sales in input.Sales
+{
+	if(sales.Comments != null)
+	{
+		if(sales.Comments_by_User == "" || sales.Comments_by_User == null)
+		{
+			sales.Comments_by_User=zoho.loginuserid;
+		}
+	}
+}

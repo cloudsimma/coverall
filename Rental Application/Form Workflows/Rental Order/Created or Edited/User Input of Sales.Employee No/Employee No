@@ -1,0 +1,13 @@
+/***********************************************************************
+Description: Employee Details - Auto populated
+Created AT : 05-12-2022
+Created By : Punitha N
+************************************************************************/
+if(row.Employee_No != null)
+{
+	row.Employee_Name=ifnull(row.Employee_No.First_Name,"");
+}
+else
+{
+	row.Employee_Name="";
+}

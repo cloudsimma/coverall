@@ -1,0 +1,21 @@
+/******************
+Description: Hide and Show
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+if(input.Service1 == true)
+{
+	show Frequency_Code;
+	show Repair_Code;
+	show Bin_Code;
+	show Load_Code;
+	show Due_Back_Code;
+}
+else
+{
+	hide Frequency_Code;
+	hide Repair_Code;
+	hide Bin_Code;
+	hide Load_Code;
+	hide Due_Back_Code;
+}

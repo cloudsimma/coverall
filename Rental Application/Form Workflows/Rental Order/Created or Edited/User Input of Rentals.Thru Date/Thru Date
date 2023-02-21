@@ -1,0 +1,13 @@
+/**********************
+Description: auto populate the fields by the Thru Date
+Created AT : 02/12/2022
+Created By :Hari Prema M
+***********************/
+if(row.Thru_Date != null)
+{
+	row.Deal_Length = thisapp.dealLength_thruDate.thruDate(row.Deal_code, row.Invoiced_Thru_Date, row.Thru_Date, row.From_Date);
+}
+else
+{
+	row.Deal_Length=1;
+}

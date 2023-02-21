@@ -1,0 +1,21 @@
+/******************
+Description: Populate Customer Location Name
+Created AT : 11/08/2022
+Created By : Hari Prema
+*****************/
+if(row.Customer_Location != null)
+{
+	cust_location = Customer_Locations[ID == row.Customer_Location];
+	if(cust_location.count() > 0)
+	{
+		row.Customer_Location_Name1=cust_location.Location_Name;
+	}
+	else
+	{
+		row.Customer_Location_Name1="";
+	}
+}
+else
+{
+	row.Customer_Location_Name1="";
+}
