@@ -1,0 +1,73 @@
+void inventory_adjustment_stock_update( Map inventory_adjustment , Map organization , Map user ) 
+{
+	
+/*
+This is a sample function. Uncomment to execute or make changes to this function.  
+inventoryAdjustmentID = inventoryadjustment.get("inventory_adjustment_id");
+organizationID = organization.get("organization_id");
+*/
+/****************************************************
+Description: Update Stock in Item - Zoho Creator
+Created AT : 14/11/2022
+Created By : Punitha N
+******************************************************/
+organizationID = organization.get("organization_id");
+//-----Check the Invoice Id --------//
+try 
+{
+	if(inventory_adjustment.get("inventory_adjustment_id") != null && inventory_adjustment.get("inventory_adjustment_id") != "")
+	{
+		line_map = Map();
+		additional_map = Map();
+		//-----Get the Line Items--------//
+		if(inventory_adjustment.containKey("line_items") && inventory_adjustment.get("line_items") != null && inventory_adjustment.get("line_items") != "")
+		{
+			for each  line_item in inventory_adjustment.get("line_items")
+			{
+				if(line_item.get("item_id") != null)
+				{
+					items = zoho.inventory.getRecordsByID("items",organizationID,line_item.get("item_id"),"inventory_connect");
+					if(items.get("code") == 0 && items.get("item") != null)
+					{
+						line_map.put("Item_ID",ifnull(items.get("item").get("item_id"),""));
+						line_map.put("Zoho_Book_ID",ifnull(items.get("item").get("item_id"),""));
+						line_map.put("Item_Action","Inventory-inventoryadjustment");
+						line_map.put("Opening_Stock",ifnull(items.get("item").get("initial_stock"),0));
+						line_map.put("Stock_on_Hand",ifnull(items.get("item").get("available_stock"),0));
+						line_map.put("Committed_Stock",ifnull(items.get("item").get("committed_stock"),0));
+						line_map.put("Available_for_Sale",ifnull(items.get("item").get("available_for_sale_stock"),0));
+						line_map.put("Stock_on_Hand1",ifnull(items.get("item").get("actual_available_stock"),0));
+						line_map.put("Committed_Stock1",ifnull(items.get("item").get("actual_committed_stock"),0));
+						line_map.put("Available_for_Sale1",ifnull(items.get("item").get("actual_available_for_sale_stock"),0));
+						//----create the Stock in Creator Item--------//
+						create_item_stock = zoho.creator.createRecord("getcoverall","rental-advantage","Stock_Inventory",line_map,additional_map,"creator_connect");
+						if(create_item_stock.containKey("code") && create_item_stock.get("code") == 3000 && create_item_stock.containKey("data") && create_item_stock.get("data") != null)
+						{
+                           // ------------------------							
+						}
+						else
+						{
+						Activity_map = Map();
+						Activity_map.put("Module","Inventory : Inventory Adjustment");
+						Activity_map.put("Description"," Create - Inventory Adjustment Update Stock ");
+						Activity_map.put("Request",inventory_adjustment.get("inventory_adjustment_id").toString());
+						Activity_map.put("Response","Issue : Update Stock in Item - Zoho Creator");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					   }
+					}
+				}
+			}
+		}
+	}
+}
+catch (e)
+{
+	catch_map = Map();
+	catch_map.put("Module","Inventory : Inventory Adjustment");
+	catch_map.put("Process_Description","Create - Inventory Adjustment Update Stock");
+	catch_map.put("In_Data",inventory_adjustment.get("inventory_adjustment_id").toString());
+	catch_map.put("Out_Response",e);
+	developerLog = zoho.creator.createRecord("getcoverall","rental-advantage","Developer_Log",catch_map,Map(),"creator_connect");
+}
+
+}

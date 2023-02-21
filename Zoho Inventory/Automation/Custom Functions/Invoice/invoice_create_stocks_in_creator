@@ -1,0 +1,66 @@
+
+void inventory_adjustment_stock_update( Map inventory_adjustment , Map organization , Map user ) {
+/****************************************************
+Description: Update Stock in Item - Zoho Creator
+Created AT : 14/09/2022
+Created By : Punitha N
+******************************************************/
+organizationID = organization.get("organization_id");
+//-----Check the Invoice Id --------//
+try 
+{
+	if(invoice.get("invoice_id") != null && invoice.get("invoice_id") != "")
+	{
+		line_map = Map();
+		additional_map = Map();
+		//-----Get the Line Items--------//
+		if(invoice.containKey("line_items") && invoice.get("line_items") != null && invoice.get("line_items") != "")
+		{
+			for each  line_item in invoice.get("line_items")
+			{
+				if(line_item.get("item_id") != null)
+				{
+					items = zoho.inventory.getRecordsByID("items",organizationID,line_item.get("item_id"));
+					if(items.get("code") == 0 && items.get("item") != null)
+					{
+						line_map.put("Item_ID",ifnull(items.get("item").get("item_id"),""));
+						line_map.put("Zoho_Book_ID",ifnull(items.get("item").get("item_id"),""));
+						line_map.put("Item_Action","Inventory-Invoice");
+						line_map.put("Opening_Stock",ifnull(items.get("item").get("initial_stock"),0));
+						line_map.put("Stock_on_Hand",ifnull(items.get("item").get("available_stock"),0));
+						line_map.put("Committed_Stock",ifnull(items.get("item").get("committed_stock"),0));
+						line_map.put("Available_for_Sale",ifnull(items.get("item").get("available_for_sale_stock"),0));
+						line_map.put("Stock_on_Hand1",ifnull(items.get("item").get("actual_available_stock"),0));
+						line_map.put("Committed_Stock1",ifnull(items.get("item").get("actual_committed_stock"),0));
+						line_map.put("Available_for_Sale1",ifnull(items.get("item").get("actual_available_for_sale_stock"),0));
+						//----create the Stock in Creator Item--------//
+						create_item_stock = zoho.creator.createRecord("getcoverall","rental-advantage","Stock_Inventory",line_map,additional_map,"creator_connect");
+						if(create_item_stock.containKey("code") && create_item_stock.get("code") == 3000 && create_item_stock.containKey("data") && create_item_stock.get("data") != null)
+						{
+                           // ------------------------							
+						}
+						else
+						{
+						Activity_map = Map();
+						Activity_map.put("Module","Inventory :  Invoice");
+						Activity_map.put("Description"," Create - Invoice Update Stock ");
+						Activity_map.put("Request",invoice.get("invoice_id").toString());
+						Activity_map.put("Response","Issue : Update Stock in Item - Zoho Creator");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					   }
+					}
+				}
+			}
+		}
+	}
+}
+catch (e)
+{
+	catch_map = Map();
+	catch_map.put("Module","Inventory : Invoice");
+	catch_map.put("Process_Description","Create - 	Invoice Update Stock");
+	catch_map.put("In_Data",invoice.get("invoice_id").toString());
+	catch_map.put("Out_Response",e);
+	developerLog = zoho.creator.createRecord("getcoverall","rental-advantage","Developer_Log",catch_map,Map(),"creator_connect");
+}
+}
