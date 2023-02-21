@@ -1,0 +1,24 @@
+/****************
+Description: Edit record based on Page Option
+Created AT: 20/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Page_Option == "View")
+{
+	disable Code;
+	disable Name1;
+	disable Phone_Number1;
+	disable Customer;
+	disable Contact;
+	disable Tax_Area_Code;
+	disable Name_2;
+	disable Tax_Liable;
+	disable Address;
+	disable Location_Code;
+	disable Location_Code;
+	disable Shipment_Method_Code;
+	disable Shipping_Agent_Code;
+	disable Phone_No;
+	disable Fax;
+	disable Email;
+}

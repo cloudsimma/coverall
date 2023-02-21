@@ -1,0 +1,63 @@
+void shipToAddress.creatorToCRMSync(int ship_id)
+{
+	if(input.ship_id != null)
+	{
+		fech_ship = Ship_to_Address[ID == ship_id];
+		if(fech_ship.count() > 0)
+		{
+			data = Map();
+			if(fech_ship.Name1 != null && fech_ship.Name1 != "")
+			{
+				data.put("Name",fech_ship.Name1);
+			}
+			else
+			{
+				data.put("Name","N/A");
+			}
+			data.put("Code",ifnull(fech_ship.Code,null));
+			data.put("Name_2",ifnull(fech_ship.Name_2,null));
+			data.put("Phone",ifnull(fech_ship.Phone_Number1,null));
+			data.put("Tax_Area_Code",ifnull(fech_ship.Tax_Area_Code.Code,null));
+			data.put("Tax_Liable",fech_ship.Tax_Liable);
+			data.put("Address_1",ifnull(fech_ship.Address.address_line_1,null));
+			data.put("Street",ifnull(fech_ship.Address.address_line_2,null));
+			data.put("City",ifnull(fech_ship.Address.district_city,null));
+			data.put("State",ifnull(fech_ship.Address.state_province,null));
+			data.put("Zip_Code",ifnull(fech_ship.Address.postal_Code,null));
+			data.put("Country",ifnull(fech_ship.Address.country,null));
+			data.put("Location_Code",ifnull(fech_ship.Location_Code.Code,null));
+			data.put("Shipping_Method_Code",ifnull(fech_ship.Shipment_Method_Code.Code,null));
+			data.put("Shipping_Agent_Code",ifnull(fech_ship.Shipping_Agent_Code.Code,null));
+			data.put("Phone_No",ifnull(fech_ship.Phone_No,null));
+			data.put("Fax",ifnull(fech_ship.Fax,null));
+			data.put("Email",ifnull(fech_ship.Email,null));
+			data.put("Zoho_Creator_ID",ship_id.toString());
+			data.put("Accounts",if(fech_ship.Customer != null,ifnull(fech_ship.Customer.CRM_Customer_ID.toLong(),null),null));
+			emp = Map();
+			if(fech_ship.Zoho_CRM_ID != null && fech_ship.Zoho_CRM_ID != "")
+			{
+				updatecrm = zoho.crm.updateRecord("Ship_to_Address",fech_ship.Zoho_CRM_ID.tolong(),data,emp,"crm_connect");
+				if(updatecrm.containKey("id") == true)
+				{
+					// 					
+				}
+				else
+				{
+					thisapp.Logs.addActivityLog("Ship to Address","Update record","Update record from Creator to CRM",ship_id.toString(),updatecrm.toString());
+				}
+			}
+			else
+			{
+				crm_response = zoho.crm.createRecord("Ship_to_Address",data,emp,"crm_connect");
+				if(crm_response.containKey("id") == true && crm_response.get("id") != null && crm_response.get("id") != "")
+				{
+					fech_ship.Zoho_CRM_ID=crm_response.get("id");
+				}
+				else
+				{
+					thisapp.Logs.addActivityLog("Ship to Address","Create record","Create record from Creator to CRM",ship_id.toString(),crm_response.toString());
+				}
+			}
+		}
+	}
+}

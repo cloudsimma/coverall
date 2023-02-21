@@ -1,0 +1,25 @@
+hide Zoho_CRM_ID;
+/**********
+Description: Hide and show 
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+hide Code;
+hide Name1;
+hide Phone_Number1;
+hide Customer;
+hide Contact;
+hide Tax_Area_Code;
+hide Name_2;
+hide Tax_Liable;
+hide Address;
+hide Location_Code;
+hide Location_Code;
+hide Shipment_Method_Code;
+hide Shipping_Agent_Code;
+hide Phone_No;
+hide Fax;
+hide Email;
+input.General = false;
+input.Communication1 = false;
+hide Page_Option;

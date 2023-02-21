@@ -1,0 +1,7 @@
+/**********************
+Description: hide fields
+Created AT :08/09/2022
+Created By :Hari Prema M
+***********************/
+show Zoho_Books_ID;
+hide Page_Option;

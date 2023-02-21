@@ -1,0 +1,6 @@
+/******************
+Description: Generate Service Dispatch Ticket
+Created AT: 17/01/2023
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/print/Dispatching?Service_Route=" + input.Service_Routes + "&Date=" + input.Service_Date,"new window");

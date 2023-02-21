@@ -1,0 +1,149 @@
+/**********************************************
+Description: Hide and show Input Fields
+Created AT : 05-08-2022
+Created By : Punitha N
+***********************************************/
+if(input.Goods_Type == "Resource")
+{
+	show No;
+	show Description;
+	show Base_Unit_of_Measure;
+	show Type;
+	show Blocked;
+	show Direct_Unit_Cost;
+	show Unit_Cost;
+	show Price_Profit_Calculation;
+	show Profit;
+	show Unit_Price;
+	show Tax_Group_Code;
+	show Gen_Prod_Posting_Group;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	hide Replenishment;
+}
+else if(input.Goods_Type == "Item")
+{
+	show No;
+	show Description;
+	show Base_Unit_of_Measure;
+	show Type;
+	hide Blocked;
+	hide Direct_Unit_Cost;
+	show Unit_Cost;
+	show Price_Profit_Calculation;
+	show Profit;
+	show Unit_Price;
+	show Tax_Group_Code;
+	show Gen_Prod_Posting_Group;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	show Replenishment;
+}
+else if(input.Goods_Type == "Rental Item")
+{
+	show No;
+	show Description;
+	show Search_Name;
+	show Search_Name;
+	show Base_Unit_of_Measure;
+	show Blocked;
+	show Service_Item_Group;
+	show Type;
+	show Resource_Group_No;
+	show Gen_Prod_Posting_Group;
+	show Tax_Group_Code;
+	show Direct_Unit_Cost;
+	show Unit_Cost;
+	show Unit_Price;
+	show Profit;
+	show Price_Profit_Calculation;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	show Replenishment;
+}
+else if(input.Goods_Type == "Product")
+{
+	show No;
+	show Description;
+	show Search_Name;
+	show Search_Name;
+	show Base_Unit_of_Measure;
+	show Blocked;
+	show Service_Item_Group;
+	show Type;
+	show Resource_Group_No;
+	show Gen_Prod_Posting_Group;
+	show Tax_Group_Code;
+	show Direct_Unit_Cost;
+	show Unit_Cost;
+	show Unit_Price;
+	show Profit;
+	show Price_Profit_Calculation;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	show Replenishment;
+}
+else
+{
+	hide No;
+	hide Description;
+	hide Base_Unit_of_Measure;
+	hide Type;
+	hide Blocked;
+	hide Direct_Unit_Cost;
+	hide Unit_Cost;
+	hide Price_Profit_Calculation;
+	hide Profit;
+	hide Unit_Price;
+	hide Tax_Group_Code;
+	hide Gen_Prod_Posting_Group;
+	hide Commissionable;
+	hide General;
+	hide Invoicing;
+	hide Replenishment;
+}
+/**********
+Description: Edit record based on Page Option
+Created AT: 10/02/2023
+Created By: Punitha N
+*****************/
+if(input.Page_Option == "View")
+{
+	disable Goods_Type;
+	disable No;
+	disable Description;
+	disable Base_Unit_of_Measure;
+	disable Type;
+	disable Blocked;
+	disable Direct_Unit_Cost;
+	disable Unit_Cost;
+	disable Price_Profit_Calculation;
+	disable Profit;
+	disable Unit_Price;
+	disable Tax_Group_Code;
+	disable Gen_Prod_Posting_Group;
+	disable Commissionable;
+	disable General;
+	disable Invoicing;
+	disable Replenishment;
+	disable Search_Name;
+	disable Search_Name;
+	disable Resource_Group_No;
+	disable Zoho_Books_ID;
+	disable Tax_Prod_Posting_Groups;
+	disable Service_Item_Group;
+	disable Types1;
+	disable Vendor_Item_No;
+	disable Stock_on_Hand;
+	disable Stock_On_Hand1;
+	disable Committed_Stock;
+	disable Committed_Stock1;
+	disable Available_for_Sale;
+	disable Available_for_Sale1;
+	disable Shelf_No;
+	disable Indirect_Cost;
+}

@@ -1,0 +1,64 @@
+/******************
+Description: populate fields
+Created AT: 27/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Rental_Order_No != null)
+{
+	fet_rental_order = Rental_Order[ID == input.Rental_Order_No];
+	if(fet_rental_order.count() > 0)
+	{
+		input.Customer_No = ifnull(fet_rental_order.Sell_to_Customer_No,null);
+		input.Customer_Name = ifnull(fet_rental_order.Sell_to_Customer_Name,"");
+		input.Ship_to_Code = ifnull(fet_rental_order.Code,null);
+		input.Document_Date = fet_rental_order.Added_Time.toDate();
+		for each  rentals in fet_rental_order.Rentals
+		{
+			n = rentals.Quantity_Shipped;
+			counter = leftpad("1",n).replaceAll(" ","1,").toList();
+			a = 1;
+			li = List();
+			for each index i in counter
+			{
+				li.add(a);
+				a = a + 1;
+			}
+			li = li.toList();
+			for each  rec in li
+			{
+				garment = RFID_Form.Garment_Order();
+				garment.Item_No=ifnull(rentals.Resource_Item,null);
+				garment.Item_Description=if(rentals.Resource_Item != null,ifnull(rentals.Resource_Item.Description,""),"");
+				garment.Employee_No=ifnull(rentals.Employee_No,null);
+				garment.Dirty_Date=rentals.From_Date;
+				garment.Cleaned_Date=rentals.From_Date;
+				garment.Delivered_Date=rentals.From_Date;
+				garment.Missing_Closed_Date=null;
+				garment.Department_Code=ifnull(rentals.Department_Code,null);
+				garment.Department_Name=if(rentals.Department_Code != null,ifnull(rentals.Department_Code.Name,""),"");
+				garment.Employee_First_Name=if(rentals.Employee_No != null,ifnull(rentals.Employee_No.First_Name,""),"");
+				garment.Employee_Last_Name=if(rentals.Employee_No != null,ifnull(rentals.Employee_No.Last_Name,""),"");
+				garment_collection = Collection();
+				garment_collection.insert(garment);
+				input.Garment_Order.insert(garment_collection);
+			}
+		}
+	}
+	else
+	{
+		input.Customer_No = null;
+		input.Customer_Name = "";
+		input.Ship_to_Code = null;
+		input.Document_Date = null;
+		input.Garment_Order = null;
+	}
+}
+else
+{
+	input.Customer_No = null;
+	input.Customer_Name = "";
+	input.Ship_to_Code = null;
+	input.Document_Date = null;
+	input.Garment_Order = null;
+}
+hide No;

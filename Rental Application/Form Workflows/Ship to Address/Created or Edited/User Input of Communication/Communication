@@ -1,0 +1,17 @@
+/******************
+Description: hide and show
+Created AT: 06/01/2023
+Created By: Hari Prema M
+*****************/
+if(input.Communication1 == true)
+{
+	show Phone_No;
+	show Fax;
+	show Email;
+}
+else
+{
+	hide Phone_No;
+	hide Fax;
+	hide Email;
+}

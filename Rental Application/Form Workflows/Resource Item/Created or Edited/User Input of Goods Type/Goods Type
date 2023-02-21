@@ -1,0 +1,109 @@
+/**********************************************
+Description: Hide and show Input Fields
+Created AT : 05-08-2022
+Created By : Punitha N
+***********************************************/
+hide Zoho_Books_ID;
+if(input.Goods_Type == "Resource")
+{
+	show No;
+	show Description;
+	show Base_Unit_of_Measure;
+	show Type;
+	show Blocked;
+	show Direct_Unit_Cost;
+	show Unit_Cost;
+	show Price_Profit_Calculation;
+	show Profit;
+	show Unit_Price;
+	show Tax_Group_Code;
+	show Gen_Prod_Posting_Group;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	hide Replenishment;
+}
+else if(input.Goods_Type == "Item")
+{
+	show No;
+	show Description;
+	show Base_Unit_of_Measure;
+	show Type;
+	hide Blocked;
+	hide Direct_Unit_Cost;
+	show Unit_Cost;
+	show Price_Profit_Calculation;
+	show Profit;
+	show Unit_Price;
+	show Tax_Group_Code;
+	show Gen_Prod_Posting_Group;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	show Replenishment;
+}
+else if(input.Goods_Type == "Rental Item")
+{
+	show No;
+	show Description;
+	show Search_Name;
+	show Search_Name;
+	show Base_Unit_of_Measure;
+	show Blocked;
+	show Service_Item_Group;
+	show Type;
+	show Resource_Group_No;
+	show Gen_Prod_Posting_Group;
+	show Tax_Group_Code;
+	show Direct_Unit_Cost;
+	show Unit_Cost;
+	show Unit_Price;
+	show Profit;
+	show Price_Profit_Calculation;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	show Replenishment;
+}
+else if(input.Goods_Type == "Product")
+{
+	show No;
+	show Description;
+	show Search_Name;
+	show Search_Name;
+	show Base_Unit_of_Measure;
+	show Blocked;
+	show Service_Item_Group;
+	show Type;
+	show Resource_Group_No;
+	show Gen_Prod_Posting_Group;
+	show Tax_Group_Code;
+	show Direct_Unit_Cost;
+	show Unit_Cost;
+	show Unit_Price;
+	show Profit;
+	show Price_Profit_Calculation;
+	show Commissionable;
+	show General;
+	show Invoicing;
+	show Replenishment;
+}
+else
+{
+	hide No;
+	hide Description;
+	hide Base_Unit_of_Measure;
+	hide Type;
+	hide Blocked;
+	hide Direct_Unit_Cost;
+	hide Unit_Cost;
+	hide Price_Profit_Calculation;
+	hide Profit;
+	show Unit_Price;
+	hide Tax_Group_Code;
+	hide Gen_Prod_Posting_Group;
+	hide Commissionable;
+	hide General;
+	hide Invoicing;
+	hide Replenishment;
+}

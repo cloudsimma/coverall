@@ -1,0 +1,24 @@
+/**********************************************
+Description: hide and show input field
+Created AT : 05-08-2022
+Created By : Punitha N
+***********************************************/
+if(input.Goods_Type != "Resource" && input.Goods_Type != "Item" && input.Goods_Type != "Rental Item")
+{
+	hide No;
+	hide Description;
+	hide Base_Unit_of_Measure;
+	hide Type;
+	hide Blocked;
+	hide Direct_Unit_Cost;
+	hide Unit_Cost;
+	hide Price_Profit_Calculation;
+	hide Profit;
+	hide Unit_Price;
+	show Tax_Group_Code;
+	hide Gen_Prod_Posting_Group;
+	hide Commissionable;
+	hide General;
+	hide Invoicing;
+	hide Replenishment;
+}

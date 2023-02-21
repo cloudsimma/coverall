@@ -35,8 +35,7 @@ Created By : Meena M
 			if(contact.CRM_Contact_ID != null && contact.CRM_Contact_ID != "")
 			{
 				update_account = zoho.crm.updateRecord("Contacts",contact.CRM_Contact_ID.toLong(),datamap,Map(),"crm_connect");
-				info "update - " + update_account;
-				if(update_account.get("id") != null)
+				if(update_account.containKey("id") == true)
 				{
 					// 					
 				}
@@ -50,7 +49,7 @@ Created By : Meena M
 				datamap.put("Zoho_Creator_ID",ID.toString());
 				datamap.put("Created_from_Creator",True);
 				create_account = zoho.crm.createRecord("Contacts",datamap,Map(),"crm_connect");
-				if(create_account.get("id") != null)
+				if(create_account.containKey("id") == true && create_account.get("id") != null)
 				{
 					contact.CRM_Contact_ID=create_account.get("id").toString();
 				}

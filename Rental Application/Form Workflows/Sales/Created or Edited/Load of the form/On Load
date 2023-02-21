@@ -1,0 +1,67 @@
+/**********
+Description: Edit record based on Page Option
+Created AT: 15/02/2023
+Created By: Punitha N
+*****************/
+hide Page_Option;
+hide Rental_Order;
+hide Order_Shipping_Journal;
+if(input.Page_Option == "View")
+{
+	// 	Sales
+	disable Type;
+	disable No;
+	disable Comments;
+	disable Sales_Notes;
+	disable Comments_by_User;
+	disable Description;
+	disable Rental_Order;
+	disable Order_Shipping_Journal;
+	disable Location_Name;
+	disable Start_Date;
+	disable Quantity;
+	disable Quantity_shipped;
+	disable Employee_No;
+	disable Employee_Name;
+	disable Customer_Location;
+	disable Customer_Location_Name1;
+	disable Unit_Price;
+	disable Sale_Date;
+	disable Show_in_delivery_ticket;
+	disable Allow_Invoice;
+	disable Appl_From_Item_Entry;
+	disable Appl_To_Item_Entry;
+	disable Billing_Action;
+	disable Branch_Code;
+	disable Cleaning_Date;
+	disable Commisionable;
+	disable Delivery_Date;
+	disable Department_Code;
+	disable Depec;
+	disable Depreciation_Book_Code;
+	disable Description_2;
+	disable Dublicate_Depreciation_Book;
+	disable Extended_Price;
+	disable FA_Posting_Date;
+	disable Gen_Bus_Posting_Group;
+	disable Gen_Product_Posting_Groups;
+	disable Implosian;
+	disable Implosian_Type;
+	disable Job_Contract_Entry_No;
+	disable Job_No;
+	disable Job_Task_No;
+	disable Line_Discount;
+	disable Line_No;
+	disable Location_Code;
+	disable No1;
+	disable Packaged_Price;
+	disable Parts_Kit;
+	disable Shipping_Required;
+	disable Spiff;
+	disable Tax_Groups_Code;
+	disable Tax_Liable;
+	disable Unit_Cost;
+	disable Unit_of_Measure;
+	disable Use_Dublication_List;
+	disable Invoiced;
+}

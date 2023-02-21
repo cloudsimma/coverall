@@ -1,0 +1,11 @@
+try 
+{
+	thisapp.shipToAddress.creatorToCRMSync(input.ID);
+	input.Page_Option = "Create";
+	openUrl("#Script:page.close","same window");
+	openUrl("#Script:page.parent.refresh ","same window");
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Ship to Address","Create or Edit - Ship to Address to CRM",input.ID.toString(),e);
+}
