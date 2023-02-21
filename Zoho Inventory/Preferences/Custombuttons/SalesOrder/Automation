@@ -1,0 +1,96 @@
+
+Map Automation( Map salesorder , Map organization , Map user ) { Add Arguments
+/****************************************************
+Description: Update Stock in Item - Zoho Creator
+Created AT : 14/09/2022
+Created By : Punitha N
+******************************************************/
+
+//This is a sample function. It will display the salesorder number.
+salesorderID = salesorder.get("salesorder_id");
+organizationID = organization.get("organization_id");
+_salesorder = zoho.inventory.getRecordsByID("salesorders",organizationID,salesorderID,"inventory_connect");
+resultMap = Map();
+lines_map = Map();
+item_list = List();
+package_map = Map();
+shipmentorders_map = Map();
+so_packages = _salesorder.get("salesorder").get("packages");
+info so_packages.size();
+if(salesorderID != null && salesorderID != "")
+{
+	if(so_packages != null && so_packages != "")
+	{
+		if(so_packages.size() > 0)
+		{
+			SO = "This Sales Order item has already been packed ";
+		}
+		else
+		{
+			//-------------Packages Creation----------
+			so_lineitem = salesorder.get("line_items");
+			if(salesorder.containKey("line_items") && salesorder.get("line_items") != null && salesorder.get("line_items") != "")
+			{
+				for each  lines in so_lineitem
+				{
+					if(lines.get("item_id") != null)
+					{
+						lines_map.put("item_id",ifnull(lines.get("item_id"),""));
+						lines_map.put("so_line_item_id",ifnull(lines.get("line_item_id"),""));
+						lines_map.put("name",ifnull(lines.get("name"),""));
+						lines_map.put("quantity",ifnull(lines.get("quantity"),0));
+						item_list.add(lines_map);
+					}
+				}
+			}
+			package_map.put("line_items",item_list);
+			package_map.put("salesorder_id",salesorderID);
+			package_map.put("salesorder_number",salesorder.get("salesorder_number"));
+			package_map.put("customer_id",salesorder.get("customer_id"));
+			package_map.put("customer_name",salesorder.get("customer_name"));
+			package_map.put("salesorder_date",salesorder.get("date"));
+			package_map.put("status","not_shipped");
+			package_map.put("date",salesorder.get("date"));
+			//package_map.put("package_number","PKG-00013");
+			package_map.put("notes","notes");
+			_packages = zoho.inventory.createRecord("packages",organizationID,package_map,"inventory_connect");
+			//info _packages;
+			packageID = _packages.get("package").get("package_id");
+			info packageID;
+			//-------------Shipment Order Creation----------
+			shipmentorders_map.put("date",salesorder.get("date"));
+			shipmentorders_map.put("delivery_method","TNT");
+			shipmentorders_map.put("tracking_number","TRK214124124");
+			shipmentorders_map.put("shipping_charge",1);
+			shipmentorders_map.put("exchange_rate",1);
+			shipmentorders_map.put("notes","notes");
+			shipmentorders_url = " https://inventory.zoho.com/api/v1/shipmentorders?organization_id=" + organizationID + "&package_ids=" + packageID + "&salesorder_id=" + salesorderID;
+			_shipmentorders = invokeurl
+			[
+				url :shipmentorders_url
+				type :POST
+				parameters:shipmentorders_map.toString()
+				connection:"inventory_connect"
+			];
+			info _shipmentorders;
+			shipmentordersID = _shipmentorders.get("shipmentorder").get("shipment_id");
+			info shipmentordersID;
+			//-------------Mark as Delivered----------
+			delivered_url = "https://inventory.zoho.com/api/v1/shipmentorders/" + shipmentordersID + "/status/delivered";
+			_delivered = invokeurl
+			[
+				url :delivered_url
+				type :POST
+				connection:"inventory_connect"
+			];
+			info _delivered;
+			SO = "This Sales Order Package and Shipment created successfully. The Shipment Order has been marked as Delivered..! ";
+		}
+	}
+}
+resultMap.put("message",SO);
+resultMap.put("code",0);
+return resultMap;
+
+
+}

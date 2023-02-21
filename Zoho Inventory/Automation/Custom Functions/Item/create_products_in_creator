@@ -1,0 +1,106 @@
+void create_products_in_creator( Map item , Map organization , Map user ) 
+{
+    
+/**********************
+Description: create and update zoho creator Resource -Item by Inventory Item
+Created AT : 08/09/2022
+Created By : Hari Prema M 
+***********************/
+itemID = item.get("item_id");
+organizationID = organization.get("organization_id");
+data_map = Map();
+inventory_item = zoho.inventory.getRecordsByID("items","768861030",itemID,"inventory_connect");
+try 
+{
+	if(inventory_item.containKey("item") && inventory_item.get("item") != null && inventory_item.get("item") != "")
+	{
+		info "map - " + inventory_item.get("item");
+		if(inventory_item.get("item").get("product_type") != null)
+		{
+			if(inventory_item.get("item").get("product_type") == "goods")
+			{
+				data_map.put("Goods_Type","Item");
+			}
+			else if(inventory_item.get("item").get("product_type") == "service")
+			{
+				data_map.put("Goods_Type","Resource");
+			}
+		}
+		books_item = inventory_item.get("item");
+		custom_fields = books_item.get("custom_fields");
+		data_map.put("Description",ifnull(books_item.get("description"),""));
+		data_map.put("No",ifnull(books_item.get("name"),""));
+		data_map.put("Unit_Price",ifnull(books_item.get("sales_rate"),0));
+		data_map.put("Purchase_Price",ifnull(books_item.get("purchase_rate"),0));
+		data_map.put("Opening_Stock",ifnull(books_item.get("initial_stock"),""));
+		data_map.put("Opening_Stock_Rate_per_Unit",ifnull(books_item.get("initial_stock_rate"),0.00));
+		data_map.put("Reorder_Point",ifnull(books_item.get("reorder_level"),""));
+		data_map.put("Zoho_Books_ID",itemID.toString());
+		unit_measure = zoho.creator.getRecords("getcoverall","rental-advantage","Unit_of_Measures","Code == \"" + books_item.get("unit") + "\"",1,1,"creator_connect");
+		if(unit_measure.containKey("code") && unit_measure.get("code") == 3000 && unit_measure.containKey("data") && unit_measure.get("data") != null)
+		{
+			measure_response = unit_measure.get("data").toMap();
+			if(measure_response.get("ID") != null && measure_response.get("ID") != "")
+			{
+				data_map.put("Base_Unit_of_Measure",measure_response.get("ID").toLong());
+			}
+		}
+		data_map.put("Tax_Preference",books_item.get("is_taxable"));
+		if(books_item.containKey("custom_fields"))
+		{
+			custom_fields = books_item.get("custom_fields");
+			if(custom_fields.size() > 0)
+			{
+				for each  rows in custom_fields
+				{
+					if(rows.get("label") == "Product")
+					{
+						if(rows.get("value") == true)
+						{
+							data_map.put("Goods_Type","Product");
+						}
+					}
+					if(rows.get("label") != "Creator ID")
+					{
+						create_product = zoho.creator.createRecord("getcoverall","rental-advantage","Resource_Item",data_map,Map(),"creator_connect");
+						if(create_product.containKey("code") && create_product.get("code") == 3000 && create_product.containKey("data") && create_product.get("data") != null)
+						{
+							creator_response = create_product.get("data");
+							if(creator_response.containKey("ID") && creator_response.get("ID") != null && creator_response.get("ID") != "")
+							{
+								creator_map = Map();
+								custom_map = Map();
+								creator_list = List();
+								creator_map.put("label","Creator ID");
+								creator_map.put("value",creator_response.get("ID").toString());
+								creator_list.add(creator_map);
+								custom_map.put("custom_fields",creator_list);
+								update_inventory = zoho.inventory.updateRecord("items","768861030",itemID,custom_map,"inventory_connect");
+							}
+						}
+						else
+						{
+						Activity_map = Map();
+						Activity_map.put("Module","Inventory : Item");
+						Activity_map.put("Description","Create - Inventory Item ");
+						Activity_map.put("Request",itemID.toString());
+						Activity_map.put("Response","Issue :create and update zoho creator Resource -Item by Inventory Item");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					   }
+					}
+				}
+			}
+		}
+	}
+}
+catch (e)
+{
+	catch_map = Map();
+	catch_map.put("Module","Inventory : Item");
+	catch_map.put("Process_Description","Create - Create Item in Zoho Creator");
+	catch_map.put("In_Data",itemID.toString());
+	catch_map.put("Out_Response",e);
+	developerLog = zoho.creator.createRecord("getcoverall","rental-advantage","Developer_Log",catch_map,Map(),"creator_connect");
+}
+
+}

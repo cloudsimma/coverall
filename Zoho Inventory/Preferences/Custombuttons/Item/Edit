@@ -1,0 +1,26 @@
+
+Map Edit( Map item , Map organization , Map user ) { 
+//This is a sample function. It will display the item name.
+itemName = item.get("name");
+resultMap = Map();
+resultMap.put("message","Item Name - " + itemName);
+resultMap.put("code",0);
+if(item.containKey("custom_fields"))
+{
+	if(item.get("custom_fields") != null)
+	{
+		item_map = item.get("custom_fields");
+		if(item_map.size() > 0)
+		{
+			for each  custom_fields in item_map
+			{
+				if(custom_fields.get("label") == "Creator ID")
+				{
+					openurl("https://creatorapp.zoho.com/getcoverall/rental-advantage#Form:Resource_Item?recLinkID=" + custom_fields.get("value").toLong() + "&viewLinkName=Resource_Items","new window");
+				}
+			}
+		}
+	}
+}
+return resultMap;
+}
