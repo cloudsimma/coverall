@@ -1,0 +1,13 @@
+/******************
+Description: Update CRM Custoner
+Created AT: 16/12/2022
+Created By: Hari Prema M
+*****************/
+try 
+{
+	thisapp.Customer.creatorToCRMAccountSync(input.ID);
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Customer","Schedule: Modified Time - Update CRM Customer ",input.ID.toString(),e);
+}

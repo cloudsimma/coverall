@@ -1,0 +1,131 @@
+/***********************************************************************
+Description: Change the Customer - Auto load Customer Related Details
+Created AT : 07/09/2022
+Created By : Meena M
+************************************************************************/
+try 
+{
+	if(input.Sell_to_Customer_No != null)
+	{
+		fet = Customer[ID == input.Sell_to_Customer_No];
+		if(fet.count() > 0)
+		{
+			input.Sell_to_Customer_Name = ifnull(fet.Name,"");
+			input.Sell_to_Contact = ifnull(fet.Contact,"");
+			input.Sell_to_E_Mail = ifnull(fet.Email,"");
+			input.Sell_to_Phone_No = ifnull(fet.Phone_No,"");
+			input.Sell_to_Address = ifnull(fet.Shipping_Address,null);
+			input.Bill_to_Customer_No = ifnull(fet.Bill_to_Customer_No,null);
+			bcustomer = Customer[ID == input.Bill_to_Customer_No];
+			if(bcustomer.count() > 0)
+			{
+				input.Name = ifnull(bcustomer.Name,"");
+				input.Address = ifnull(bcustomer.Billing_Address,null);
+				input.Bill_to_Phone_No = ifnull(bcustomer.Phone_No,"");
+				input.Bill_to_E_Mail = ifnull(bcustomer.Email,"");
+				input.Branch_Code = ifnull(bcustomer.Branch,null);
+				input.Department_Code = ifnull(bcustomer.Department,null);
+			}
+			else
+			{
+				input.Name = "";
+				input.Address = null;
+				input.Bill_to_Phone_No = "";
+				input.Bill_to_E_Mail = "";
+				input.Branch_Code = null;
+				input.Department_Code = null;
+			}
+			input.Ship_to_Address = ifnull(bcustomer.Shipping_Address,null);
+			input.Location_Code = ifnull(bcustomer.Location_Code,null);
+			input.Ship_to_E_Mail = ifnull(bcustomer.Email,"");
+		}
+		else
+		{
+			input.Sell_to_Customer_Name = "";
+			input.Sell_to_Contact = "";
+			input.Sell_to_E_Mail = "";
+			input.Sell_to_Phone_No = "";
+			input.Ship_to_Address = null;
+			input.Location_Code = null;
+			input.Ship_to_E_Mail = "";
+			input.Sell_to_Address = null;
+		}
+	}
+	else
+	{
+		input.Sell_to_Customer_Name = "";
+		input.Sell_to_Contact = "";
+		input.Sell_to_E_Mail = "";
+		input.Sell_to_Phone_No = "";
+		input.Ship_to_Address = null;
+		input.Location_Code = null;
+		input.Ship_to_E_Mail = "";
+		input.Name = "";
+		input.Address = null;
+		input.Bill_to_Phone_No = "";
+		input.Bill_to_E_Mail = "";
+		input.Branch_Code = null;
+		input.Department_Code = null;
+		input.Sell_to_Address = null;
+	}
+	//--- Auto Number Generates ---
+	get_mod = Modules[Module == "Direct Sales"];
+	get_serv = Series_List[Module == get_mod.ID];
+	if(get_serv.count() > 0)
+	{
+		get_rf_no = 5;
+		get_ls_no = (get_serv.Last_No + 1).toString();
+		add_space = get_ls_no.leftpad(get_rf_no);
+		add_zero = add_space.replaceAll(" ","0");
+		if(input.Zoho_Books_Status == "Sales Order")
+		{
+			input.Direct_Sales_No = "SO" + add_zero;
+		}
+		else if(input.Zoho_Books_Status == "Estimate")
+		{
+			input.Direct_Sales_No = "EST" + add_zero;
+		}
+		else if(input.Zoho_Books_Status == "Invoice")
+		{
+			input.Direct_Sales_No = "INV" + add_zero;
+		}
+		else
+		{
+			input.Direct_Sales_No = "DS" + add_zero;
+		}
+		get_serv.Last_No_used=input.No;
+		get_serv.Last_No=add_zero.toLong();
+	}
+	else
+	{
+		if(input.Zoho_Books_Status == "Sales Order")
+		{
+			input.Direct_Sales_No = "SO00001";
+		}
+		else if(input.Zoho_Books_Status == "Estimate")
+		{
+			input.Direct_Sales_No = "EST00001";
+		}
+		else if(input.Zoho_Books_Status == "Invoice")
+		{
+			input.Direct_Sales_No = "INV00001";
+		}
+		else
+		{
+			input.Direct_Sales_No = "DS00001";
+		}
+		get_no = 1;
+		//
+		serv_ins = insert into Series_List
+		[
+			Module=get_mod.ID
+			Added_User=zoho.loginuser
+			Last_No_used=input.Direct_Sales_No
+			Last_No=get_no
+		];
+	}
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Direct Sales","Schedule: Added Time - Populate Customer Info ",input.ID.toString(),e);
+}

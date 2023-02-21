@@ -1,0 +1,89 @@
+/******************
+Description: Subtotal, SAM charge, Service Charge, Tax care and Total Calculations added
+Created AT: 22/12/2022
+Created By: Hari Prema M
+*****************/
+try 
+{
+	if(input.Rental_Order != null)
+	{
+		// 	sub total
+		if(input.Rentals != null)
+		{
+			rental_calcu = 0.00;
+			for each  rentals in input.Rentals
+			{
+				rental_calcu = rental_calcu.toDecimal() + ifnull(rentals.Extended_Price.toDecimal(),0);
+				rental_calcu = rental_calcu.round(2);
+			}
+		}
+		else
+		{
+			rental_calcu = 0.00;
+		}
+		if(input.Sales != null)
+		{
+			sales_calcu = 0.00;
+			for each  sales in input.Sales
+			{
+				sales_calcu = sales_calcu.toDecimal() + ifnull(sales.Extended_Price.toDecimal(),0);
+				sales_calcu = sales_calcu.round(2);
+			}
+		}
+		else
+		{
+			sales_calcu = 0.00;
+		}
+		// 		SAM Charge
+		if(input.Rental_Order.SAM_Charge > 0.00)
+		{
+			sam_charge_rate = (rental_calcu * input.Rental_Order.SAM_Charge) / 100;
+			input.SAM_Charge = sam_charge_rate.toDecimal().round(2);
+		}
+		// 		Service Charge for Rentals
+		if(input.Rental_Order.Service_Charge > 0.00)
+		{
+			service_charge_rate = (rental_calcu * input.Rental_Order.Service_Charge) / 100;
+			input.Service_Charge = service_charge_rate.toDecimal().round(2);
+		}
+		// 		Tex Care for Rentals
+		if(input.Rental_Order.Tax_are > 0.00)
+		{
+			tex_care_rate = (rental_calcu * input.Rental_Order.Tax_are) / 100;
+			input.Tex_Care = tex_care_rate.toDecimal().round(2);
+		}
+		// 		Tax Base for Rentals
+		input.Tax_Base = rental_calcu + ifnull(input.SAM_Charge,0.00) + ifnull(input.Service_Charge,0.00) + ifnull(input.Tex_Care,0.00);
+		// 		Tax Amount for Rentals
+		input.Tax_Amount = (ifnull(input.Tax_Base,0.00) * 5) / 100;
+		// 		Service Charge for Sales
+		if(input.Rental_Order.Service_Charge > 0.00 && input.Rental_Order.Include_Resources_in_SVC_CHG == true)
+		{
+			service_charge_rate_sales = (sales_calcu * input.Rental_Order.Service_Charge) / 100;
+			input.Service_Charge1 = service_charge_rate_sales.toDecimal().round(2);
+		}
+		// 		Tex Care for Sales
+		if(input.Rental_Order.Tax_are > 0.00 && input.Rental_Order.Include_Resources_in_Tx_Care == true)
+		{
+			tex_care_rate_sales = (sales_calcu * input.Rental_Order.Tax_are) / 100;
+			input.Tex_Care1 = tex_care_rate_sales.toDecimal().round(2);
+		}
+		// 		Tax Base for Sales
+		input.Tax_Base1 = sales_calcu + ifnull(input.Service_Charge1,0.00) + ifnull(input.Tex_Care1,0.00);
+		// 		Tax Amount for Sales
+		input.Tax_Amount1 = (ifnull(input.Tax_Base1,0.00) * 5) / 100;
+		// 	Sub Total
+		subtotal = rental_calcu.toDecimal() + sales_calcu.toDecimal();
+		input.Sub_Total = subtotal.round(2);
+		// Total Before Tax
+		input.Total_Before_Tax = ifnull(input.Tax_Base,0.00) + ifnull(input.Tax_Base1,0.00);
+		// Tax
+		input.Tax = input.Tax_Amount + input.Tax_Amount1;
+		// Total
+		input.Total = ifnull(input.Total_Before_Tax,0.00) + ifnull(input.Tax,0.00);
+	}
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Books Invoice","Schedule: Added Time - Update Taxes and Calculations",input.ID.toString(),e);
+}

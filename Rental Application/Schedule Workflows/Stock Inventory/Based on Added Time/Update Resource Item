@@ -1,0 +1,44 @@
+/******************
+Description: When record is added in Stock Inventory at the same time we mapped the Accounting Stock and Physical Stock to the Resource Item by using Zoho Books ID
+Created AT : 15/09/2022
+Created By : Hari Prema M
+*****************/
+try 
+{
+	if(input.Zoho_Book_ID != null && input.Zoho_Book_ID != "")
+	{
+		resource_item = Resource_Item[Zoho_Books_ID == input.Zoho_Book_ID];
+		if(resource_item.count() > 0)
+		{
+			info input.Stock_on_Hand;
+			resource_item.Stock_on_Hand=ifnull(input.Stock_on_Hand,null);
+			resource_item.Committed_Stock=ifnull(input.Committed_Stock,null);
+			resource_item.Available_for_Sale=ifnull(input.Available_for_Sale,null);
+			resource_item.Stock_On_Hand1=ifnull(input.Stock_on_Hand1,null);
+			resource_item.Committed_Stock1=ifnull(input.Committed_Stock1,null);
+			resource_item.Available_for_Sale1=ifnull(input.Available_for_Sale1,null);
+		}
+		else
+		{
+			resource_item.Stock_on_Hand=null;
+			resource_item.Committed_Stock=null;
+			resource_item.Available_for_Sale=null;
+			resource_item.Stock_On_Hand1=null;
+			resource_item.Committed_Stock1=null;
+			resource_item.Available_for_Sale1=null;
+		}
+	}
+	else
+	{
+		resource_item.Stock_on_Hand=null;
+		resource_item.Committed_Stock=null;
+		resource_item.Available_for_Sale=null;
+		resource_item.Stock_On_Hand1=null;
+		resource_item.Committed_Stock1=null;
+		resource_item.Available_for_Sale1=null;
+	}
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Stock Inventory","Schedule: Added Time - Update Resource/Item",input.ID.toString(),e);
+}
