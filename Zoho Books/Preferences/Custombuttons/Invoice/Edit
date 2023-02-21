@@ -1,0 +1,9 @@
+
+//This is a sample function. It will display the invoice number.
+invoiceNumber = invoice.get("invoice_number");
+resultMap = Map();
+resultMap.put("message","Invoice number - " + invoiceNumber);
+resultMap.put("code",0);
+// 0 - Success ; Other than 0 will consider as failure
+openurl("https://creatorapp.zoho.com/getcoverall/rental-advantage#Form:Direct_Sales","new window");
+return resultMap;

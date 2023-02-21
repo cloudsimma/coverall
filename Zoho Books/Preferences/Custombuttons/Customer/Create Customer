@@ -1,0 +1,11 @@
+
+/****************************************************************
+Description:Open creator customer form in create mode 
+Created AT : 12-08-2022
+Created By : Hariharan 
+*****************************************************************/
+openurl("https://app.zohocreator.com/getcoverall/service/#Form:Customer","new window");
+resultMap = Map();
+resultMap.put("code",0);
+// 0 - Success ; Other than 0 will consider as failure
+return resultMap;

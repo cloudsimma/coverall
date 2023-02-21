@@ -1,0 +1,9 @@
+
+//This is a sample function. It will display the salesorder number.
+number = salesorder.get("salesorder_number");
+resultMap = Map();
+resultMap.put("message","Salesorder number - " + number);
+resultMap.put("code",0);
+openurl("https://creatorapp.zoho.com/getcoverall/rental-advantage#Form:Direct_Sales","new window");
+// 0 - Success ; Other than 0 will consider as failure
+return resultMap;

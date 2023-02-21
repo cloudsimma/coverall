@@ -1,0 +1,26 @@
+
+//This is a sample function. It will display the estimate number.
+number = estimate.get("estimate_number");
+resultMap = Map();
+resultMap.put("message","Estimate number - " + number);
+resultMap.put("code",0);
+if(estimate.containKey("custom_fields"))
+{
+	if(estimate.get("custom_fields") != null)
+	{
+		estimate_map = estimate.get("custom_fields");
+		if(estimate_map.size() > 0)
+		{
+			for each  custom_fields in estimate_map
+			{
+				if(custom_fields.get("label") == "Zoho Creator ID")
+				{
+					openurl("https://creatorapp.zoho.com/getcoverall/rental-advantage#Form:Direct_Sales?recLinkID=" + custom_fields.get("value").toLong() + "&viewLinkName=Direct_Sale","new window");
+				}
+			}
+		}
+	}
+}
+// info estimate.get("")
+// 0 - Success ; Other than 0 will consider as failure
+return resultMap;

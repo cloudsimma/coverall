@@ -1,0 +1,17 @@
+
+/****************************************************************
+Description:open creator customer record edit mode
+Created AT : 12-08-2022
+Created By : Hariharan 
+*****************************************************************/
+fetch_creator_id = customer.get("custom_field_hash").get("cf_zoho_creator_id");
+resultMap = Map();
+if(fetch_creator_id != null)
+{
+	openurl("https://app.zohocreator.com/getcoverall/service/#Form:Customer?recLinkID=" + fetch_creator_id + "&viewLinkName=Customers","new window");
+}
+else
+{
+	resultMap.put("message","Record Not Found");
+}
+return resultMap;

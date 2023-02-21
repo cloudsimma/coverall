@@ -1,0 +1,25 @@
+void update_estimate_accepted( Map estimate , Map organization , Map user ) 
+{
+    
+/*
+This is a sample function. Uncomment to execute or make changes to this function.  
+estimateID = estimate.get("estimate_id");
+estimatedate = estimate.get("date").toDate();
+organizationID = organization.get("organization_id");
+*/
+get_estimate = estimate.get("status");
+info get_estimate;
+if(get_estimate == "accepted")
+{
+	datamap = Map();
+	custom_list = List();
+	estimate_map = Map();
+	estimate_map.put("label","Estimate Accepted");
+	estimate_map.put("value",true);
+	custom_list.add(estimate_map);
+	datamap.put("custom_fields",custom_list);
+	update_estimate = zoho.books.updateRecord("estimates",organization.get("organization_id"),estimate.get("estimate_id"),datamap,"books_connect");
+	info update_estimate;
+}
+
+}

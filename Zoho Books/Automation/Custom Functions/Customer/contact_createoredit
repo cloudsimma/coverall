@@ -1,0 +1,143 @@
+
+/****************************************************
+Description: Create and Update Customer and Contact in Zoho Creator
+Created AT : 14/11/2022
+Created By : Punitha N
+******************************************************/
+customerID = customer.get("contact_id");
+companyName = customer.get("company_name");
+organizationID = organization.get("organization_id");
+Customer_Info = zoho.books.getRecordsByID("contacts",organizationID,customerID,"books_connect");
+Zoho_Book_ID = null;
+if(Customer_Info.containKey("contact") && Customer_Info.get("contact") != null)
+{
+	Customer_details = Customer_Info.get("contact");
+	Contact_id = Customer_details.get("contact_id");
+	get_creator_contact = zoho.creator.getRecords("getcoverall","rental-advantage","Customers","Zoho_Book_ID == \"" + Contact_id + "\"",1,100,"creator_connect");
+	if(get_creator_contact.containKey("data") && get_creator_contact.get("data") != null)
+	{
+		Zoho_Book_ID = get_creator_contact.get("data").get(0).get("No");
+	}
+	data_map = Map();
+	data_map.put("Name",Customer_details.get("company_name"));
+	data_map.put("Billing_Street",Customer_details.get("billing_address").get("street2"));
+	data_map.put("Billing_City",Customer_details.get("billing_address").get("city"));
+	data_map.put("Billing_State",Customer_details.get("billing_address").get("state"));
+	data_map.put("Billing_Code",Customer_details.get("billing_address").get("zip"));
+	data_map.put("Billing_Country",Customer_details.get("billing_address").get("country"));
+	data_map.put("Shipping_Street",Customer_details.get("shipping_address").get("street2"));
+	data_map.put("Shipping_City",Customer_details.get("shipping_address").get("city"));
+	data_map.put("Shipping_State",Customer_details.get("shipping_address").get("state"));
+	data_map.put("Shipping_Code",Customer_details.get("shipping_address").get("zip"));
+	data_map.put("Shipping_Country",Customer_details.get("shipping_address").get("country"));
+	data_map.put("Phone_No",Customer_details.get("phone"));
+	data_map.put("Primary_Contact_No",Customer_details.get("mobile"));
+	data_map.put("Contact_No",Customer_details.get("phone"));
+	data_map.put("No",Customer_details.get("contact_id"));
+	data_map.put("Zoho_Book_ID",Customer_details.get("contact_id"));
+	if(Zoho_Book_ID == null || Zoho_Book_ID == "")
+	{
+		if(Customer_details.containKey("contact_id") && Customer_details.get("contact_id") != null)
+		{
+			info 'Create';
+			additional_map = Map();
+			create_record = zoho.creator.createRecord("getcoverall","rental-advantage","Customer",data_map,additional_map,"creator_connect");
+			info create_record;
+			if(create_record.containKey("code") && create_record.get("code") == 3000 && create_record.get("data") != null)
+					{
+						//
+					}
+					else
+					{
+						Activity_map = Map();
+						Activity_map.put("Module","Books : Customer");
+						Activity_map.put("Description","Create - Customer");
+						Activity_map.put("Request",customerID);
+						Activity_map.put("Response","Issue : Create new Customer");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					}
+				
+			if(Customer_details.containKey("contact_persons") && Customer_details.get("contact_persons") != null)
+			{
+				info 'Contact - Create';
+				contact_map = Map();
+				contact_additional_map = Map();
+				for each  rec in Customer_details.get("contact_persons")
+				{
+					//contact_map.put("Company_No",Customer_details.get("contact_id"));
+					//contact_map.put("Company_Name",Customer_details.get("company_name"));
+					contact_map.put("Phone_No",rec.get("mobile"));
+					contact_map.put("Zoho_Books_ID",rec.get("contact_person_id"));
+					contact_map.put("No",rec.get("contact_person_id"));
+					contact_create_record = zoho.creator.createRecord("getcoverall","rental-advantage","Contact",contact_map,contact_additional_map,"creator_connect");
+					info contact_create_record;
+					if(contact_create_record.containKey("code") && contact_create_record.get("code") == 3000 && contact_create_record.get("data") != null)
+					{
+						//
+					}
+					else
+					{
+						Activity_map = Map();
+						Activity_map.put("Module","Books : Contact");
+						Activity_map.put("Description","Create - Contact");
+						Activity_map.put("Request",customerID);
+						Activity_map.put("Response","Issue : Create new Contact");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		if(Customer_details.containKey("contact_id") && Customer_details.get("contact_id") != null)
+		{
+			info 'Edit';
+			additional_map = Map();
+			update_record = zoho.creator.updateRecords("getcoverall","rental-advantage","Customers","Zoho_Book_ID == \"" + Contact_id + "\"",data_map,additional_map,"creator_connect");
+			info update_record;
+			if(update_record.containKey("code") && update_record.get("code") == 3000 && update_record.get("data") != null)
+					{
+						//
+					}
+					else
+					{
+						Activity_map = Map();
+						Activity_map.put("Module","Books : Customer");
+						Activity_map.put("Description","Update - Customer");
+						Activity_map.put("Request",customerID);
+						Activity_map.put("Response","Issue : Update the Customer");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					}
+			if(Customer_details.containKey("contact_persons") && Customer_details.get("contact_persons") != null)
+			{
+				info 'Contact - Edit';
+				contact_map = Map();
+				contact_additional_map = Map();
+				for each  rec in Customer_details.get("contact_persons")
+				{
+					//contact_map.put("Company_No",Customer_details.get("contact_id"));
+					//contact_map.put("Company_Name",Customer_details.get("company_name"));
+					contact_map.put("Phone_No",rec.get("mobile"));
+					contact_map.put("Zoho_Books_ID",rec.get("contact_person_id"));
+					contact_map.put("No",rec.get("contact_person_id"));
+					contact_update_record = zoho.creator.updateRecords("getcoverall","rental-advantage","Contacts","Zoho_Book_ID == \"" + rec.get("contact_person_id") + "\"",contact_map,contact_additional_map,"creator_connect");
+					info contact_update_record;
+					if(contact_update_record.containKey("code") && contact_update_record.get("code") == 3000 && contact_update_record.get("data") != null)
+					{
+						//
+					}
+					else
+					{
+						Activity_map = Map();
+						Activity_map.put("Module","Books : Contact");
+						Activity_map.put("Description","Update - Contact");
+						Activity_map.put("Request",customerID);
+						Activity_map.put("Response","Issue : CUPdate the Contact");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					}
+				}
+			}
+		}
+	}
+}

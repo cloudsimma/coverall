@@ -1,0 +1,65 @@
+void create_stocks_in_creator( Map salesorder , Map organization , Map user ) 
+{
+    
+/****************************************************
+Description: Update Stock in Item - Zoho Creator
+Created AT : 14/09/2022
+Created By : Meena M
+******************************************************/
+salesorderID = salesorder.get("salesorder_id");
+organizationID = organization.get("organization_id");
+try 
+{
+	if(salesorderID != null && salesorderID != "")
+	{
+		data_map = Map();
+		data_map1 = Map();
+		so_lineitem = salesorder.get("line_items");
+		info so_lineitem;
+		if(salesorder.containKey("line_items") && salesorder.get("line_items") != null && salesorder.get("line_items") != "")
+		{
+			for each  lines in so_lineitem
+			{
+				if(lines.get("item_id") != null)
+				{
+					items = zoho.inventory.getRecordsByID("items",organizationID,lines.get("item_id"),"inventory_connect");
+					if(items.get("code") == 0 && items.get("item") != null)
+					{
+						data_map.put("Item_ID",ifnull(items.get("item").get("item_id"),""));
+						data_map.put("Zoho_Book_ID",ifnull(items.get("item").get("item_id"),""));
+						data_map.put("Item_Action","Books-SalesOrder");
+						data_map.put("Opening_Stock",ifnull(items.get("item").get("available_stock"),0));
+						data_map.put("Stock_on_Hand",ifnull(items.get("item").get("available_stock"),0));
+						data_map.put("Committed_Stock",ifnull(items.get("item").get("committed_stock"),0));
+						data_map.put("Available_for_Sale",ifnull(items.get("item").get("available_for_sale_stock"),0));
+						data_map.put("Stock_on_Hand1",ifnull(items.get("item").get("actual_available_stock"),0));
+						data_map.put("Committed_Stock1",ifnull(items.get("item").get("actual_committed_stock"),0));
+						data_map.put("Available_for_Sale1",ifnull(items.get("item").get("actual_available_for_sale"),0));
+						stock = zoho.creator.createRecord("getcoverall","rental-advantage","Stock_Inventory",data_map,data_map1,"creator_connect");
+					}
+					else{
+
+						Activity_map = Map();
+						Activity_map.put("Module","Books : Sales Order");
+						Activity_map.put("Description","Create - Sales Order Stock Update");
+						Activity_map.put("Request",salesorderID.toString());
+						Activity_map.put("Response","Issue : Create Sales Order Stock record from Books to Creator");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+					}
+				}
+			}
+		}
+	}
+}
+catch (e)
+{
+	catch_map = Map();
+	catch_map.put("Module","Books : Sales Order");
+	catch_map.put("Process_Description","Create - Sales Order Stock Update");
+	catch_map.put("In_Data",salesorderID.toString());
+	catch_map.put("Out_Response",e);
+	developerLog = zoho.creator.createRecord("getcoverall","rental-advantage","Developer_Log",catch_map,Map(),"creator_connect");
+}
+
+
+}

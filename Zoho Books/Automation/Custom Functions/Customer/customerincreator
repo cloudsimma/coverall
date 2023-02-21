@@ -1,0 +1,50 @@
+void customerincreator( Map customer , Map organization , Map user ) 
+{
+    
+customerID = customer.get("contact_id");
+Customer_Info = zoho.books.getRecordsByID("contacts","768861030",customerID,"books_connect");
+if(Customer_Info.get("code") == 0)
+{
+	Customer_details = Customer_Info.get("contact");
+	data_map = Map();
+	data_map.put("Name",Customer_details.get("contact_name"));
+	data_map.put("Website",Customer_details.get("website"));
+	data_map.put("department",Customer_details.get("department"));
+	data_map.put("companyname",Customer_details.get("company_name"));
+	data_map.put("firstname",Customer_details.get("first_name"));
+	data_map.put("Lastname",Customer_details.get("last_name"));
+	data_map.put("Lastname",Customer_details.get("contact_type"));
+	data_map.put("Email",Customer_details.get("email"));
+	data_map.put("Contact_ID",Customer_details.get("contact_id"));
+	data_map.put("attention",Customer_details.get("billing_address").get("attention"));
+	data_map.put("Area",Customer_details.get("billing_address").get("street2"));
+	data_map.put("addressID",Customer_details.get("billing_address").get("address_id"));
+	data_map.put("address",Customer_details.get("billing_address").get("city"));
+	data_map.put("state",Customer_details.get("billing_address").get("state"));
+	data_map.put("Zip",Customer_details.get("billing_address").get("zip"));
+	data_map.put("country",Customer_details.get("billing_address").get("country"));
+	data_map.put("Shipping_addressID",Customer_details.get("shipping_address").get("address_id"));
+	data_map.put("Shipping_attention",Customer_details.get("shipping_address").get("attention"));
+	data_map.put("Street 2",Customer_details.get("shipping_address").get("street2"));
+	data_map.put("Shipping_city",Customer_details.get("shipping_address").get("city"));
+	data_map.put("Shipping_state",Customer_details.get("shipping_address").get("state"));
+	data_map.put("Shipping_Zip",Customer_details.get("shipping_address").get("zip"));
+	data_map.put("Shipping country",Customer_details.get("shipping_address").get("country"));
+	data_map.put("Phone",Customer_details.get("phone"));
+	subformList = List();
+	for each  rec in Customer_details.get("contact_persons")
+	{
+		contactmap = Map();
+		contactmap.put("ContactpersonID",rec.get("contact_person_id"));
+		contactmap.put("Firstname",rec.get("first_name"));
+		contactmap.put("Lastname",rec.get("last_name"));
+		contactmap.put("email",rec.get("email"));
+		contactmap.put("phone",rec.get("phone"));
+		contactmap.put("Department",rec.get("department"));
+		subformList.add(contactmap);
+		data_map.put("creatorsubform",subformList);
+	}
+}
+info data_map;
+
+}

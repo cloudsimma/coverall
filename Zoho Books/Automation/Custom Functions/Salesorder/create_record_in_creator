@@ -1,0 +1,55 @@
+
+salesorderID = salesorder.get("salesorder_id");
+organizationID = organization.get("organization_id");
+SalesOrder_Info = zoho.books.getRecordsByID("salesorders",organizationID,salesorderID,"books_connect");
+info SalesOrder_Info;
+if(SalesOrder_Info.containKey("salesorder") && SalesOrder_Info.get("salesorder") != null)
+{
+	SalesOrder_details = SalesOrder_Info.get("salesorder");
+	data_map = Map();
+	data_map.put("Date_field",zoho.currentdate);
+	data_map.put("Sales_Order_No",SalesOrder_details.get("salesorder_number"));
+	data_map.put("Zoho_Books_SO_ID",ifnull(SalesOrder_details.get("salesorder_id"),""));
+	if(SalesOrder_details.containKey("customer_id") && SalesOrder_details.get("customer_id") != null)
+	{
+		Customer_Info = zoho.books.getRecordsByID("contacts",organizationID,SalesOrder_details.get("customer_id"),"books_connect");
+		if(Customer_Info.containKey("contact") && Customer_Info.get("contact") != null)
+		{
+			data_map.put("Customer_Name",Customer_Info.get("contact_name"));
+			data_map.put("Company_Name",Customer_Info.get("company_name"));
+			data_map.put("Phone_Number",ifnull(Customer_Info.get("mobile"),Customer_Info.get("phone")));
+			data_map.put("Email",ifnull(Customer_Info.get("email"),""));
+			data_map.put("Zoho_Books_Customer_ID",ifnull(Customer_Info.get("contact_id"),""));
+		}
+	}
+	if(SalesOrder_details.containKey("line_items") && SalesOrder_details.get("line_items") != null)
+	{
+		line_item_map = Map();
+		for each  rec in SalesOrder_details.get("line_items")
+		{
+			line_item_map.put("Item_Name",rec.get("name"));
+			line_item_map.put("Zoho_Books_Item_ID",rec.get("item_id"));
+			line_item_map.put("Quantity_Ordered",rec.get("quantity"));
+			line_item_map.put("Quantity_Ordered",0);
+			line_item_map.put("Outstanding_Quantity",rec.get("quantity"));
+			line_item_map.put("Shipement_Date",ifnull(SalesOrder_details.get("shipment_date"),null));
+		}
+		data_map.put("Items",line_item_map);
+		additional_map = Map();
+		create_record = zoho.creator.createRecord("getcoverall","pick-instruction","Pick_Instruction",data_map,additional_map,"creator_connect");
+		info create_record;
+		if(create_record.get("salesorder_id") != null)
+		{
+			// 					
+		}
+		else
+		{
+			Activity_map = Map();
+			Activity_map.put("Module","Books : pick-instruction");
+			Activity_map.put("Description","Pick Instruction");
+			Activity_map.put("Request",salesorderID.toString());
+			Activity_map.put("Response","Issue : Create pick-instruction record from Books to Creator");
+			ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+		}
+	}
+}

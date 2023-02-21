@@ -1,0 +1,109 @@
+
+/**********************
+Description: New Estimate Create in Zoho Creator
+Created AT : 06/09/2022
+Created By : Raja V
+***********************/
+/*
+This is a sample function. Uncomment to execute or make changes to this function.  
+estimatedate = estimate.get("date").toDate();
+*/
+estimateID = estimate.get("estimate_id");
+organizationID = organization.get("organization_id");
+try 
+{
+	if(estimate.containKey("customer_id") && estimate.get("customer_id") != null && estimate.get("customer_id") != "")
+	{
+		book_customer_info = zoho.books.getRecordsByID("contacts",organizationID,estimate.get("customer_id").toNumber(),"books_connect");
+		if(book_customer_info.containKey("contact") && book_customer_info.get("contact") != null)
+		{
+			book_customer_details = book_customer_info.get("contact");
+			if(book_customer_details.containKey("zcrm_account_id") && book_customer_details.get("zcrm_account_id") != null && book_customer_details.get("zcrm_account_id") != "")
+			{
+				crm_customer_id = book_customer_details.get("zcrm_account_id").toNumber();
+				creator_customer = zoho.creator.getRecords("getcoverall","rental-advantage","Customers","CRM_Customer_ID == \"" + crm_customer_id + "\"",1,200,"creator_connect");
+				if(creator_customer.containKey("code") && creator_customer.get("code") == 3000 && creator_customer.get("data") != null)
+				{
+					creator_customer_info = creator_customer.get("data").get(0);
+					if(creator_customer_info.containKey("ID") && creator_customer_info.get("ID") != null)
+					{
+						creator_customer_id = creator_customer_info.get("ID");
+						data_map = Map();
+						optional_map = Map();
+						data_map.put("Sell_to_Customer_No",creator_customer_id);
+						data_map.put("Estimate_No",estimate.get("estimate_number"));
+						data_map.put("Zoho_Books_Status","Estimate");
+						data_map.put("Zoho_Books_Estimate_ID",estimateID);
+						data_map.put("Total_Excl_Tax_CAD",ifnull(estimate.get("sub_total"),0.0).toDecimal());
+						data_map.put("Total_Tax_CAD",ifnull(estimate.get("tax_total"),0.0).toDecimal());
+						total_incl_tax = ifnull(estimate.get("sub_total"),0.0).toDecimal() + ifnull(estimate.get("tax_total"),0.0).toDecimal();
+						data_map.put("Total_Incl_Tax_CAD",ifnull(total_incl_tax,0.0).toDecimal());
+						data_map.put("Total_Payment_Amount",ifnull(estimate.get("total"),0.0).toDecimal());
+						create_estimate = zoho.creator.createRecord("getcoverall","rental-advantage","Direct_Sales",data_map,optional_map,"creator_connect");
+						if(create_estimate.containKey("code") && create_estimate.get("code") == 3000 && create_estimate.get("data") != null)
+						{
+							created_estimate_info = create_estimate.get("data");
+							if(created_estimate_info.containKey("ID") && created_estimate_info.get("ID") != null)
+							{
+								creator_estimate_id = created_estimate_info.get("ID");
+								if(estimate.containKey("line_items") && estimate.get("line_items") != null && estimate.get("line_items").size() > 0)
+								{
+									estimate_line_items = estimate.get("line_items");
+									for each  line_item in estimate_line_items
+									{
+										if(line_item.get("item_id") != null)
+										{
+											creator_item = zoho.creator.getRecords("getcoverall","rental-advantage","Resource_Items","Zoho_Books_ID == \"" + line_item.get("item_id") + "\"",1,200,"creator_connect");
+											if(creator_item.containKey("code") && creator_item.get("code") == 3000 && creator_item.get("data") != null)
+											{
+												creator_item_info = creator_item.get("data").get(0);
+												if(creator_item_info.containKey("ID") && creator_item_info.get("ID") != null)
+												{
+													creator_item_id = creator_item_info.get("ID");
+													line_map = Map();
+													optional_map = Map();
+													line_map.put("Direct_Sales_ID",creator_estimate_id);
+													line_map.put("No",creator_item_id);
+													line_map.put("Quantity",line_item.get("quantity"));
+													line_map.put("Unity_Prise_Excl_Tax",line_item.get("rate"));
+													line_map.put("Line_Amount_Excl_Tax",line_item.get("item_total"));
+													create_estimate_item = zoho.creator.createRecord("getcoverall","rental-advantage","Lines",line_map,optional_map,"creator_connect");
+													custom_field_map = Map();
+													creator_map = Map();
+													creator_map.put("label","Zoho Creator ID");
+													creator_map.put("value",creator_estimate_id);
+													creator_list = List();
+													creator_list.add(creator_map);
+													custom_field_map.put("custom_fields",creator_list);
+													update_estimate = zoho.books.updateRecord("estimates","768861030",estimateID,custom_field_map,"books_connect");
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						else
+						{
+						Activity_map = Map();
+						Activity_map.put("Module","Books : Estimates");
+						Activity_map.put("Description","Create - Estimates");
+						Activity_map.put("Request",estimateID.toString());
+						Activity_map.put("Response","Issue : New Estimate Create in Zoho Creator");
+						ActivityLog = zoho.creator.createRecord("getcoverall","rental-advantage","Activity_Log",Activity_map,Map(),"creator_connect");
+						}
+					}
+				}
+			}
+		}
+	}
+}
+catch (e)
+{
+	catch_map = Map();
+	catch_map.put("Module","Books : Estimates");
+	catch_map.put("Process_Description","Create - Resource/Item to Creator");
+	catch_map.put("In_Data",estimateID.toString());
+	catch_map.put("Out_Response",e);
+	developerLog = zoho.creator.createRecord("getcoverall","rental-advantage","Developer_Log",catch_map,Map(),"creator_connect");
+}
