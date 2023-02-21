@@ -1,0 +1,1 @@
+openUrl("https://app.zohocreator.com/getcoverall/lead-management-system/#Form:Leads?recLinkID=" + input.ID + "&viewLinkName=Pending_for_Approval","popup window");

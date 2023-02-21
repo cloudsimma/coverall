@@ -1,0 +1,28 @@
+void crm.estimate_status_update(int quote_id, int deal_id, string stage, string zoho_book_id)
+{
+	if(input.quote_id != null)
+	{
+		det = Map();
+		if(input.stage != "Confirmed" && input.stage != "Closed Won" && input.stage != "Closed Lost")
+		{
+			quote_map = Map();
+			quote_map.put("Quote_Stage","Delivered");
+			quo_res = zoho.crm.updateRecord("Quotes",input.quote_id,quote_map,det,"crm_connect");
+		}
+		if(input.deal_id != null)
+		{
+			deal_map = Map();
+			deal_map.put("Estimate_Status","Sent");
+			deal_res = zoho.crm.updateRecord("Deals",input.deal_id,deal_map,det,"crm_connect");
+		}
+		if(input.zoho_book_id != null && input.zoho_book_id != "")
+		{
+			up_est_sent = invokeurl
+			[
+				url :"https://books.zoho.com/api/v3/estimates/" + input.zoho_book_id + "/status/sent?organization_id=768861030"
+				type :POST
+				connection:"books_connect"
+			];
+		}
+	}
+}

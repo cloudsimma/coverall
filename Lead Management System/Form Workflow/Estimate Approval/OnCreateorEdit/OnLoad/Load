@@ -1,0 +1,4 @@
+hide Deal_ID;
+hide quote_id;
+hide Stage;
+hide Zoho_Book_ID;

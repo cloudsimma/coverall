@@ -1,0 +1,34 @@
+/****************************************************************
+Description: On Submit
+Created AT : 05-08-2022
+Created By : Raja V
+*****************************************************************/
+det = Map();
+if(input.Deal_ID != null && input.Deal_ID != "" && input.Comments != "" && input.Comments != null)
+{
+	notesMap = Map();
+	notesMap.put("Parent_Id",input.Deal_ID);
+	notesMap.put("Note_Title","Estimate Notes");
+	notesMap.put("Note_Content",input.Comments);
+	notesMap.put("$se_module","Deals");
+	response = zoho.crm.createRecord("Notes",notesMap,det,"crm_connect");
+}
+if(input.quote_id != null && input.quote_id != "" && input.Confirm_and_place_the_order == true)
+{
+	quote_map = Map();
+	deal_map = Map();
+	quote_map.put("Quote_Stage","Confirmed");
+	quo_res = zoho.crm.updateRecord("Quotes",input.quote_id.toNumber(),quote_map,det,"crm_connect");
+	deal_map.put("Estimate_Status","Confirmed");
+	deal_res = zoho.crm.updateRecord("Deals",input.Deal_ID.toNumber(),deal_map,det,"crm_connect");
+}
+if(input.Zoho_Book_ID != null && input.Zoho_Book_ID != "")
+{
+	up_est = invokeurl
+	[
+		url :"https://books.zoho.com/api/v3/estimates/" + input.Zoho_Book_ID + "/status/accepted?organization_id=768861030"
+		type :POST
+		connection:"books_connect"
+	];
+}
+openUrl("https://www.getcoverall.com/","same window");

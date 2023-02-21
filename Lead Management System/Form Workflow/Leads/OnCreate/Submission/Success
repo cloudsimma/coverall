@@ -1,0 +1,69 @@
+/****************************************************************
+Description: On Submit
+Created AT : 05-08-2022
+Created By : Raja V
+*****************************************************************/
+lead_map = Map();
+lead_map.put("First_Name",ifnull(input.First_Name,""));
+if(input.Last_Name == null || input.Last_Name == "")
+{
+	lead_map.put("Last_Name","N/A");
+}
+else
+{
+	lead_map.put("Last_Name",input.Last_Name);
+}
+lead_map.put("Company",ifnull(input.Company,""));
+lead_map.put("Phone",ifnull(input.Phone_Number,""));
+lead_map.put("Email",ifnull(input.Email,""));
+lead_map.put("Street",if(input.Address.address_line_1 != null,input.Address.address_line_1,"") + if(input.Address.address_line_2 != null,input.Address.address_line_2,""));
+lead_map.put("State",ifnull(input.Address.state_province,""));
+lead_map.put("Zip_Code",ifnull(input.Address.postal_Code,""));
+lead_map.put("City",ifnull(input.Address.district_city,""));
+lead_map.put("Country",ifnull(input.Address.country,""));
+lead_map.put("Zoho_Creator_ID",ifnull(input.ID.toString(),""));
+lead_map.put("Lead_Source","Truck Driver LMS");
+lead_map.put("Lead_Status","Un Approved");
+lead_map.put("URL_1",ifnull(input.Url,""));
+trigger = List();
+trigger.add("workflow");
+data_map = Map();
+l_list = List();
+l_list.add(lead_map);
+data_map.put("data",l_list);
+data_map.put("trigger",trigger);
+val = invokeurl
+[
+	url :"https://www.zohoapis.com/crm/v2/Leads"
+	type :POST
+	parameters:data_map.toString()
+	connection:"crm_connect"
+];
+suc_res = val.get("data").get(0).get("code");
+if(suc_res == "SUCCESS")
+{
+	suc_let = val.get("data").get(0).get("details");
+	if(suc_let.containKey("id"))
+	{
+		input.Zoho_CRM_ID = val.get("id").toString();
+		input.Status = "Pending";
+		if(input.Image != null && input.Image != "")
+		{
+			img_name = input.Image.getSuffix("image/").getPrefix("\" lowqual");
+			hide_url = "https://creator.zohopublic.com/file/getcoverall/lead-management-system/Leads_Report/" + input.ID + "/Image/image-download/J6meaTeW8yHvRXp7K6hExMWjCuB8TgF2FXUffHDJuEMr46eS3F8GrVpFKX1ts8wghKj3GN0kjFTb4wH6fkYPya5QYfwzsTNtP86K?filepath=/" + img_name;
+			photo = invokeurl
+			[
+				url :hide_url
+				type :GET
+			];
+			photo.setParamName("file");
+			vat = invokeurl
+			[
+				url :"https://www.zohoapis.com/crm/v2/Leads/" + val.get("id") + "/photo"
+				type :POST
+				files:photo
+				connection:"crm_connect"
+			];
+		}
+	}
+}

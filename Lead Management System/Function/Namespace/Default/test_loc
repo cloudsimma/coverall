@@ -1,0 +1,10 @@
+void test_loc()
+{
+	val = invokeurl
+	[
+		url :"https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyA-JG-KaQzSgdUpBinpUvjcoQaOlm2puyQ"
+		type :POST
+	];
+	info val;
+	//https://maps.google.com?q=51.03841,-114.01679
+}
