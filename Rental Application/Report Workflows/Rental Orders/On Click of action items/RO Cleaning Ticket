@@ -1,0 +1,6 @@
+/****************************************************************
+Description: Cleaning Ticket Print Preview
+Created AT : 22-11-22
+Created By : Punitha N
+*****************************************************************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/print/Delivery_Wash_Ticket?ID=" + input.ID + "&Param=CLEANING","new window");

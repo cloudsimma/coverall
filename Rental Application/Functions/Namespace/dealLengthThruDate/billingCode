@@ -1,0 +1,209 @@
+map dealLengthThruDate.billingCode(int id)
+{
+	/******************
+Description: Calcaulate Deal length and Invoiced thru Date by Billing Period Code
+Created AT : 01/12/2022
+Created By : Hari Prema M
+*****************/
+	returnMap = Map();
+	rentals = Rentals[ID == id];
+	if(rentals.count() > 0)
+	{
+		if(rentals.Deal_code != null)
+		{
+			deal_code = Rental_Deal_Card[ID == rentals.Deal_code];
+			if(deal_code.count() > 0)
+			{
+				if(deal_code.Billing_Period_Code != null)
+				{
+					rental_period_code = deal_code.Billing_Period_Code;
+					rental_period = Rental_Periods[ID == rental_period_code];
+					if(rental_period.count() > 0)
+					{
+						code = rental_period.Code;
+						length = rental_period.Length_field;
+						unit = rental_period.Units;
+						if(rentals.Invoiced_Thru_Date == null)
+						{
+							if(rentals.Thru_Date == null)
+							{
+								if(unit == "Day(s)")
+								{
+									between_days = rentals.From_Date.daysBetween(zoho.currentdate);
+									between = (between_days / length).floor();
+									to_date = between * length;
+									from_invoice_date = rentals.From_Date;
+									invoiced_thru_date = rentals.From_Date.addDay(to_date);
+								}
+								else if(unit == "Month(s)")
+								{
+									between_months = rentals.From_Date.monthsBetween(zoho.currentdate);
+									between = (between_months / length).floor();
+									to_date = between * length;
+									from_invoice_date = rentals.From_Date;
+									invoiced_thru_date = rentals.From_Date.addMonth(to_date);
+								}
+								else if(unit == "Year(s)")
+								{
+									between_years = rentals.From_Date.yearsBetween(zoho.currentdate);
+									between = (between_years / length).floor();
+									to_date = between * length;
+									from_invoice_date = rentals.From_Date;
+									invoiced_thru_date = rentals.From_Date.addYear(to_date);
+								}
+							}
+							else
+							{
+								if(rentals.Thru_Date < zoho.currentdate)
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = rentals.From_Date.daysBetween(rentals.Thru_Date);
+										between = (between_days / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.From_Date;
+										invoiced_thru_date = rentals.From_Date.addDay(to_date);
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = rentals.From_Date.monthsBetween(rentals.Thru_Date);
+										between = (between_months / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.From_Date;
+										invoiced_thru_date = rentals.From_Date.addMonth(to_date);
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = rentals.From_Date.yearsBetween(rentals.Thru_Date);
+										between = (between_years / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.From_Date;
+										invoiced_thru_date = rentals.From_Date.addYear(to_date);
+									}
+								}
+								else
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = rentals.From_Date.daysBetween(zoho.currentdate);
+										between = (between_days / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.From_Date;
+										invoiced_thru_date = rentals.From_Date.addDay(to_date);
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = rentals.From_Date.monthsBetween(zoho.currentdate);
+										between = (between_months / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.From_Date;
+										invoiced_thru_date = rentals.From_Date.addMonth(to_date);
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = rentals.From_Date.yearsBetween(zoho.currentdate);
+										between = (between_years / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.From_Date;
+										invoiced_thru_date = rentals.From_Date.addYear(to_date);
+									}
+								}
+							}
+						}
+						else
+						{
+							if(rentals.Thru_Date == null)
+							{
+								if(unit == "Day(s)")
+								{
+									between_days = rentals.Invoiced_Thru_Date.daysBetween(zoho.currentdate);
+									between = (between_days / length).floor();
+									to_date = between * length;
+									from_invoice_date = rentals.Invoiced_Thru_Date;
+									invoiced_thru_date = rentals.Invoiced_Thru_Date.addDay(to_date);
+								}
+								else if(unit == "Month(s)")
+								{
+									between_months = rentals.Invoiced_Thru_Date.monthsBetween(zoho.currentdate);
+									between = (between_months / length).floor();
+									to_date = between * length;
+									from_invoice_date = rentals.Invoiced_Thru_Date;
+									invoiced_thru_date = rentals.Invoiced_Thru_Date.addMonth(to_date);
+								}
+								else if(unit == "Year(s)")
+								{
+									between_years = rentals.Invoiced_Thru_Date.yearsBetween(zoho.currentdate);
+									between = (between_years / length).floor();
+									to_date = between * length;
+									from_invoice_date = rentals.Invoiced_Thru_Date;
+									invoiced_thru_date = rentals.Invoiced_Thru_Date.addYear(to_date);
+								}
+							}
+							else
+							{
+								if(rentals.Thru_Date < zoho.currentdate)
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = rentals.Invoiced_Thru_Date.daysBetween(rentals.Thru_Date);
+										between = (between_days / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.Invoiced_Thru_Date;
+										invoiced_thru_date = rentals.Invoiced_Thru_Date.addDay(to_date);
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = rentals.Invoiced_Thru_Date.monthsBetween(rentals.Thru_Date);
+										between = (between_months / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.Invoiced_Thru_Date;
+										invoiced_thru_date = rentals.Invoiced_Thru_Date.addMonth(to_date);
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = rentals.Invoiced_Thru_Date.yearsBetween(rentals.Thru_Date);
+										between = (between_years / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.Invoiced_Thru_Date;
+										invoiced_thru_date = rentals.Invoiced_Thru_Date.addYear(to_date);
+									}
+								}
+								else
+								{
+									if(unit == "Day(s)")
+									{
+										between_days = rentals.Invoiced_Thru_Date.daysBetween(zoho.currentdate);
+										between = (between_days / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.Invoiced_Thru_Date;
+										invoiced_thru_date = rentals.Invoiced_Thru_Date.addDay(to_date);
+									}
+									else if(unit == "Month(s)")
+									{
+										between_months = rentals.Invoiced_Thru_Date.monthsBetween(zoho.currentdate);
+										between = (between_months / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.Invoiced_Thru_Date;
+										invoiced_thru_date = rentals.Invoiced_Thru_Date.addMonth(to_date);
+									}
+									else if(unit == "Year(s)")
+									{
+										between_years = rentals.Invoiced_Thru_Date.yearsBetween(zoho.currentdate);
+										between = (between_years / length).floor();
+										to_date = between * length;
+										from_invoice_date = rentals.Invoiced_Thru_Date;
+										invoiced_thru_date = rentals.Invoiced_Thru_Date.addYear(to_date);
+									}
+								}
+							}
+						}
+					}
+					returnMap.put("Between",between);
+					returnMap.put("From Invoice Date",from_invoice_date);
+					returnMap.put("Invoiced Thru Date",invoiced_thru_date);
+				}
+			}
+		}
+	}
+	return returnMap;
+}

@@ -1,0 +1,247 @@
+void Invoice.invoiceCreation(int id)
+{
+	rentalOrder = Rental_Order[ID == input.id];
+	if(rentalOrder.count() > 0)
+	{
+		thisapp.thru_date();
+		data_map = Map();
+		item_list = List();
+		if(rentalOrder.Sell_to_Customer_No != null)
+		{
+			zoho_book_id = "";
+			if(rentalOrder.Sell_to_Customer_No.Zoho_Book_ID != null && rentalOrder.Sell_to_Customer_No.Zoho_Book_ID != "")
+			{
+				zoho_book_id = ifnull(rentalOrder.Sell_to_Customer_No.Zoho_Book_ID.toLong(),"");
+			}
+			else
+			{
+				if(rentalOrder.Sell_to_Customer_No.CRM_Customer_ID != null && rentalOrder.Sell_to_Customer_No.CRM_Customer_ID != "")
+				{
+					zoho_book_id = thisapp.books_id(rentalOrder.Sell_to_Customer_No.CRM_Customer_ID.toLong());
+				}
+			}
+			if(zoho_book_id != null)
+			{
+				cust = Customer[ID == rentalOrder.Sell_to_Customer_No];
+				if(cust.count() > 0)
+				{
+					cust.Zoho_Book_ID=zoho_book_id.toString();
+				}
+				data_map.put("customer_id",zoho_book_id.toNumber());
+				rental_rowcollection = Collection();
+				rental_sam_cal = 0;
+				rental_count = 0;
+				sales_rowcollection = Collection();
+				sales_sam_cal = 0;
+				sales_count = 0;
+				for each  rec_rental in Rentals[Rental_Order == input.id && Invoiced == false]
+				{
+					// 	for creator's Books Invoice module
+					rental_row = Books_Invoice.Rentals();
+					rental_row.Type_field=ifnull(rec_rental.Type,null);
+					rental_row.Resource_Item=ifnull(rec_rental.Resource_Item,null);
+					rental_row.RentalNotes=ifnull(rec_rental.Rental_Notes,null);
+					if(rentalOrder.Select_Code == 4255146000000237039)
+					{
+						rental_row.Quantity=ifnull(rec_rental.Billing_Quantity,null);
+					}
+					else
+					{
+						rental_row.Quantity=ifnull(rec_rental.Shipping_Quantity,null);
+					}
+					rental_row.Unit_Price_Pack_Price=ifnull(rec_rental.Unit_Price_Pack_Price,null);
+					functionCall = thisapp.dealLengthThruDate.billingCode(rec_rental.ID);
+					rec_rental.Invoiced_Thru_Date=functionCall.get("Invoiced Thru Date");
+					rental_row.Between=functionCall.get("Between");
+					rental_row.From_Invoice_Date=functionCall.get("From Invoice Date");
+					rental_row.To_Invoice_Date=functionCall.get("Invoiced Thru Date");
+					rental_row.RentalNotes=ifnull(rec_rental.Rental_Notes,"");
+					if(rental_row.Between.toNumber() > 0)
+					{
+						rental_row.Extended_Price=ifnull(rental_row.Quantity.toDecimal(),1) * ifnull(rental_row.Between.toDecimal(),1) * ifnull(rental_row.Unit_Price_Pack_Price.toDecimal(),0);
+					}
+					else
+					{
+						rental_row.Extended_Price=ifnull(rental_row.Quantity.toDecimal(),1) * ifnull(rental_row.Unit_Price_Pack_Price.toDecimal(),0);
+					}
+					rental_row.Description=rec_rental.Description;
+					rental_rowcollection.insert(rental_row);
+					rental_sam_cal = rental_sam_cal.toDecimal() + ifnull(rental_row.Extended_Price,0).toDecimal();
+					// 							for Book's Invoice
+					rental_map = Map();
+					rental_map.put("header_name","Rentals");
+					rental_map.put("item_id",ifnull(rec_rental.Resource_Item.Zoho_Books_ID,"N/A"));
+					rental_map.put("quantity",ifnull(rental_row.Quantity,1));
+					rental_map.put("rate",ifnull(rec_rental.Unit_Price_Pack_Price,0));
+					item_list.add(rental_map);
+					rental_count = rental_count + 1;
+				}
+				for each  rec_sale1 in Sales[Rental_Order == input.id && Invoiced == false]
+				{
+					// 							for Creato'r Books Invoice Module
+					sales_row = Books_Invoice.Sales();
+					sales_row.Type_field=ifnull(rec_sale1.Type,null);
+					sales_row.Resource_Item=ifnull(rec_sale1.No,null);
+					sales_row.SalesNotes=ifnull(rec_sale1.Sales_Notes,null);
+					sales_row.Quantity=ifnull(rec_sale1.Quantity,null);
+					sales_row.Unit_Price_Pack_Price=ifnull(rec_sale1.Unit_Price,null);
+					sales_row.Extended_Price=ifnull(rec_sale1.Extended_Price,null);
+					sales_row.Delivery_Date=ifnull(rec_sale1.Delivery_Date,null);
+					sales_row.Description=rec_sale1.Description;
+					sales_row.SalesNotes=ifnull(rec_sale1.Sales_Notes,"");
+					sales_rowcollection.insert(sales_row);
+					sales_sam_cal = sales_sam_cal.toDecimal() + ifnull(sales_row.Extended_Price,0).toDecimal();
+					// 							for Book's Invoice
+					sales_map = Map();
+					sales_map.put("header_name","Sales");
+					sales_map.put("item_id",ifnull(rec_sale1.No.Zoho_Books_ID,"N/A"));
+					sales_map.put("quantity",ifnull(rec_sale1.Quantity,1));
+					sales_map.put("rate",ifnull(rec_sale1.Unit_Price,0));
+					item_list.add(sales_map);
+					sales_count = sales_count + 1;
+				}
+				// 						Other Charges
+				// 						SAM Charge
+				sam_charge = Map();
+				if(rentalOrder.SAM_Charge > 0.00)
+				{
+					SAM_Charge_rate = (rental_sam_cal * rentalOrder.SAM_Charge) / 100;
+					SAM_Charge_rate = SAM_Charge_rate.toDecimal().round(2);
+					sam_charge.put("header_name","Other Charges");
+					sam_charge.put("item_id",3014970000003387001);
+					sam_charge.put("quantity",1);
+					sam_charge.put("rate",SAM_Charge_rate);
+					item_list.add(sam_charge);
+				}
+				// 						Service Charge
+				service_charge = Map();
+				if(rentalOrder.Service_Charge > 0.00 && rentalOrder.Include_Resources_in_SVC_CHG == false)
+				{
+					service_charge_rental = (rental_sam_cal * rentalOrder.Service_Charge) / 100;
+					service_charge_rental = service_charge_rental.toDecimal().round(2);
+					service_charge.put("header_name","Other Charges");
+					service_charge.put("item_id",3014970000003387023);
+					service_charge.put("quantity",1);
+					service_charge.put("rate",service_charge_rental);
+					item_list.add(service_charge);
+				}
+				else if(rentalOrder.Service_Charge > 0.00 && rentalOrder.Include_Resources_in_SVC_CHG == true)
+				{
+					service_charge_rental = rental_sam_cal + sales_sam_cal;
+					service_charge_rental = (service_charge_rental * rentalOrder.Service_Charge) / 100;
+					service_charge_rental = service_charge_rental.toDecimal().round(2);
+					service_charge.put("header_name","Other Charges");
+					service_charge.put("item_id",3014970000003387023);
+					service_charge.put("quantity",1);
+					service_charge.put("rate",service_charge_rental);
+					item_list.add(service_charge);
+				}
+				// 						Tex Care Charge
+				tex_care_charge = Map();
+				if(rentalOrder.Tax_are > 0.00 && rentalOrder.Include_Resources_in_Tx_Care == false)
+				{
+					tex_care_charge_rental = (rental_sam_cal * rentalOrder.Tax_are) / 100;
+					tex_care_charge_rental = tex_care_charge_rental.toDecimal().round(2);
+					tex_care_charge.put("header_name","Other Charges");
+					tex_care_charge.put("item_id",3014970000003387012);
+					tex_care_charge.put("quantity",1);
+					tex_care_charge.put("rate",tex_care_charge_rental);
+					item_list.add(tex_care_charge);
+				}
+				else if(rentalOrder.Tax_are > 0.00 && rentalOrder.Include_Resources_in_Tx_Care == true)
+				{
+					tex_care_charge_rental = rental_sam_cal + sales_sam_cal;
+					tex_care_charge_rental = (tex_care_charge_rental * rentalOrder.Tax_are) / 100;
+					tex_care_charge_rental = tex_care_charge_rental.toDecimal().round(2);
+					tex_care_charge.put("header_name","Other Charges");
+					tex_care_charge.put("item_id",3014970000003387012);
+					tex_care_charge.put("quantity",1);
+					tex_care_charge.put("rate",tex_care_charge_rental);
+					item_list.add(tex_care_charge);
+				}
+				count = rental_count + sales_count;
+				if(count > 0)
+				{
+					if((rentalOrder.PO_Applicable == true && rentalOrder.Customer_PO_No != null) || (rentalOrder.PO_Applicable == false && rentalOrder.Customer_PO_No == null))
+					{
+						data_map.put("line_items",item_list);
+						create_invoice = zoho.books.createRecord("invoices","768861030",data_map,"books_connect");
+						if(create_invoice.get("code") == 0)
+						{
+							if(create_invoice.containKey("invoice") && create_invoice.get("invoice") != null)
+							{
+								for each  rental_list in rentalOrder.Rentals
+								{
+									if(rental_list.Invoiced == false)
+									{
+										functionCall = thisapp.dealLengthThruDate.billingCode(rental_list.ID);
+										rental_list.Deal_Length=functionCall.get("Deal Length");
+										rental_list.Invoiced_Thru_Date=functionCall.get("Invoiced Thru Date");
+										if(rental_list.Thru_Date == null)
+										{
+											rental_list.Invoiced=false;
+										}
+										else
+										{
+											if(rental_list.Thru_Date > rental_list.Invoiced_Thru_Date)
+											{
+												rental_list.Invoiced=false;
+											}
+											else
+											{
+												rental_list.Invoiced=true;
+											}
+										}
+									}
+								}
+								for each  retal_sale_rec in rentalOrder.Sales
+								{
+									if(retal_sale_rec.Invoiced == false)
+									{
+										retal_sale_rec.Invoiced=true;
+									}
+								}
+								books_invoice = insert into Books_Invoice
+								[
+									Added_User=zoho.loginuser
+									Rental_Order=rentalOrder.ID
+									Books_Invoice_iD=create_invoice.get("invoice").get("invoice_id")
+									Invoice_Number=create_invoice.get("invoice").get("invoice_number")
+									Invoice_Date=create_invoice.get("invoice").get("date")
+									Due_Date=create_invoice.get("invoice").get("due_date")
+									Invoice_Url=create_invoice.get("invoice").get("invoice_url")
+									Current_Date=zoho.currentdate
+									Customer_ID=rentalOrder.Sell_to_Customer_No
+									Rentals=rental_rowcollection
+									Sales=sales_rowcollection
+									Rental_Notes=rentalOrder.Add_Notes
+									Sales_Notes=rentalOrder.Add_Notes1
+								];
+								rentalOrder.Invoice_ID=books_invoice;
+								info "Invoice Created Successfully";
+								// 				openUrl("https://books.zoho.com/app/768861030#/invoices/" + create_invoice.get("invoice").get("invoice_id"),"new window");
+								// 				openUrl( "https://creatorapp.zoho.com/getcoverall/rental-advantage/print/Batch_Posting_Invoice?ID="+books_invoice, "new window");
+							}
+						}
+						else
+						{
+							thisapp.Logs.addInvoiceErrorLog("Rental Order",rentalOrder.No,rentalOrder.Sell_to_Customer_No.No + "-" + rentalOrder.Sell_to_Customer_Name," Invoice Creation Error","This Rental Order [" + rentalOrder.No + "] , " + rentalOrder.Sell_to_Customer_Name + create_invoice.get("message"),rentalOrder.ID.toString(),"");
+						}
+					}
+					else if(rentalOrder.PO_Applicable == true && rentalOrder.Customer_PO_No == null)
+					{
+						info "Missing Customer PO";
+						thisapp.Logs.addInvoiceErrorLog("Rental Order",rentalOrder.No,rentalOrder.Sell_to_Customer_No.No + "-" + rentalOrder.Sell_to_Customer_Name," Customer PO is Missing","This Rental Order [" + rentalOrder.No + "] , " + rentalOrder.Sell_to_Customer_Name + " Customer PO is Missing ",rentalOrder.ID.toString(),"");
+					}
+					else
+					{
+						info "Missing Customer PO";
+						thisapp.Logs.addInvoiceErrorLog("Rental Order",rentalOrder.No,rentalOrder.Sell_to_Customer_No.No + "-" + rentalOrder.Sell_to_Customer_Name," Customer PO is Missing","This Rental Order [" + rentalOrder.No + "] , " + rentalOrder.Sell_to_Customer_Name + " Customer PO is Missing ",rentalOrder.ID.toString(),"");
+					}
+				}
+			}
+		}
+		rentalOrder.Thru_Date1 = zoho.currentdate;
+	rentalOrder.Thru_Date = zoho.currentdate;
+	}
+}

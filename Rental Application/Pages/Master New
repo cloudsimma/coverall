@@ -1,0 +1,241 @@
+<%{
+	%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="card">
+    <div class="content">
+      <h2 style="color:#645bf6;">Rental </h2>
+	  							 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Order_Sale"
+			style="text-decoration: none;color:black" >Rental Order-Sale</a> </div>
+			
+	  	  		 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Order_Types"
+			style="text-decoration: none;color:black" >Rentals Order Type</a> </div>
+			
+				  	  		 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Service_Lines"
+			style="text-decoration: none;color:black" >Rental Order-Service</a> </div>
+			
+	  		 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Period"
+			style="text-decoration: none;color:black" >Rental Periods</a> </div>
+			
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Deal_Cards"
+			style="text-decoration: none;color:black" >Rental Deal Cards</a> </div>
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Resource_Group"
+			style="text-decoration: none;color:black" >Resource Groups</a> </div>
+
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Service_Repairs"
+			style="text-decoration: none;color:black" >Rental Service Repairs</a> </div>
+						 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Service_Bins"
+			style="text-decoration: none;color:black" >Rental Service Bins</a> </div>
+									 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Service_Loads"
+			style="text-decoration: none;color:black" >Rental Service Loads</a> </div>
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Service_Due_Backs"
+			style="text-decoration: none;color:black" >Rental Service Due Back</a> </div>
+						 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Rental_Po_Report"
+			style="text-decoration: none;color:black" >Rental PO</a> </div>	
+			
+    </div>
+  </div>
+  <div class="card">
+       <div class="content">
+      <h2 style="color:#ff0000;">Customer </h2>
+             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Customers"
+			style="text-decoration: none;color:black" >Customer Report</a> </div>
+             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Contacts"
+			style="text-decoration: none;color:black" >Contacts</a> </div>
+						   <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Ship_to_Address_Report"
+			style="text-decoration: none;color:black" >Ship to Address</a> </div>
+						  <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Customer_Location"
+			style="text-decoration: none;color:black" >Customer Location</a> </div>
+
+						 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Customer_Credit_Card"
+			style="text-decoration: none;color:black" >Customer Credit Card</a> </div>
+						 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Customer_Disc_Groups"
+			style="text-decoration: none;color:black" >Customer Disc Groups</a> </div>
+				 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Vendor_Posting_Groups_Report"
+			style="text-decoration: none;color:black" >Vendor Posting Groups </a> </div>
+			            			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Customer_Price_Groups"
+			style="text-decoration: none;color:black" >Customer Price Groups</a> </div>
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Inventory_Posting_Groups"
+			style="text-decoration: none;color:black" >Inventory Posting Groups</a> </div>
+															 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Frequencies"
+			style="text-decoration: none;color:black" >Frequency</a> </div>
+									 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Vendor_Lists"
+			style="text-decoration: none;color:black" >Vendor Lists</a> </div>
+			
+
+    </div>
+  </div>
+   <div class="card">
+    <div class="content">
+      <h2 style="color: #3CB371;"> Product </h2>
+             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Products"
+			style="text-decoration: none;color:black" >Product Report</a> </div>
+			             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Gen_Product_Posting_Group"
+			style="text-decoration: none;color:black" >General Posting Groups</a> </div>
+						             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Tax_Product_Posting_Group"
+			style="text-decoration: none;color:black" >Tax Posting Groups</a> </div>
+									             <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Tax_Group"
+			style="text-decoration: none;color:black" >Tax Groups</a> </div>
+			        <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Product_Class_Codes"
+			style="text-decoration: none;color:black" >Product Class</a> </div>
+						        <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Product_Subclasse"
+			style="text-decoration: none;color:black" >Product Sub Class</a> </div>
+									        <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Unit_of_Measures"
+			style="text-decoration: none;color:black" >Unit of Measures</a> </div>
+
+			  <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Item_Category_Codes"
+			style="text-decoration: none;color:black" >Item Category</a> </div>
+				  												        <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Price"
+			style="text-decoration: none;color:black" >Prices</a> </div>
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Base_Calendar_Cards"
+			style="text-decoration: none;color:black" >Base Calendar Cards</a> </div>
+            <div class="" style=""><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Product_Group"
+			style="text-decoration: none;color:black" >Product Groups</a> </div>
+    </div>
+  </div>
+  
+  
+  <div class="card">
+    <div class="content">
+      <h2 style="color:#FF1493;"> Sales </h2>
+									 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Payment_Methods"
+			style="text-decoration: none;color:black" >Payment Methods</a> </div>
+
+
+									 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Reminder_Term"
+			style="text-decoration: none;color:black" >Reminder Terms</a> </div>
+
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Finance_Charge_Term"
+			style="text-decoration: none;color:black" >Finance Charge Terms</a> </div>
+						 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Shipment_Method"
+			style="text-decoration: none;color:black" >Shipment Method</a> </div>
+									 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Shipping_Agent"
+			style="text-decoration: none;color:black" >Shipping Agent</a> </div>
+							 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Gen_Bus_Posting_Groups"
+			style="text-decoration: none;color:black" >General Business Posting</a> </div>
+							 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Tax_Business_Posting_Groups_Report"
+			style="text-decoration: none;color:black" >Tax Business Posting</a> </div>
+												 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Sales_Person_Purchaser_Card_Report"
+			style="text-decoration: none;color:black" > Purchaser Card </a> </div>
+			 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Currency_Cards"
+			style="text-decoration: none;color:black" >Currency Cards</a> </div>
+						 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:G_l_Account_Cards"
+			style="text-decoration: none;color:black" >G/I Account Cards</a> </div>
+									 <div class="" style="padding-bottom: 12px;"><i class="fa fa-check"></i>  <a href="https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Sat_Account_Code"
+			style="text-decoration: none;color:black" >SAT Account</a> </div>
+
+		
+    </div>
+  </div>
+  
+  
+  
+  
+</div>
+
+
+<style>
+.zc-pb-embed-placeholder-content{
+	    //background: #3c2846;
+	background: #FFFFFF;
+}
+ a { text-decoration: none; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 80vh;
+    background: #FFFFFF;
+}
+
+.card {
+    background: #287bff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    width: 265px;
+    height: 430px;
+    margin: 10px;
+    border-radius: 20px;
+    border-bottom-left-radius: 160px;
+    border-bottom-right-radius: 160px;
+    //box-shadow: 0 15px 0 #fff,inset 0 -15px 0 rgba(255, 255, 255, 0.24), 0 45px 0 rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+     
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: -40%;
+    padding: 0;
+    width: 100%;
+    height: 120%;
+   // background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+    transform: rotate(35deg);
+    pointer-events: none;
+    filter: blur(5px);
+}
+
+.card:nth-child(1) {
+    //background: linear-gradient(to bottom, #ff2ae0, #645bf6);
+    background: #645bf624;
+    border-style: solid;
+    border-color: #645bf6;
+}
+
+.card:nth-child(2) {
+    //background: linear-gradient(to bottom, #ffec61, #f321d7);
+	background: #ff000014;
+    border-style: solid;
+    border-color: #ff0000;
+}
+
+.card:nth-child(3) {
+   // background: linear-gradient(to bottom, #24ff72, #9a4eff);
+	background: #3cb37117;
+    border-style: solid;
+    border-color: #3CB371;
+}
+.card:nth-child(4) {
+   // background: linear-gradient(to bottom, #6b24ff, #ff514ef7);
+	background: #ff14930d;
+    border-style: solid;
+    border-color: #FF1493;
+}
+
+.card .content {
+    position: absolute;
+    width: 100%;
+    padding-top: 30px;
+    //text-align: center;
+	padding-left: 55px;
+}
+
+.card .content h2 {
+    font-size: 1.8em;
+    color: #fff;
+    margin-bottom: 15px;
+    margin-left: 25px;
+}
+
+.card .content p {
+    color: #fff;
+    line-height: 1.5em;
+}
+
+
+</style>
+<%
+
+}%>

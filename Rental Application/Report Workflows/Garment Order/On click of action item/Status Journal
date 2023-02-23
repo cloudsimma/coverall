@@ -1,0 +1,9 @@
+/******************
+Description: Open the Garment Journal lines against the RFID
+Created AT: 31/01/2023
+Created By: Punitha N
+*****************/
+if(input.RFID != null)
+{
+	openUrl("#Form:Garment_Journal_lines?RFID=" + input.RFID + "&Status=" + input.Status,"popup window");
+}

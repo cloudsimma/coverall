@@ -1,0 +1,4 @@
+void Contact.contacts_page(int id)
+{
+	openUrl("#Form:Contact?Company_No=" + id,"popup window");
+}

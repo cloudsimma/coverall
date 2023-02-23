@@ -1,0 +1,551 @@
+<%{
+	_invoice = Books_Invoice[ID == input.ID.toLong()];
+	rental = Rental_Order[ID == _invoice.Rental_Order.toLong()];
+	_rent = 0;
+	_sls = 0;
+	_frequency = "";
+	if(rental.count() > 0)
+	{
+		for each  rls in _invoice.Rentals
+		{
+			if(rls.Resource_Item != null)
+			{
+				_rent = _rent + 1;
+			}
+		}
+		for each  sls_rec in _invoice.Sales
+		{
+			if(sls_rec.Type_field != null)
+			{
+				_sls = _sls + 1;
+			}
+		}
+		deal_code = Rental_Deal_Card[ID == rental.Deal_Code1];
+		if(deal_code.count() > 0)
+		{
+			if(deal_code.Billing_Period_Code != null)
+			{
+				rental_period_code = deal_code.Billing_Period_Code;
+				rental_period = Rental_Periods[ID == rental_period_code];
+				if(rental_period.count() > 0)
+				{
+					code = rental_period.Code;
+					length = rental_period.Length_field;
+					unit = rental_period.Units;
+					_frequency = rental_period.Single_Period_Description;
+				}
+			}
+		}
+		%>
+<html>
+<style>
+table{
+	width: 100%;
+}
+th, td {
+  padding: 5px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 15% 42% 42%;
+  
+}
+.grid-container1 {
+  display: grid;
+  grid-template-columns: 57% 42%;
+ }
+ 
+body
+{
+	margin-left: 10px;
+}
+</style>
+<body>
+<%
+		itm = Settings[ID == 4255146000000722007];
+		if(itm.Image != null)
+		{
+			var_img = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			if(!var_img.isEmpty())
+			{
+				img = "<img style=width:98% src='https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img + "'></img>";
+			}
+		}
+		%>
+<div style="padding:30px; ">
+<div class="grid-container">
+  <div>
+  	<%=img%>
+  </div>
+  <div>
+  <table>
+  	<tr><td >Coverall-Uniform-Linen & Mats Ltd</td></tr>
+ 	<tr><td>345 Taiganova Crescent</td></tr>
+  	<tr><td>Fort McMurray, Alberta T9K0T4</td></tr>
+  	<tr><td>Canada</td></tr>
+  	<tr><td>Phone No.: (780) 791-0766</td></tr>
+  	<tr><td>Fax No.: (780) 743-4314</td></tr>	
+  	<tr><td>E-Mail : Service@getcoverall.com</td></tr>
+	<tr><td>GTS No : GST No.106163777</td></tr>
+  </table>
+  </div>
+  <div>
+  
+  <table>
+  	<tr><td colspan="2" style="font-weight:bold;font-size:30px; text-align: center;" >RENTAL/SERVICE INVOICE</td></tr>
+	<tr><td colspan="2"></td></tr>
+	<tr><td colspan="2" style="text-align: center;"><%=zoho.currentdate%></td></tr>
+	<tr><td style="text-align: right;">Invoice Number</td> <td> : <%=_invoice.No%></td></tr>
+	<tr><td style="text-align: right;">Invoice Date</td> <td> : <%=_invoice.Invoice_Date%></td></tr>
+	<tr><td style="text-align: right;">Due Date</td> <td>: <%=_invoice.Due_Date%></td></tr>
+	<tr><td style="text-align: right;">Page</td><td >: 1</td></tr>
+  </table>
+  </div>  
+  </div>
+  <br>
+	
+<div class="grid-container1">
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;">Bill To</td></tr>
+ 	<tr><td><%=rental.Address_Invoicing.address_line_11%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.district_city1%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.state_province1%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.postal_Code1%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.country3%></td></tr>	
+  
+  </table>
+  </div>
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;" >Ship To</td></tr>
+	<tr><td><%=rental.Address_Shipping.address_line_12%></td></tr>
+	<tr><td><%=rental.Address_Shipping.district_city2%></td></tr>
+	<tr><td><%=rental.Address_Shipping.state_province2%></td></tr>
+	<tr><td> <%=rental.Address_Shipping.postal_Code2%></td></tr>
+	<tr><td> <%=rental.Address_Shipping.country4%></td></tr>
+	
+  </table>
+  </div>  
+
+  </div>
+  <br>
+<%
+		Account_Name = "";
+		if(rental.Select_Code.Short_Code == "CC")
+		{
+			Account_Name = "cc payment-for each";
+		}
+		else
+		{
+			Account_Name = "";
+		}
+		%>
+<div>
+<table>
+  <tr><td>Our Account No. : <%=Account_Name%></td></tr>
+  </table>
+  </div> <br>
+<div class="grid-container1">
+  <table>
+  <tr>
+  <td style="width:5%;">Sell-to Name	</td>
+  <td style="width:12%;"><%=rental.Sell_to_Customer_Name%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Sell-to Phone</td>
+  <td style="width:12%;"><%=rental.Bill_to_Phone_No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Sell-to E-mail</td>
+  <td style="width:12%;"><%=rental.Bill_to_Email%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Customer ID</td>
+  <td style="width:12%;"><%=rental.Sell_to_Customer_No.No%></td>
+  </tr>
+   <tr>
+  <td style="width:5%;">Our Order No.</td>
+  <td style="width:12%;"><%=rental.No%></td>
+  </tr>
+</table>
+  <div><table>
+  <tr>
+  <td style="width:5%;">Ship-to Name</td>
+  <td style="width:12%;"><%=rental.Ship_to_Contact%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Ship-to Phone</td>
+  <td style="width:12%;"><%=rental.Ship_to_Phone_No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Ship-to E-mail</td>
+  <td style="width:12%;"><%=rental.Ship_to_Email%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">PO Number</td>
+  <td style="width:12%;"><%=rental.Customer_PO%></td>
+  </tr>
+</table></div>
+  </div>
+		<br>
+<%
+		if(_rent > 0)
+		{
+			%>
+<div>
+		<div  style="font-weight:bold;">Item Rented </div>
+		<table  cellpadding=0 cellspacing=0>
+		
+		<tr>
+<%
+			if(Item1 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Item/ Description</th>
+<%
+			}
+			if(Notes == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Notes</th>
+<%
+			}
+			if(Qty1 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Quantity</th>
+<%
+			}
+			if(Freq == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Frequency</th>
+<%
+			}
+			if(Delivery_Date == "true")
+			{
+				%>
+<th style='border:1px solid black;'>Delivery Date</th>
+<%
+			}
+			if(Unit1 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Unit Price</th>
+<%
+			}
+			if(Total_Price == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Total Price</th>
+<%
+			}
+			%>
+</tr>
+<%
+			for each  rec in _invoice.Rentals
+			{
+				if(rec.Resource_Item != null)
+				{
+					%>
+<tr style='text-align: center;' >
+<%
+					if(Item1 == "true")
+					{
+						if(rec.Description != "" && rec.Description != null)
+						{
+							%>
+<td style='border: 1px solid black;'> <%=rec.Resource_Item.No%>/<%=rec.Description%> </td>
+<%
+						}
+						else
+						{
+							%>
+<td style='border: 1px solid black;'> <%=rec.Resource_Item.No%> </td>
+<%
+						}
+					}
+					if(Notes == "true")
+					{
+						%>
+<td style='border: 1px solid black;'> <%=rec.RentalNotes%> </td>
+<%
+					}
+					if(Qty1 == "true")
+					{
+						%>
+<td style='border: 1px solid black;'><div><%=rec.Quantity%><br> Each </div></td>
+<%
+					}
+					if(Freq == "true")
+					{
+						%>
+<td style='border: 1px solid black;'>
+		<div> <%=rec.Between%> <br>	<%=_frequency%> </div>
+		</td>
+<%
+					}
+					if(Delivery_Date == "true")
+					{
+						%>
+<td style='border: 1px solid black;'><div>
+		<%=rec.From_Invoice_Date%><br>
+		<%=rec.To_Invoice_Date%></div>
+		</td>
+<%
+					}
+					if(Unit1 == "true")
+					{
+						%>
+<td style='border: 1px solid black;'><div><%=rec.Unit_Price_Pack_Price%> <br> per <%=_frequency%> </div> </td>
+<%
+					}
+					if(Total_Price == "true")
+					{
+						%>
+<td style='border: 1px solid black;'><%=rec.Extended_Price%></td>
+<%
+					}
+					%>
+</tr>
+<%
+				}
+			}
+			%>
+</table>
+	</div>
+	<br>
+<%
+		}
+		if(_sls > 0)
+		{
+			%>
+<br>
+<div>
+	<div  style="font-weight:bold;">Item Sold </div>
+		<table  cellpadding=0 cellspacing=0>
+		<tr>
+<%
+			if(Item2 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Item/ Description</th>
+<%
+			}
+			if(Notes1 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Notes</th>
+<%
+			}
+			if(Qty2 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Quantity</th>
+<%
+			}
+			if(Delivery_Date1 == "true")
+			{
+				%>
+<th style='border:1px solid black;'>Delivery Date</th>
+<%
+			}
+			if(Unit2 == "true")
+			{
+				%>
+<th style='border:1px solid black;'>Unit Price</th>
+<%
+			}
+			if(Total_Price1 == "true")
+			{
+				%>
+<th style='border: 1px solid black;'>Total Price</th>
+<%
+			}
+			%>
+</tr>
+<%
+			for each  sales_rec in _invoice.Sales
+			{
+				if(sales_rec.Resource_Item != null)
+				{
+					%>
+<tr style='text-align: center;' >
+<%
+					if(Item2 == "true")
+					{
+						if(sales_rec.Description != "" && sales_rec.Description != null)
+						{
+							%>
+<td style='border: 1px solid black;'> <%=sales_rec.Resource_Item.No%> /<%=sales_rec.Description%></td>
+<%
+						}
+						else
+						{
+							%>
+<td style='border: 1px solid black;'> <%=sales_rec.Resource_Item.No%> </td>
+<%
+						}
+					}
+					if(Notes1 == "true")
+					{
+						%>
+<td style='border: 1px solid black;'><%=sales_rec.SalesNotes%> </td>
+<%
+					}
+					if(Qty2 == "true")
+					{
+						%>
+<td style='border: 1px solid black;'><div><%=sales_rec.Quantity%><br> Each </div></td>
+<%
+					}
+					if(Delivery_Date1 == "true")
+					{
+						%>
+<th style='border:1px solid black;'><%=sales_rec.Delivery_Date%></th>
+<%
+					}
+					if(Unit2 == "true")
+					{
+						%>
+<td style='border: 1px solid black;'> <%=sales_rec.Unit_Price_Pack_Price%></td>
+<%
+					}
+					if(Total_Price1 == "true")
+					{
+						%>
+<th style='border: 1px solid black;'><%=sales_rec.Extended_Price%> </th>
+<%
+					}
+					%>
+</tr>
+<%
+				}
+			}
+			%>
+</table>
+	</div>
+<br>
+<%
+		}
+		%>
+<br>
+<div>
+<table>
+ <td style="width:25%;text-align: right;color : red;">Total :</td>
+  <td style="width:5%;text-align: right;color : red ;"><%=_invoice.Total%></td>
+</table>
+</div>
+<br>
+<br>
+<div class="grid-container1"   style = "border-top: 1px solid;">
+<table style="height: 2px;">
+<%
+		if(_rent > 0 || _sls > 0)
+		{
+			%>
+<tr>
+  <td style="width:35%;"> <b> Tax </b> </td>
+  <td style="width:10%;"><b> Tax Base </b> </td>
+  <td style="width:10%;"> <b>  Tax Amount </b>  </td>
+  </tr>
+<%
+		}
+		if(_rent > 0)
+		{
+			%>
+<tr>
+  <td style="width:35%;">  GST  </td>
+  <td style="width:10%;"> <%=_invoice.Tax_Base%> </td>
+  <td style="width:10%;"> <%=_invoice.Tax_Amount%>  </td>
+  </tr>
+<%
+		}
+		if(_sls > 0)
+		{
+			%>
+<tr>
+  <td style="width:35%;"><div>  GST </div> </td>
+  <td style="width:10%;"><div>  <%=_invoice.Tax_Base1%> </div></td>
+  <td style="width:10%;"><div> <%=_invoice.Tax_Amount1%> </div> </td>
+  </tr>
+<%
+		}
+		%>
+</table>
+  
+<table>
+  <tr>
+  <td style="width:15%;text-align: right;"> Subtotal :</td>
+  <td style="width:5%;text-align: right;"><%=_invoice.Sub_Total%></td>
+  </tr>
+<%
+		Tex_Care = 0.00;
+		if(_invoice.Tex_Care != null && _invoice.Tex_Care > 0.00)
+		{
+			Tex_Care = Tex_Care + _invoice.Tex_Care;
+		}
+		if(_invoice.Tex_Care1 != null && _invoice.Tex_Care1 > 0.00)
+		{
+			Tex_Care = Tex_Care + _invoice.Tex_Care1;
+		}
+		if(Tex_Care > 0.00)
+		{
+			%>
+<tr>
+  <td style="width:15%;text-align: right;">Texcare :</td>
+  <td style="width:5%;text-align: right;"><%=Tex_Care%></td>
+  </tr>
+<%
+		}
+		Service_Charge = 0.00;
+		if(_invoice.Service_Charge != null && _invoice.Service_Charge > 0.00)
+		{
+			Service_Charge = Service_Charge + _invoice.Service_Charge;
+		}
+		if(_invoice.Service_Charge1 != null && _invoice.Service_Charge1 > 0.00)
+		{
+			Service_Charge = Service_Charge + _invoice.Service_Charge1;
+		}
+		if(Service_Charge > 0.00)
+		{
+			%>
+<tr>
+  <td style="width:15%;text-align: right;">Service Charge :</td>
+  <td style="width:5%;text-align: right;"><%=_invoice.Service_Charge%></td>
+  </tr>
+<%
+		}
+		if(_invoice.SAM_Charge != null && _invoice.SAM_Charge > 0.00)
+		{
+			%>
+<tr>
+  <td style="width:15%;text-align: right;">SAM Charge :</td>
+  <td style="width:5%;text-align: right;"><%=_invoice.SAM_Charge%></td>
+  </tr>
+<%
+		}
+		%>
+<tr>
+  <td style="width:15%;text-align: right;">Total Before Tax :</td>
+  <td style="width:5%;text-align: right;"><%=_invoice.Total_Before_Tax%></td>
+  </tr>
+   <tr>
+  <td style="width:15%;text-align: right;">Tax :</td>
+  <td style="width:5%;text-align: right;"><%=_invoice.Tax%></td>
+  </tr>
+   <tr>
+  <td style="width:15%;text-align: right;">Total :</td>
+  <td style="width:5%;text-align: right;"><%=_invoice.Total%></td>
+  </tr>
+  <table>
+
+</div>
+
+		
+</body></html>
+<%
+	}
+
+}%>

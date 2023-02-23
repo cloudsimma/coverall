@@ -1,0 +1,6 @@
+/******************
+Description: Redirect to the corresponding customer's Contacts
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Page:Contacts1?contacts=" + input.ID,"new window");

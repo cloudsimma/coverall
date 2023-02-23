@@ -1,0 +1,15 @@
+<%{
+	itm = Settings[ID == 4255146000000722007];
+	if(itm.Image != null)
+	{
+		var = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+		if(!var.isEmpty())
+		{
+			img = "<img height=100px width=150px src='https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var + "'></img>";
+		}
+	}
+	%>
+<p class="aligncenter" style="margin-top: 5px;"><%=img%></p>
+<%
+
+}%>

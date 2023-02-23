@@ -1,0 +1,6 @@
+/****************************************************************
+Description: Delivert Ticket Print Preview
+Created AT : 22-11-22
+Created By : Punitha N
+*****************************************************************/
+openUrl("#page:Rental_Services?ID=" + input.ID,"new window");

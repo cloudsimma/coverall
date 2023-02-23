@@ -1,0 +1,32 @@
+/******************
+Description: Invoice Creation
+Created AT: 24/11/2022
+Created By: Hari Prema M
+*****************/
+try 
+{
+	thisapp.thru_date();
+	if(input.Rental_Order_ID != null && input.Rental_Order_ID != "")
+	{
+		batch_list = input.Rental_Order_ID.toList();
+		for each  rec in batch_list
+		{
+			// 		Rental Order
+			get_rental = Rental_Order[ID == rec];
+			if(get_rental.count() > 0)
+			{
+				thisapp.Invoice.invoiceCreation(rec);
+				if(get_rental.Invoice_ID != null && get_rental.Invoice_ID != "")
+				{
+					booksInvoiceUpdate = Books_Invoice[ID == get_rental.Invoice_ID.toLong()];
+					booksInvoiceUpdate.Batch_Post_Rental_Order=if(booksInvoiceUpdate.count() > 0,input.Batch_Post_Rental_Order,null);
+					info "id ----" + booksInvoiceUpdate.Batch_Post_Rental_Order;
+				}
+			}
+		}
+	}
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Batches for Batch Posting","Schedule: Added Time - Invoice Creation ",input.ID.toString(),e);
+}

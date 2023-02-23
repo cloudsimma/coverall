@@ -1,0 +1,6 @@
+/******************
+Description: Rental Order No autopopulation
+Created AT: 27/01/2023
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Page:RFID_Order_List?ID=" + input.ID,"new window");

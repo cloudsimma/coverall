@@ -1,0 +1,1 @@
+openUrl("#Report:Suggested_Shipping_Journal?Rental_Order=" + input.ID,"new window");

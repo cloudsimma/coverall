@@ -1,0 +1,112 @@
+<%{
+	rental = Rental_Order[ID == input.ID.toLong()];
+	if(rental.count() > 0)
+	{
+		%>
+<html>
+<style>
+table{
+	width: 100%;
+}
+
+</style>
+<body>
+<div style="padding:3px; line-height: 1.6;">
+<table><tr><th  style="font-weight:bold;text-align: center;" colspan = 2 ><h1><%=input.Param%> Ticket</h1></th></tr>
+<tr><td>
+<%
+		itm = Settings[ID == 4255146000000722007];
+		if(itm.Image != null)
+		{
+			var_img = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			if(!var_img.isEmpty())
+			{
+				img = "<img width=200px src='https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img + "'></img>";
+			}
+		}
+		%>
+<p class="aligncenter" style="margin-top: 5px;"><%=img%></p>
+</td>
+<td>	<div>
+             <table><tr><td>Coverall-Uniform Lines&Mats</td></tr><tr><td>345 Taiganova Cres</td></tr><tr><td>Fort McMurray,Alberta,T9K0T4</td></tr>
+            <tr><td>Canada</td></tr> <tr><td>Phone No:(780)-588-3837</td></tr> <tr><td>Fax No:(780)-743-4314</td></tr>
+			<tr><td>E-mail:Service@getcoverall.com</td></tr></table>
+			
+			</div></td>
+</tr></table>
+		<div>
+            <table>
+			<tr><td style="font-weight:bold;width: 15%;">No</td><td><%=rental.No%></td></tr>
+			<tr><td style="font-weight:bold;">Delivery Date</td><td><%=rental.Delivery_Date%></td></tr>
+		    <tr><td style="font-weight:bold;">Cleaning Date</td><td><%=rental.Cleaning_Date%></td></tr>
+			 </table>
+		</div>
+		<br>
+		<div>
+		<table>
+		<tr><td style="font-weight:bold;">Bill To</td><td  style="font-weight:bold;">Ship To</td></tr>
+		<tr><td><%=rental.Address_Invoicing.address_line_11%></td><td><%=rental.Address_Shipping.address_line_12%></td></tr>
+		<tr><td><%=rental.Address_Invoicing.district_city1%></td><td><%=rental.Address_Shipping.district_city2%></td></tr>
+		<tr><td><%=rental.Address_Invoicing.state_province1%></td><td><%=rental.Address_Shipping.state_province2%></td></tr>
+		<tr><td><%=rental.Address_Invoicing.postal_Code1%></td><td><%=rental.Address_Shipping.postal_Code2%></td></tr>
+	    <tr><td><%=rental.Address_Invoicing.country3%></td><td><%=rental.Address_Shipping.country4%></td></tr>	
+		</table>
+		</div>
+		<br>
+		<div>
+		<table>
+		<tr>
+		<td style='width: 5%;'>Customer ID</td><td style='width: 15%;'><%=rental.Sell_to_Customer_No.No%></td>
+		<td style='width: 5%;' >Frequency Code</td><td style='width: 15%;'><%=rental.Frequency_Code.Code%></td>
+		</tr>
+		<tr>
+		<td>Contact</td><td><%=rental.Bill_to_Contact_Name%></td>
+		<td>Load Code</td><td><%=rental.Load_Code.Code%></td>
+		</tr>
+		<tr>
+		<td>Phone No.</td><td><%=rental.Bill_to_Phone_No%></td>
+		<td>Repair Code</td><td><%=rental.Repair_Code.Code%></td>
+		</tr>
+		<tr>
+		<td>Email</td><td><%=rental.Bill_to_Email%></td>
+		<td>Due Back Code</td><td><%=rental.Due_Back_Code.Code%></td>
+		</tr>
+		<tr>
+		<td>Comments</td><td><%=rental.Comments%></td>
+		<td>Customer_PO</td><td><%=rental.Customer_PO%></td>
+		</tr>
+		</table>
+		</div>
+		
+		<br>
+		<div>
+		<div  style="font-weight:bold;">	Rentals </div>
+		<table  cellpadding=0 cellspacing=0>
+		<tr >
+		<th style='border: 1px solid black;'>Item/Description</th><th style='border: 1px solid black;'>Quantity</th>
+		<th style='border: 1px solid black;'>Shipping Required</th><th style='border:1px solid black;'>Location</th>
+		<th style='border: 1px solid black;'>No. of Bags</th>
+		</tr>
+<%
+		for each  rec in rental.Rentals
+		{
+			if(rec.Show_in_delivery_ticket == true)
+			{
+				%>
+<tr style='text-align: center;' >
+		<td style='border: 1px solid black;'><%=rec.Description%></td><td style='border: 1px solid black;'> <%=rec.Billing_Quantity%> </td>
+		<td style='border: 1px solid black;'><%=rec.Shipping_Required%></td><td style='border: 1px solid black;'> <%=rec.Location_Name%>  </td>
+		<td style='border: 1px solid black;'><%=rec.Description_2%></td>
+		</tr>
+<%
+			}
+		}
+		%>
+</table>
+	</div>
+	</div>
+</body></html>
+<%
+	}
+
+}%>

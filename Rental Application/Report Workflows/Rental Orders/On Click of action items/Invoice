@@ -1,0 +1,15 @@
+/******************
+Description: Invoice Creation
+Created AT: 23/12/2022
+Created By: Hari Prema M
+*****************/
+try 
+{
+	thisapp.thru_date();
+	thisapp.Invoice.invoiceCreation(input.ID);
+	
+}
+catch (e)
+{
+	thisapp.Logs.addDeveloperLog("Creator : Rental Order","Report Workflow: Invoice - Invoice Creation",input.ID.toString(),e);
+}

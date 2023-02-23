@@ -1,0 +1,287 @@
+<%{
+	rental = Rental_Order[ID == input.ID.toLong()];
+	_rent = 0;
+	_sls = 0;
+	if(rental.count() > 0)
+	{
+		for each  rls in rental.Rentals
+		{
+			if(rls.Show_in_delivery_ticket == true)
+			{
+				_rent = _rent + 1;
+			}
+		}
+		for each  sls_rec in rental.Sales
+		{
+			if(sls_rec.Show_in_delivery_ticket == true)
+			{
+				_sls = _sls + 1;
+			}
+		}
+		%>
+<html>
+<style>
+table{
+	width: 100%;
+}
+th, td {
+  padding: 5px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 15% 42% 42%;
+  
+}
+.grid-container1 {
+  display: grid;
+  grid-template-columns: 57% 42%;
+ }
+ 
+body
+{
+	margin-left: 10px;
+}
+</style>
+<body>
+<%
+		itm = Settings[ID == 4255146000000722007];
+		if(itm.Image != null)
+		{
+			var_img = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			if(!var_img.isEmpty())
+			{
+				img = "<img style=width:98% src='https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img + "'></img>";
+			}
+		}
+		%>
+<div style="padding:30px; ">
+<div class="grid-container">
+  <div>
+  	<%=img%>
+  </div>
+  <div>
+  <table>
+  	<tr><td >Coverall-Uniform-Linen & Mats Ltd</td></tr>
+ 	<tr><td>345 Taiganova Crescent</td></tr>
+  	<tr><td>Fort McMurray, Alberta T9K0T4</td></tr>
+  	<tr><td>Canada</td></tr>
+  	<tr><td>Phone No.: (780) 791-0766</td></tr>
+  	<tr><td>Fax No.: (780) 743-4314</td></tr>	
+  	<tr><td>E-Mail: Service@getcoverall.com</td></tr>
+  </table>
+  </div>
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;font-size:30px;" ><%=input.Param%> TICKET</td></tr>
+	<tr><td></td></tr>
+	<tr><td><%=zoho.currenttime%></td></tr>
+	<tr><td>Order Number: <%=rental.No%></td></tr>
+	<tr><td>Delivery Date: <%=rental.Delivery_Date%></td></tr>
+	<tr><td>Cleaning Date: <%=rental.Cleaning_Date%></td></tr>
+	<tr><td>Page: 1</td></tr>
+  </table>
+  </div>  
+  </div>
+  <br>
+	
+<div class="grid-container1">
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;">Bill To</td></tr>
+ 	<tr><td><%=rental.Address_Invoicing.address_line_11%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.district_city1%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.state_province1%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.postal_Code1%></td></tr>
+  	<tr><td><%=rental.Address_Invoicing.country3%></td></tr>	
+  
+  </table>
+  </div>
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;" >Ship To</td></tr>
+	<tr><td><%=rental.Address_Shipping.address_line_12%></td></tr>
+	<tr><td><%=rental.Address_Shipping.district_city2%></td></tr>
+	<tr><td><%=rental.Address_Shipping.state_province2%></td></tr>
+	<tr><td> <%=rental.Address_Shipping.postal_Code2%></td></tr>
+	<tr><td> <%=rental.Address_Shipping.country4%></td></tr>
+	
+  </table>
+  </div>  
+  </div>
+		
+		<br>
+<div class="grid-container1">
+  <table>
+  <tr>
+  <td style="width:5%;">Customer ID	</td>
+  <td style="width:12%;"><%=rental.Sell_to_Customer_No.No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Contact</td>
+  <td style="width:12%;"><%=rental.Bill_to_Contact_Name%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Phone No.</td>
+  <td style="width:12%;"><%=rental.Bill_to_Phone_No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Email</td>
+  <td style="width:12%;"><%=rental.Bill_to_Email%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Comments</td>
+  <td style="width:12%;"><%=rental.Comments%></td>
+  </tr>
+</table>
+  <div><table>
+  <tr>
+  <td style="width:5%;">Frequency Code</td>
+  <td style="width:12%;"><%=rental.Frequency_Code.Code%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Load Code</td>
+  <td style="width:12%;"><%=rental.Load_Code.Code%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Repair Code</td>
+  <td style="width:12%;"><%=rental.Repair_Code.Code%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Due Back Code</td>
+  <td style="width:12%;"><%=rental.Due_Back_Code.Code%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Customer PO</td>
+  <td style="width:12%;"><%=rental.Customer_PO%></td>
+  </tr>
+</table></div>
+  </div>
+		<br>
+<%
+		if(_rent > 0)
+		{
+			%>
+<div>
+		<div  style="font-weight:bold;">	Rentals </div>
+		<table  cellpadding=0 cellspacing=0>
+		
+		<tr>
+		<th style='border: 1px solid black;'>Item/Description</th>
+		<th style='border: 1px solid black;'>Quantity</th>
+		<th style='border: 1px solid black;'>Shipped Rem</th>
+		<th style='border:1px solid black;'>Location</th>
+		<th style='border: 1px solid black;'>No.of Bags</th>
+		<th style='border: 1px solid black;'>Comments</th>
+		</tr>
+<%
+			for each  rec in rental.Rentals
+			{
+				if(rec.Show_in_delivery_ticket == true)
+				{
+					%>
+<tr style='text-align: center;' >
+<%
+					if(rec.Description != "" && rec.Description != null)
+					{
+						%>
+<td style='border: 1px solid black;'> <%=rec.Resource_Item.No%>/<%=rec.Description%> </td>
+<%
+					}
+					else
+					{
+						%>
+<td style='border: 1px solid black;'><%=rec.Resource_Item.No%></td>
+<%
+					}
+					%>
+<td style='border: 1px solid black;'> 
+		<%=if(rental.Select_Code.ID == 4255146000000237039,rec.Billing_Quantity,rec.Shipping_Quantity)%> 
+		
+		</td>
+		<td style='border: 1px solid black;'><%=rec.Quantity_Shipped%></td><td style='border: 1px solid black;'> <%=rec.Location_Name%>  </td>
+		<td style='border: 1px solid black;'><%=rec.Description_2%></td><td style='border: 1px solid black;'><%=rec.Comments%></td>
+		</tr>
+<%
+				}
+			}
+			%>
+</table>
+	</div>
+	<br>
+<%
+			if(rental.Add_Notes != "" && rental.Add_Notes != null)
+			{
+				%>
+<div>
+	<b>Notes </b> <br>
+	<div><%=rental.Add_Notes%></div>
+	</div>
+	<br>
+<%
+			}
+		}
+		if(_sls > 0)
+		{
+			%>
+<br>
+	<br>
+	<div>
+	<div  style="font-weight:bold;">	Sales </div>
+		<table  cellpadding=0 cellspacing=0>
+		<tr >
+		<th style='border: 1px solid black;'>Item/Description</th><th style='border: 1px solid black;'>Quantity</th>
+		<th style='border: 1px solid black;'>Shipped Rem</th><th style='border:1px solid black;'>Location</th>
+		<th style='border: 1px solid black;'>No. of Bags</th><th style='border: 1px solid black;'>Comments</th>
+		
+		</tr>
+<%
+			for each  sales_rec in rental.Sales
+			{
+				if(sales_rec.Show_in_delivery_ticket == true)
+				{
+					%>
+<tr style='text-align: center;' >
+<%
+					if(sales_rec.Description != "" && sales_rec.Description != null)
+					{
+						%>
+<td style='border: 1px solid black;'> <%=sales_rec.No.No%>/<%=sales_rec.Description%> </td>
+<%
+					}
+					else
+					{
+						%>
+<td style='border: 1px solid black;'><%=sales_rec.No.No%></td>
+<%
+					}
+					%>
+<td style='border: 1px solid black;'> 
+		<%=sales_rec.Quantity%> </td>
+		<td style='border: 1px solid black;'><%=sales_rec.Quantity_shipped%></td><td style='border: 1px solid black;'> <%=sales_rec.Location_Name.Name%>  </td>
+		<td style='border: 1px solid black;'><%=sales_rec.Description_2%></td><td style='border: 1px solid black;'><%=sales_rec.Comments%></td>
+		</tr>
+<%
+				}
+			}
+			%>
+</table>
+	</div>
+	<br>
+<%
+			if(rental.Add_Notes1 != "" && rental.Add_Notes1 != null)
+			{
+				%>
+<div>
+	<b>Notes</b> <br>
+	<div><%=rental.Add_Notes1%></div>
+	</div>
+<br>
+<%
+			}
+		}
+		%>
+</body></html>
+<%
+	}
+
+}%>

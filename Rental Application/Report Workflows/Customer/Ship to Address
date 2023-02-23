@@ -1,0 +1,6 @@
+/******************
+Description: Redirect to the corresponding customer's Contacts
+Created AT: 15/12/2022
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Page:Ship_to_Address1?ship_to_address=" + input.ID,"new window");

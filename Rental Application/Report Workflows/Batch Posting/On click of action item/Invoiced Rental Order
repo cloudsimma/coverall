@@ -1,0 +1,14 @@
+/******************
+Description: Open the Created Invoice for the Rental Order Type
+Created AT: 10/02/2023
+Created By: Hari Prema M
+*****************/
+fet_invoice = Books_Invoice[Batch_Post_Rental_Order == input.ID];
+if(fet_invoice.count() > 0)
+{
+	openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Books_Invoice_Report?Batch_Post_Rental_Order=" + input.ID,"new window");
+}
+else
+{
+	info "Invoice creation under progression";
+}

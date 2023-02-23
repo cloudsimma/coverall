@@ -1,0 +1,6 @@
+/**********************
+Description: Open the corresponding Sales Report
+Created AT : 29/08/2022
+Created By : Hari Prema M
+***********************/
+openUrl("#Page:Sales1?rental_order_id=" + input.ID,"new window");

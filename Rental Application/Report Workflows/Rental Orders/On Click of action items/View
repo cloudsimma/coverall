@@ -1,0 +1,7 @@
+/******************
+Description: View of the record
+Created AT: 23/01/2023
+Created By: Hari Prema M
+*****************/
+//input.Page_Option = "View";
+openUrl("#Form:Rental_Order?recLinkID=" + input.ID + "&viewLinkName=Rental_Orders&Page_Option=View","popup window");

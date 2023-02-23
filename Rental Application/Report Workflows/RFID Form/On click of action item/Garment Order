@@ -1,0 +1,6 @@
+/******************
+Description: Open Garmenr Order against the RFID
+Created AT: 30/01/2023
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Garment_Orders?RFID_Form=" + input.ID,"new window");

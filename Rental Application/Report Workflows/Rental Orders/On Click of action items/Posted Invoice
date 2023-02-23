@@ -1,0 +1,6 @@
+/******************
+Description: Open corresponding Rental Orde's invoice
+Created AT: 09/12/2022
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Report:Books_Invoice_Report?Rental_Order=" + input.ID,"new window");

@@ -1,0 +1,6 @@
+/******************
+Description: Open the Corresponding Customer's Invoices
+Created AT: 13/12/2022
+Created By: Hari Prema M
+*****************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/#Page:Invoice_Against_Customer?customer_id=" + input.ID,"new window");

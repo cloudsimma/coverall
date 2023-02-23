@@ -1,0 +1,164 @@
+<%{
+	route = Rental_Service_Line[Route_No == input.Service_Route.toLong() && Next_Service_Date == input.Date && Dispatched == false];
+	//route = Rental_Service_Line[Route_No.No == "RO001"];
+	if(route.count() > 0)
+	{
+		%>
+<html>
+<style>
+table{
+	width: 100%;
+}
+th, td {
+  padding: 5px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 15% 42% 42%;
+  
+}
+.grid-container1 {
+  display: grid;
+  grid-template-columns: 57% 42%;
+ }
+ 
+body
+{
+	margin-left: 10px;
+}
+</style>
+<body>
+<%
+		itm = Settings[ID == 4255146000000722007];
+		if(itm.Image != null)
+		{
+			var_img = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			if(!var_img.isEmpty())
+			{
+				img = "<img style=width:98% src='https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img + "'></img>";
+			}
+		}
+		%>
+<div style="padding:30px; ">
+<div class="grid-container">
+  <div>
+  	<%=img%>
+  </div>
+  <div>
+  <table>
+  	<tr><td >Coverall-Uniform-Linen & Mats Ltd</td></tr>
+ 	<tr><td>345 Taiganova Crescent</td></tr>
+  	<tr><td>Fort McMurray, Alberta T9K0T4</td></tr>
+  	<tr><td>Canada</td></tr>
+  	<tr><td>Phone No.: (780) 791-0766</td></tr>
+  	<tr><td>Fax No.: (780) 743-4314</td></tr>	
+  	<tr><td>E-Mail: Service@getcoverall.com</td></tr>
+  </table>
+  </div>
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;font-size:30px;" >Service Route</td></tr>
+	<tr><td></td></tr>
+	<tr><td><%=zoho.currenttime%></td></tr>
+	<tr><td>Page: 1</td></tr>
+  </table>
+  </div>  
+  </div>
+  <br>
+  
+	<div class="grid-container">
+  <div>
+  <table>
+   	<tr><td></td></tr>
+  	<tr><td ></td></tr>
+  </table>
+  </div>
+  <div>
+    <table>
+	<tr><td style='text-align: center;' ><b>Route No: <%=route.Route_No.No%></b></td></tr>
+	<tr><td style='text-align: center;' ><%=zoho.currenttime%></td></tr>
+  </table>
+  </div>
+  <div>
+  <table>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+  </table>
+  </div>  
+  </div>
+  
+		<br>
+		<br>
+<div>
+<table  cellpadding=0 cellspacing=0>
+		
+		<tr>
+		<th style=''>Customer</th>
+		<th style=''>Location Name</th>
+		<th style=''>Document No</th>
+		<th style=''>Frequency Name</th>
+		<th style=''>Bin Code</th>
+		<th style=''>Due Back Code</th>
+		<th style=''>Quantity</th>
+		<th style=''>Actual Quantity</th>	
+		</tr>
+		<tr>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'>Step No : 0</th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'></th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'></th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'>Host : ________</th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'></th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'></th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'></th>
+		<th style='border-top: 1px solid black;border-bottom: 1px solid black;'>Odometer : _______<th>	
+		</tr>
+<%
+		for each  rec_route in route
+		{
+			if(rec_route.Dispatched == false)
+			{
+				rental = Rental_Order[ID == rec_route.Rental_Order];
+				if(rental.count() > 0)
+				{
+					%>
+<tr style='text-align: center;' >
+		<td style=''><%=rental.Sell_to_Customer_No.Name%></td>
+		<td style=''> <%=rental.Location_Code.Name%> </td>
+		<td style=''> <%=rental.No%> </td>
+		<td style=''><%=rec_route.Frequency_Code.Description%> </td>
+		<td style=''>  <%=rec_route.Bin_Code.Code%> </td>
+		<td style=''> <%=rec_route.Due_Back_Code.Code%> </td>
+		<td style=''></td>
+		<td style=''></td>
+		</tr>
+<%
+				}
+				rec_route.Dispatched=true;
+				rec_route.Service_End_Date=zoho.currentdate;
+			}
+		}
+		%>
+</table>
+	</div>
+
+
+</body></html>
+<%
+	}
+	else
+	{
+		%>
+<html>
+<head>
+<style>
+h1 {text-align: center;}
+</style>
+</head>
+<body>
+<h1 >No Services for Dispatching</h1>
+</body>
+</html>
+<%
+	}
+
+}%>

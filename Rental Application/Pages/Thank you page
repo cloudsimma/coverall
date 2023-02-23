@@ -1,0 +1,32 @@
+<%{
+	%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.center {
+margin: auto;
+padding: 100px;
+}
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+}
+h1 {text-align: center;}
+</style>
+</head>
+<body>
+<div class="fullscreen">
+<div class="center">
+<h1>Thank you for the Response!</h1>
+</div>
+</div>
+</body>
+</html>
+<%
+
+}%>

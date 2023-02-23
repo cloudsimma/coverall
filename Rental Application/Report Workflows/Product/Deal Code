@@ -1,0 +1,6 @@
+/********************************************************************
+Description: Open the corresponding Rental Report
+Created AT : 31/01/2023
+Created By : Punitha N
+*********************************************************************/
+openUrl("#Page:Deal_Codes?ID=" + input.ID,"new window");

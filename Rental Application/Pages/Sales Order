@@ -1,0 +1,237 @@
+<%{
+	directsales = Direct_Sales[ID == input.ID.toLong()];
+	//	directsales = Direct_Sales[ID == 4255146000000674009 ];
+	_lines = 0;
+	_subtotal = 0;
+	if(directsales.count() > 0)
+	{
+		for each  rls in directsales.Lines
+		{
+			if(rls.Direct_Sales_ID != null)
+			{
+				_lines = _lines + 1;
+			}
+		}
+		%>
+<html>
+<style>
+table{
+	width: 100%;
+}
+th, td {
+  padding: 5px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 15% 42% 42%;
+  
+}
+.grid-container1 {
+  display: grid;
+  grid-template-columns: 57% 42%;
+ }
+ 
+body
+{
+	margin-left: 10px;
+}
+</style>
+<body>
+<%
+		itm = Settings[ID == 4255146000000722007];
+		if(itm.Image != null)
+		{
+			var_img = itm.Image.getSuffix("downqual = \"").getSuffix("image/").getPrefix("\"");
+			if(!var_img.isEmpty())
+			{
+				img = "<img style=width:98% src='https://creatorapp.zohopublic.com/file/getcoverall/rental-advantage/All_Settings/" + itm.ID + "/Image/image-download/UKnCbnhgZzM0j48f72SSsbh9ayyTbRyV2BmyMk13JYdvvvhJVyq5whSN93b5aDCpMpaxEn4ssg0mPn9qyQZ2bSXMJhVJhd44ERR5?filepath=/" + var_img + "'></img>";
+			}
+		}
+		%>
+<div style="padding:30px; ">
+<div class="grid-container">
+  <div>
+  	<%=img%>
+  </div>
+  <div>
+  <table>
+  	<tr><td >Coverall-Uniform-Linen & Mats Ltd</td></tr>
+ 	<tr><td>345 Taiganova Crescent</td></tr>
+  	<tr><td>Fort McMurray, Alberta T9K0T4</td></tr>
+  	<tr><td>Canada</td></tr>
+  	<tr><td>Phone No.: (780) 791-0766</td></tr>
+  	<tr><td>Fax No.: (780) 743-4314</td></tr>	
+  	<tr><td>E-Mail: Service@getcoverall.com</td></tr>
+	<tr><td>Tax Registration No. GST No.106163777</td></tr>
+	
+  </table>
+  </div>
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;font-size:30px;" >SALES ORDER </td></tr>
+	<tr><td></td></tr>
+	<tr><td><%=zoho.currenttime%></td></tr>
+	<tr><td>Sales Order Number : <%=directsales.Direct_Sales_No%></td></tr>
+	<tr><td>Ship Date : <%=directsales.Shipment_Date%> </td></tr>
+	<tr><td>Sales Order Date : <%=directsales.Order_Date%> </td></tr>
+	<tr><td>Page: 1</td></tr>
+  </table>
+  </div>  
+  </div>
+  <br>
+	
+<div class="grid-container1">
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;">Bill To</td></tr>
+ 	<tr><td><%=directsales.Address.address_line_12%></td></tr>
+  	<tr><td><%=directsales.Address.district_city2%></td></tr>
+  	<tr><td><%=directsales.Address.state_province2%></td></tr>
+  	<tr><td><%=directsales.Address.postal_Code2%></td></tr>
+  	<tr><td><%=directsales.Address.country2%></td></tr>	
+  
+  </table>
+  </div>
+  <div>
+  <table>
+  	<tr><td style="font-weight:bold;" >Ship To</td></tr>
+	<tr><td><%=directsales.Ship_to_Address.address_line_13%></td></tr>
+	<tr><td><%=directsales.Ship_to_Address.district_city3%></td></tr>
+	<tr><td><%=directsales.Ship_to_Address.state_province3%></td></tr>
+	<tr><td> <%=directsales.Ship_to_Address.postal_Code3%></td></tr>
+	<tr><td> <%=directsales.Ship_to_Address.country3%></td></tr>
+	
+  </table>
+  </div>  
+  </div>
+		
+		<br>
+<div class="grid-container1">
+  <table>
+  <tr>
+  <td style="width:5%;">Sell-to Name </td>
+  <td style="width:12%;"><%=directsales.Sell_to_Customer_No.Name%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Sell-to Phone </td>
+  <td style="width:12%;"><%=directsales.Sell_to_Phone_No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Sell-to E-mail</td>
+  <td style="width:12%;"><%=directsales.Sell_to_E_Mail%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Customer ID</td>
+  <td style="width:12%;"><%=directsales.Sell_to_Customer_No.No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Our Order No.</td>
+  <td style="width:12%;"></td>
+  </tr>
+</table>
+  <div><table>
+  <tr>
+  <td style="width:5%;">Ship-to Name</td>
+  <td style="width:12%;"><%=directsales.Ship_to_Name%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Ship-to Phone</td>
+  <td style="width:12%;"><%=directsales.Ship_to_Phone_No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">Ship-to E-mail</td>
+  <td style="width:12%;"><%=directsales.Ship_to_E_Mail%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">P.O. Number</td>
+  <td style="width:12%;"><%=directsales.Customer_PO_No%></td>
+  </tr>
+  <tr>
+  <td style="width:5%;">P.O. Date</td>
+  <td style="width:12%;"><%=directsales.PO_Date%></td>
+  </tr>
+</table></div>
+  </div>
+		<br>
+<%
+		if(_lines > 0)
+		{
+			%>
+<div>
+		<div  style="font-weight:bold;">	Lines </div>
+		<table  cellpadding=0 cellspacing=0>
+		
+		<tr>
+		<th style='border: 1px solid black;'>Item/Description</th>
+		<th style='border: 1px solid black;'>Employee Name</th>
+		<th style='border:1px solid black;'>Location Name</th>
+		<th style='border: 1px solid black;'>Quantity</th>
+		<th style='border: 1px solid black;'>Unit Price</th>
+		<th style='border: 1px solid black;'>Total Price</th>
+		</tr>
+<%
+			for each  rec in directsales.Lines
+			{
+				if(rec.Direct_Sales_ID != null)
+				{
+					_subtotal = _subtotal + ifnull(rec.Extended_Price,0);
+					%>
+<tr style='text-align: center;' >
+		<td style='border: 1px solid black;'><%=rec.No.Description%></td>
+		<td style='border: 1px solid black;'> <%=rec.Employee_Name%>  </td>
+		<td style='border: 1px solid black;'> <%=rec.Customer_Location_Name%>  </td>
+		<td style='border: 1px solid black;'><%=rec.Quantity%></td>
+		<td style='border: 1px solid black;'><%=rec.Unit_Price_Excl_Tax%></td>
+		<td style='border: 1px solid black;'> <%=rec.Extended_Price%> </td>
+		</tr>
+<%
+				}
+			}
+			%>
+</table>
+	</div>
+	<br>
+	<br>
+	<br>
+<div class="grid-container1"   style = "border-top: 1px solid;">
+<table style="height: 2px;">
+<tr>
+  <td style="width:10%;">Amount Subject to Sales Tax </td>
+  <td style="width:5%;"> 335.00 </td>
+  </tr>
+  <tr>
+  <td style="width:10%;">Amount Exempt from Sales Tax </td>
+  <td style="width:5%;"> 0.00 </td>
+  </tr>
+  </table>
+  <table style="height: 2px;">
+<tr>
+  <td style="width:15%;text-align: right;"><b> Subtotal :</b></td>
+  <td style="width:5%;text-align: right;"><b><%=_subtotal%></b></td>
+  </tr>
+  <tr>
+  <td style="width:15%;text-align: right;"> Invoice Discount :</td>
+  <td style="width:5%;text-align: right;"><%=directsales.Invoice_Discount_Amount%> </td>
+  </tr>
+  <tr>
+  <td style="width:15%;text-align: right;"> Total Tax :</td>
+  <td style="width:5%;text-align: right;"><%=directsales.Total_Tax_CAD%> </td>
+  </tr>
+   <tr>
+  <td style="width:15%;text-align: right;"> </td>
+  <td style="width:5%;text-align: right;border-top: 1px solid;" ></td>
+  </tr>
+   <tr>
+  <td style="width:15%;text-align: right;"><b> Total  :</b></td>
+  <td style="width:5%;text-align: right;"> <b><%=directsales.Total_Payment_Amount%></b></td>
+  </tr>
+  </table>
+</div>
+<%
+		}
+		%>
+</body></html>
+<%
+	}
+
+}%>

@@ -1,0 +1,52 @@
+/******************
+Description: RFID validation
+Created AT: 22/02/2023
+Created By: Punitha N
+*****************/
+if(row.RFID != null)
+{
+	// 	Rental Order
+	if(input.Rental_Order_No != null)
+	{
+		for each  rec_rental in RFID_Form[Rental_Order_No != null && Rental_Order_No == input.Rental_Order_No]
+		{
+			for each  rental_garment in rec_rental.Garment_Order
+			{
+				if(rental_garment.RFID == row.RFID && rental_garment.Status != "Missing(Closed)" || rental_garment.Status != "Closed")
+				{
+					alert "RFID already exist for " + rec_rental.No + "'s Rental Order";
+					row.RFID=null;
+				}
+			}
+		}
+	}
+	// 	Customer
+	if(input.Customer_No != null)
+	{
+		for each  rec in RFID_Form[Customer_No != null && Customer_No == input.Customer_No]
+		{
+			for each  garment in rec.Garment_Order
+			{
+				if(garment.RFID == row.RFID && garment.Status != "Missing(Closed)" || garment.Status != "Closed")
+				{
+					alert "RFID already exist for " + rec.No + "'s Customer";
+					row.RFID=null;
+				}
+			}
+		}
+	}
+	// 	Validation to restrict the same RFID
+	count = 0;
+	for each  recs in input.Garment_Order
+	{
+		if(recs.RFID == row.RFID)
+		{
+			count = count + 1;
+		}
+	}
+	if(count == 2)
+	{
+		alert "RFID already exists";
+		row.RFID=null;
+	}
+}

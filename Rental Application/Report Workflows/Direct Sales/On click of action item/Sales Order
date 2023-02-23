@@ -1,0 +1,6 @@
+/****************************************************************
+Description: Open the Sales Order Page
+Created AT : 27-01-23
+Created By : Punitha N
+*****************************************************************/
+openUrl("https://creatorapp.zoho.com/getcoverall/rental-advantage/print/Sales_Orders?ID=" + input.ID,"new window");

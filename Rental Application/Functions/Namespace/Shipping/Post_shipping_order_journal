@@ -1,0 +1,28 @@
+void Shipping.Post_shipping_order_journal(Order_Shipping_Journal rec_id)
+{
+	try 
+	{
+		for each  rec in rec_id
+		{
+			if(rec.Status = "Ready to Post")
+			{
+				fet_rental = Rentals[Order_Shipping_Journal == rec.ID];
+				if(fet_rental.count() > 0)
+				{
+					fet_rental.Quantity_Shipped=rec.Quantity;
+					rec.Status="Posted";
+				}
+				fet_sales = Sales[Order_Shipping_Journal == rec.ID];
+				if(fet_sales.count() > 0)
+				{
+					fet_sales.Quantity_shipped=rec.Quantity;
+					rec.Status="Posted";
+				}
+			}
+		}
+	}
+	catch (e)
+	{
+		thisapp.Logs.addDeveloperLog("Creator : Order Shipping Journal","Report Workflow: Post - Update Journal Status",input.rec_id.toString(),e);
+	}
+}
