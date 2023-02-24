@@ -1,0 +1,14 @@
+/******************
+Description: Auto populate customer details
+Created AT: 24/02/2023
+Created By: Hari Prema M
+*****************/
+if(input.Customer != null)
+{
+	customerDetails = Customer[ID == input.Customer];
+	input.Customer_Name = if(customerDetails.count() > 0,ifnull(customerDetails.Name,""),"");
+}
+else
+{
+	input.Customer_Name = "";
+}
