@@ -44,7 +44,7 @@ if(input.Books_Invoice != null)
 			if(_invoice.Rental_Order != null)
 			{
 				get_rental = Rental_Order[ID == _invoice.Rental_Order];
-				File_name = File_name + get_rental.Select_Code.Short_Code;
+				
 				if(get_rental.count() > 0)
 				{
 					customer = Customer[ID == get_rental.Bill_to_Customer_No];
@@ -70,12 +70,14 @@ if(input.Books_Invoice != null)
 			content = content + "<p><span style='width: 40%; padding-left: 10%; float:left; '>Due Date</span><span style='width: 40%; padding-left: 10%;'><b>" + _invoice.Due_Date + "</b></span></p></div>";
 			content = content + "<div style='text-align: center;margin: 25px 0;'><a href='" + _invoice.Invoice_Url + "' style='text-decoration: none;'> <span style='background-color:#4dcf59; border: 1px solid #49bd54; cursor: pointer; text-align: center; min-width: 140px; color: #fff; display: inline-block; text-decoration: none; padding: 10px 20px'>PAY NOW</span></a> </div></div>";
 			content = content + "<br><div style='padding: 3% 0;line-height: 1.6;'> Regards, <div style='color: #8c8c8c; font-weight: 400'>Farai Chingwena</div><div style='color: #b1b1b1'>Coverall</div></div></div></div>";
-			pageUrl = "https://creatorapp.zohopublic.com/getcoverall/rental-advantage/pdf/Batch_Posting_Invoice/XGkwrHBt7PzSnDmw1kRUSMJz44dvUSkEksnxEn5NrVa7EQYqVJt71wTRShT9JeOMffeuGHpbeA6mt0YHJCUgYFqnF8jCsTkSjQg1?ID=" + input.Books_Invoice.toLong() + "&" + field_url + "&isc5page=true&zc_FileName=" + File_name;
+			pageUrl = "https://creatorapp.zohopublic.com/getcoverall/rental-advantage/pdf/Batch_Posting_Invoice/XGkwrHBt7PzSnDmw1kRUSMJz44dvUSkEksnxEn5NrVa7EQYqVJt71wTRShT9JeOMffeuGHpbeA6mt0YHJCUgYFqnF8jCsTkSjQg1?ID=" + input.Books_Invoice.toLong() + "&" + field_url + "&isc5page=true";
 			getPageUrl = invokeurl
 			[
 				url :pageUrl
 				type :GET
 			];
+			file_name = "Rental Invoice(RI)--"+ get_rental.Select_Code.Short_Code+".pdf" ;
+	getPageUrl.setFileName(file_name) ;
 			if(getPageUrl != null && content != null)
 			{
 				if(ToEmail == null || ToEmail == "")
@@ -112,7 +114,7 @@ if(input.Invoice != null)
 			if(_invoice1.Rental_Order != null)
 			{
 				get_rental1 = Rental_Order[ID == _invoice1.Rental_Order];
-				File_name1 = File_name1 + get_rental1.Select_Code.Short_Code;
+				
 				if(get_rental1.count() > 0)
 				{
 					customer1 = Customer[ID == get_rental1.Bill_to_Customer_No];
@@ -138,12 +140,14 @@ if(input.Invoice != null)
 			content1 = content1 + "<p><span style='width: 40%; padding-left: 10%; float:left; '>Due Date</span><span style='width: 40%; padding-left: 10%;'><b>" + _invoice1.Due_Date + "</b></span></p></div>";
 			content1 = content1 + "<div style='text-align: center;margin: 25px 0;'><a href='" + _invoice1.Invoice_Url + "' style='text-decoration: none;'> <span style='background-color:#4dcf59; border: 1px solid #49bd54; cursor: pointer; text-align: center; min-width: 140px; color: #fff; display: inline-block; text-decoration: none; padding: 10px 20px'>PAY NOW</span></a> </div></div>";
 			content1 = content1 + "<br><div style='padding: 3% 0;line-height: 1.6;'> Regards, <div style='color: #8c8c8c; font-weight: 400'>Farai Chingwena</div><div style='color: #b1b1b1'>Coverall</div></div></div></div>";
-			pageUrl1 = "https://creatorapp.zohopublic.com/getcoverall/rental-advantage/pdf/Batch_Posting_Invoice/XGkwrHBt7PzSnDmw1kRUSMJz44dvUSkEksnxEn5NrVa7EQYqVJt71wTRShT9JeOMffeuGHpbeA6mt0YHJCUgYFqnF8jCsTkSjQg1?ID=" + rls.toLong() + "&" + field_url + "&isc5page=true&zc_FileName=" + File_name1;
+			pageUrl1 = "https://creatorapp.zohopublic.com/getcoverall/rental-advantage/pdf/Batch_Posting_Invoice/XGkwrHBt7PzSnDmw1kRUSMJz44dvUSkEksnxEn5NrVa7EQYqVJt71wTRShT9JeOMffeuGHpbeA6mt0YHJCUgYFqnF8jCsTkSjQg1?ID=" + rls.toLong() + "&" + field_url + "&isc5page=true";
 			getPageUrl1 = invokeurl
 			[
 				url :pageUrl1
 				type :GET
 			];
+			file_name1 = "Rental Invoice(RI)--"+ get_rental1.Select_Code.Short_Code+".pdf" ;
+	getPageUrl1.setFileName(file_name1) ;
 			if(getPageUrl1 != null && content1 != null)
 			{
 				if(ToEmail == null || ToEmail == "")
