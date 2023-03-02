@@ -1,0 +1,20 @@
+{
+  "product_url": "armour-ready-cargo-pant",
+  "tabs": [
+    {
+      "tab_name": "Garment Construction",
+      "tab_id": "prod-details-tab-tab1",
+      "tab_content": "<ul><li>Aramid high tenacity FR thread</li><li>All metal thermally protected from the skin</li><li>Bar-tacked at all stress points</li><li>One-way heavy duty #5 brass zipper on aramid tape</li><li>Two sets button at front waistband</li><li>Elastic at the waistband</li></ul>"
+    },
+    {
+      "tab_name": "Pockets",
+      "tab_id": "prod-details-tab-tab2",
+      "tab_content": "<ul><li>2 slash waist pockets</li><li>1 welt pocket on the front left</li><li>2 waist patch pockets, flap with velcro closure</li><li>2 rear hip welt pockets, flap with velcro closure</li><li>2 inset tool pockets on back</li></ul>"
+    },
+    {
+      "tab_name": "PPE Standards Met",
+      "tab_id": "prod-details-tab-user-tab3",
+      "tab_content": "<p>Protective flame retardant and arc flash suits described in this technical standard are used in noxious and hazardous environments must meet the following safety and visibility standards:</p><ul><li>CAT2, ATPV 9.2 cal/cm2 (electric arc flash rating)</li><li>NFPA 70E,ASTM F1506, CAN/CGSB 155.20,CAN/CGSB 155.22, OSHA 29 CFR1910.269, EN ISO11611, EN ISO11612,EN ISO14116</li><li>UL certified NFPA2112-2018</li><li>OEKO-TEX Standard 100</li></ul>"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "product_url": "pro-insulated-vest-–-royal-blue",
+  "tabs": [{
+      "tab_name": "Fabric",
+      "tab_id": "prod-details-tab-tab1",
+      "tab_content": "<ul><li>Royal Blue FR twill weave</li><li>90% Cotton / 10% Nylon</li></ul>"
+    },
+    {
+      "tab_name": "Highly Visibility Trim",
+      "tab_id": "prod-details-tab-user-tab2",
+      "tab_content": "<ul><li>FR industrial wash reflective tape</li><li>Yellow/Silver/Yellow</li><li>Industrial Launderability</li></ul>"
+    },
+    {
+      "tab_name": "Garment Construction",
+      "tab_id": "prod-details-tab-user-tab3",
+      "tab_content": "<ul><li>Aramid high tenacity FR thread</li><li>Bar-tacked at all stress pointsAll metal thermally protected from the skin</li><li>Bar-tacked at all stress points</li><li>Protective shirt collar</li><li>Heavy duty brass zipper on aramid tape</li><li>Two-way #5 zipper at CF</li><li>Storm guard over front zipper with snaps closure</li><li>Side elasticized waist</li></ul>"
+    },
+    {
+      "tab_name": "Pockets",
+      "tab_id": "prod-details-tab-user-tab4",
+      "tab_content": "<ul><li>2 flap chest patch pockets with snap closure</li></ul>"
+    },
+    {
+      "tab_name": "Standards",
+      "tab_id": "prod-details-tab-user-tab5",
+      "tab_content": "<ul><li>CAN/CGSB 155.22-2014</li><li>UL Certified for CAN/CGSB 155.20-2000</li><li>CSA Z462-2015</li><li>CSA Z96-09</li><li>NFPA 1975-2014</li><li>UL Certified for NFPA 2112-2012</li><li>ASTM F1506-02a</li><li>OSHA 29 CFR1910.269</li><li>OEKO-TEX Standard 100</li></ul>"
+    }
+  ]
+}

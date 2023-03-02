@@ -1,0 +1,20 @@
+{
+  "product_url": "armour-ready-7oz-work-shirt",
+  "tabs": [
+    {
+      "tab_name": "Garment Construction",
+      "tab_id": "prod-details-tab-tab1",
+      "tab_content": "<ul><li>Aramid high tenacity FR thread</li><li>9All metal thermally protected from the skin</li><li>Bar-tacked at all stress points</li><li>Men’s button down shirt collar</li><li>Melamine buttons:<ul><li>13mm: 2pcs on collar points</li><li>13mm: 6pcs on cuffs,7pcs on front placket,</li><li>1pc spare under placket</li></ul></li><li>2 layers at chest with velcro to access</li><li>Radio loops on collar seam and both sleeves</li><li>Vented back mesh with two bar-tacks at the bottom of flap</li></ul>"
+    },
+    {
+      "tab_name": "Pockets",
+      "tab_id": "prod-details-tab-tab2",
+      "tab_content": "<ul><li>2 chest patch pockets,flap with velcro closure, pencil slot on both pockets</li><li>1 pencil pocket on left sleeve</li></ul>"
+    },
+    {
+      "tab_name": "PPE Standards Met",
+      "tab_id": "prod-details-tab-user-tab3",
+      "tab_content": "<p>Protective flame retardant and arc flash suits described in this technical standard are used in noxious and hazardous environments must meet the following safety and visibility standards:</p><ul><li>CAT2, ATPV 9.2 cal/cm2 (electric arc flash rating)</li><li>NFPA 70E,ASTM F1506, CAN/CGSB 155.20,CAN/CGSB 155.22, OSHA 29 CFR1910.269, EN ISO11611, EN ISO11612,EN ISO14116</li><li>UL certified NFPA2112-2018</li><li>OEKO-TEX Standard 100</li></ul>"
+    }
+  ]
+}

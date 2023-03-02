@@ -1,0 +1,14 @@
+{
+  "product_url": "armour-ready-insulated-parka-–-red",
+  "tabs": [{
+      "tab_name": "Fabric",
+      "tab_id": "prod-details-tab-tab1",
+      "tab_content": "<ul><li>FR twill weave Armour Ready</li><li>90% Cotton/10%Nylon</li><li>14oz quilted</li></ul>"
+    },
+    {
+      "tab_name": "Standards",
+      "tab_id": "prod-details-tab-user-tab2",
+      "tab_content": "<ul><li>CAN/CGSB 155.22-2014</li><li>UL Certified for CAN/CGSB 155.20-2000</li><li>CSA Z462-2015</li><li>CSA Z96-09</li><li>NFPA 1975-2014</li><li>NFPA 70E-2015</li><li>UL Certified for NFPA 2112-2012</li><li>ASTM F1506-02a</li><li>EN ISO11611 / 11612 / 14116:2008</li><li>AS/NZ 4399</li><li>OSHA 29 CFR1910.269</li><li>OEKO-TEX Standard 100</li></ul>"
+    }
+  ]
+}

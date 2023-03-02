@@ -1,0 +1,29 @@
+{
+  "product_url": "armour-ready-vest-–-khaki",
+  "tabs": [{
+      "tab_name": "Fabric",
+      "tab_id": "prod-details-tab-tab1",
+      "tab_content": "<ul><li>Khaki Firezero Pro</li><li>90%Cotton / 10%Nylon</li></ul>"
+    },
+    {
+      "tab_name": "Highly Visibility Trim",
+      "tab_id": "prod-details-tab-user-tab2",
+      "tab_content": "<ul><li>2″ FireZero Reflective Tape</li><li>Yellow/Silver/Yellow</li><li>Industrial Launderability</li></ul>"
+    },
+    {
+      "tab_name": "Garment Construction",
+      "tab_id": "prod-details-tab-user-tab3",
+      "tab_content": "<ul><li>Aramid high tenacity FR thread</li><li>Bar-tacked at all stress points</li><li>3 snap closure at CF</li><li>2 chest tabs for radio mic or gas monitor, 4.5″ down from the top of the shoulder seam</li></ul>"
+    },
+    {
+      "tab_name": "Pockets",
+      "tab_id": "prod-details-tab-user-tab4",
+      "tab_content": "<ul><li>2 large lower flap pockets with velcro closure</li><li>2 upper pockets, left one for radio</li></ul>"
+    },
+    {
+      "tab_name": "Standards",
+      "tab_id": "prod-details-tab-user-tab5",
+      "tab_content": "<p>Protective flame retardant and arc flash suits described in this technical standard are used in noxious and hazardous environments must meet the following safety and visibility standards:</p><ul><li>CAT2</li><li>ATPV 9.2 cal/cm2 (electric arc flash rating)</li><li>NFPA 1975,NFPA 70E,ASTM F1506, CAN/CGSB 155.20,CAN/CGSB 155.22, OSHA 29 CFR1910.269, EN ISO11611,EN ISO11612,EN ISO14116,EN ISO13036</li><li>UL certified NFPA2112 </li><li>OEKO-TEX Standard 100</li></ul>"
+    }
+  ]
+}
